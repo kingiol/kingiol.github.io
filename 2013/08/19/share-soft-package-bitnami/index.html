@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
   <meta charset="utf-8">
   
@@ -25,69 +25,229 @@
 但是，最近需要在其他的机器上面安装的时候总是会出现这样或者那样的问题，这些错误的原因都是由于在linux中安装软件的时候，版本是有配套的，如果彼此之间的版本不配套，可能是导致编译不通过，或者即使能够正常安装(没有明显的错误),但是软">
 <meta name="twitter:image" content="http://kingiol.github.io/images/2013/08/19/share-soft-package-bitnami-1.jpg">
   
-    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
   
   <link rel="stylesheet" href="/css/style.css">
   
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+      }
+  </script>
 
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
 </head>
-
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Kingiol Ding</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">不作死就不会死.</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-share-soft-package-bitnami" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/08/19/share-soft-package-bitnami/" class="article-date">
-  <time datetime="2013-08-19T13:37:00.000Z" itemprop="datePublished">2013-08-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/summary/">summary</a>►<a class="article-category-link" href="/categories/summary/share/">share</a>
-  </div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kingiol</a></h1>
+        </hgroup>
 
-  </div>
+        
+        <p class="header-subtitle">不作死就不会死.</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:kingxiaokang@gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kingiol</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kingiol</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">不作死就不会死.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:kingxiaokang@gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-share-soft-package-bitnami" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/08/19/share-soft-package-bitnami/" class="article-date">
+      <time datetime="2013-08-19T13:37:00.000Z" itemprop="datePublished">2013-08-19</time>
+</a>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -99,9 +259,22 @@
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/summary/">summary</a><a class="article-category-link" href="/categories/summary/share/">share</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>上一篇文章我介绍了有关在linux下面<a href="/blog/2013/08/19/linux-subversion-apache-setup-and-config/">如何配置subversion和apache的整合安装以及配置</a>,这个配置我时在自己的虚拟机用opensuse12.1中亲测成功的。</p>
 <p>但是，最近需要在其他的机器上面安装的时候总是会出现这样或者那样的问题，这些错误的原因都是由于在linux中安装软件的时候，版本是有配套的，如果彼此之间的版本不配套，可能是导致编译不通过，或者即使能够正常安装(没有明显的错误),但是软件还是不能够按照自己的意愿运行，后来为了解决这样的问题，也到网上去查找了很多的配置信息，最终发现了国外有<a href="www.bitnami.com">一个傻瓜式的安装这些套件的网站(BitNami)</a></p>
 <p>对于初学者来说，总是头疼的就是配置环境了。</p>
@@ -177,141 +350,223 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2013/08/19/share-soft-package-bitnami/" data-id="cimehomgx00040m9k7apioudt" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/2013/08/28/uitableview-gesture-control/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2013/08/19/share-soft-package-bitnami/">分享傻瓜式软件安装整合套件(BitNami)</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Kingiol</a></p>
+        <p><span>Created:</span>2013-08-19, 21:37:00</p>
+        <p><span>Updated:</span>2014-01-14, 14:34:40</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2013/08/19/share-soft-package-bitnami/" title="分享傻瓜式软件安装整合套件(BitNami)">http://kingiol.github.io/2013/08/19/share-soft-package-bitnami/</a>
+            <span class="copy-path" data-clipboard-text="From http://kingiol.github.io/2013/08/19/share-soft-package-bitnami/　　By Kingiol" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
         
-          解决UITableViewCell中的元素无法触发点击事件
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2013/08/28/uitableview-gesture-control/">
+                    解决UITableViewCell中的元素无法触发点击事件
+                </a>
+            </div>
         
-      </div>
-    </a>
-  
-  
-    <a href="/2013/08/19/linux-subversion-apache-setup-and-config/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Linux中subversion(SVN)整合apache安装及配置</div>
-    </a>
-  
-</nav>
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2013/08/19/linux-subversion-apache-setup-and-config/">
+                    Linux中subversion(SVN)整合apache安装及配置
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
     </div>
-  </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
 
 
-  
+
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-  </div>
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2013/08/19/share-soft-package-bitnami/" data-title="分享傻瓜式软件安装整合套件(BitNami)" data-url="http://kingiol.github.io/2013/08/19/share-soft-package-bitnami/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kingiol"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
 
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2013/08/28/uitableview-gesture-control/" title="Pre: 解决UITableViewCell中的元素无法触发点击事件">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2013/08/19/linux-subversion-apache-setup-and-config/" title="Next: Linux中subversion(SVN)整合apache安装及配置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
-    </div>
-  </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/04/13/fix-uitabbar-selectedimage-scale/">处理UITabbar中选中图片变小的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/04/12/change-uitabbar-background/">改变UITabBar的背景色</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/26/enroll-apple-developer-note/">注册个人版苹果开发者须知</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/26/ios7-day-by-day-day23-multipeer-connectivity/">天天品尝iOS7甜点 :: Day 23 :: Multipeer Connectivity</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/26/ios7-day-by-day-day22-downloadable-fonts/">天天品尝iOS7甜点 :: Day 22 :: Downloadable Fonts</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/">天天品尝iOS7甜点 :: Day 21 :: Multi-column TextKit text rendering</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/">天天品尝iOS7甜点 :: Day 20 :: View controller content and navigation bars</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/">天天品尝iOS7甜点 :: Day 19 :: UITableView Row Height Estimation</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/">天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/22/ios7-day-by-day-day17-ibeacons/">天天品尝iOS7甜点 :: Day 17 :: iBeacons</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/">天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/">天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/">天天品尝iOS7甜点 :: Day 14 :: Interactive View Controller Transitions</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/">天天品尝iOS7甜点 :: Day 13 :: Route Directions with MapKit</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/">天天品尝iOS7甜点 :: Day 12 :: Dynamic Type and Font Descriptors</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations/">天天品尝iOS7甜点 :: Day 11 :: UIView Key-frame Animations</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/12/ios7-day-by-day-day10-custom-uiviewcontroller-transitions/">天天品尝iOS7甜点 :: Day 10 :: Custom UIViewController Transitions</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/10/ios7-day-by-day-day9-device-identification/">天天品尝iOS7甜点 :: Day 9 :: Device Identification</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/10/ios7-day-by-day-day8-reading-list-with-safariservices/">天天品尝iOS7甜点 :: Day 8 :: Reading list with SafariServices</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/09/ios7-day-by-day-day7-taking-snapshots-of-uiviews/">天天品尝iOS7甜点 :: Day 7 :: Taking Snapshots of UIViews</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/09/ios7-day-by-day-day6-tint-color/">天天品尝iOS7甜点 :: Day 6 :: Tint Color</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views/">天天品尝iOS7甜点 :: Day 5 :: UIDynamics with Collection Views</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/08/ios7-day-by-day-day4-avspeechsynithesizer/">天天品尝iOS7甜点 :: Day 4 :: AVSpeechSynthesizer</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/07/ios7-day-by-day-day3-background-fetch/">天天品尝iOS7甜点 :: Day 3 :: Background Fetch</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/07/ios7-day-by-day-day2-asset-catalog/">天天品尝iOS7甜点 :: Day 2 :: Asset Catalog</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/06/ios7-day-by-day-day1-nsurlsession/">天天品尝iOS7甜点 :: Day 1 :: NSURLSession</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/">天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/17/uiview-line-by-line-buffering/">UIView实现逐行加载的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/03/fix-cocoapods-warning-on-ios7-64bit/">解决cocoapods在64位iOS7系统下面的警告问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/20/use-transform-implements-animation/">运用UIView中的transform属性实现动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/24/mac-update-to-mavericks-problem/">10.9 DP版本(13A598)的Mac升级为正式的10.9(13A603)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/22/uitableview-reloaddata-with-animation/">UITableview reloadData Animation 动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/cocos2d-insect-game-show/">Cocos2d 击毙昆虫 塔防游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/box2d-review/">Box2d初探</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/cocos2d-coordinate-system/">cocos2d坐标系</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/ios-transition-uiviewconstroller-slash/">IOS中UIViewController切换</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/mknetworkoperation-twice-request/">MKNetworkOperation的addCompletionHandler消息请求两次问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/product-desinger-flow/">(转)产品设计流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/set-sub-div-at-the-bottom-of-sup-div/">设置子DIV位于父亲DIV的低端</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/16/ios-customer-multiple-draw-implement/">iOS中自定义绘图的多种实现方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/14/ios-image-of-shear/">iOS中图片的裁剪</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/13/ios-core-animation-view-controller-exchange-note/">运用Core Animaiton进行UIViewController之间的切换</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/10/xcode-unknown-carsh-support/">Xcode工程莫名其妙的崩溃</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/05/supporting-multiple-ios-versions-and-devices/">程序支持不同iOS的版本和设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/01/happy-a-day-in-sep-1/">开心，仅仅是开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/28/uitableview-gesture-control/">解决UITableViewCell中的元素无法触发点击事件</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/19/share-soft-package-bitnami/">分享傻瓜式软件安装整合套件(BitNami)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/19/linux-subversion-apache-setup-and-config/">Linux中subversion(SVN)整合apache安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/19/python-parse-and-generate-xml/">Python xml的解析和生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/19/python-operation-json/">Python操作JSON数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/08/18/custom-ios-diy-framework/">完整的IOS DIY Framework制作</a></li></ul>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
-          </li>
-        
-          <li>
-            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
-          </li>
-        
-          <li>
-            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
-          </li>
-        
-          <li>
-            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
+    <script>
         
-      </div>
+    </script>
+</div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Kingiol<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Kingiol
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
-  </div>
 </footer>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
 
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>

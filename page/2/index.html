@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
   <meta charset="utf-8">
   
@@ -15,71 +15,236 @@
 <meta name="twitter:title" content="Kingiol Ding">
 <meta name="twitter:description" content="Kingiol Ding - 不作死就不会死.">
   
-    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
   
   <link rel="stylesheet" href="/css/style.css">
   
+      <style> .article { opacity: 0;} </style>
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+      }
+  </script>
 
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
 </head>
-
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Kingiol Ding</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">不作死就不会死.</a>
-        </h2>
-      
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kingiol</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">不作死就不会死.</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:kingxiaokang@gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kingiol</a></h1>
       </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kingiol</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">不作死就不会死.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:kingxiaokang@gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
+</nav>
+      <div class="body-wrap">
   
     <article id="post-ios7-day-by-day-day21-multi-column-textkit-text-rendering" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/" class="article-date">
-  <time datetime="2014-01-25T14:03:00.000Z" itemprop="datePublished">2014-01-25</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/" class="article-date">
+      <time datetime="2014-01-25T14:03:00.000Z" itemprop="datePublished">2014-01-25</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -91,10 +256,12 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <p>在过去，要想在iOS中创建多列的布局的文字是十分困难的:可能你可以创建多个<code>UITextView</code>然后手动剪裁文字来填充到不同的视图中，如果是动态内容的话就悲剧了，或者你可以调用更加底层的<code>CoreText</code>布局引擎，但是这个并不是那么容易使用的。</p>
@@ -110,36 +277,50 @@
 </ul>
 </blockquote>
 <p>我们将会使用这些类来创建多列的文本视图。如果你要更深入的获得有关<code>TextKit</code>的架构信息并且如何来使用，可以查看<a href="http://www.raywenderlich.com/50151/text-kit-tutorial">TextKit Tutorial</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/" data-id="cimehomkf002n0m9ki8f472rk" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/25/ios7-day-by-day-day21-multi-column-textkit-text-rendering/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day20-view-controller-content-and-navigation-bars" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/" class="article-date">
-  <time datetime="2014-01-25T07:32:00.000Z" itemprop="datePublished">2014-01-25</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/" class="article-date">
+      <time datetime="2014-01-25T07:32:00.000Z" itemprop="datePublished">2014-01-25</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -151,10 +332,12 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>今天的这篇文章将会和之前的文章有些小小的不同。采用iOS7依赖，许多开发者都在处理视图控制器在<code>UINavigationControllers</code>的navigation bar后面的问题。我们将要来看看为什么，然后视图解释如何获得自己所需要的行为.</p>
@@ -168,36 +351,50 @@
 <li><code>topLayoutGuid, bottomLayoutGuide</code>:这些属性将会生成匹配视图可见区域的扩展，也就是，如果有屏幕的上方有一个bar，然后<code>topLayoutGuide</code>将会定位在底部的bar上面。</li>
 </ul>
 </blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/" data-id="cimehomkd002k0m9k6mwih0xo" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/25/ios7-day-by-day-day20-view-controller-content-and-navigation-bars/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day19-uitableview-row-height-estimation" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/" class="article-date">
-  <time datetime="2014-01-25T02:57:00.000Z" itemprop="datePublished">2014-01-25</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/" class="article-date">
+      <time datetime="2014-01-25T02:57:00.000Z" itemprop="datePublished">2014-01-25</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -209,46 +406,62 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>今天我们将会来查看一个相当小的额外的<code>UIKit API</code>，其中一个就是复杂的表格来影响用户体验。估算行高是在表格的代理方法中的一个额外的方法进行设置，它不仅仅可以返回默认的行高，还可以返回估算的高度来进行替换。我们将会查看为什么这属于一个高级的部分。为了能够能够验证这些，我们需要构建一个简单的应用，它里面有一个表格，可以让我们看到具有估算高度和没有估算高度的示例。</p>
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
 <h3 id="Without-estimation-没有估算"><a href="#Without-estimation-没有估算" class="headerlink" title="Without estimation - 没有估算"></a>Without estimation - 没有估算</h3><p>我们通过<code>UITableViewController</code>来创建一个简单的<code>UITableView</code>.它包含了一个section200行数据。没有单元包含了包含他们自己的索引和高度。如果所有的行都是具有相同高度，那么我们就不需要去实现代理中的<code>heightForRowAtIndexPath:</code>方法,然后我们也不需要去使用新的估算方法来改善什么东西。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView &#123;</span><br><span class="line">	<span class="comment">// Retur the number of sections.</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">	<span class="comment">// Return the number of rows in the section.</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableview cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">NSString</span> *cellIdentifier = <span class="string">@"Cell"</span>;</span><br><span class="line">	<span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Configure the cell...</span></span><br><span class="line">	cell.textLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"Cell %03d"</span>, indexPath.row];</span><br><span class="line">	<span class="built_in">CGFloat</span> height = [<span class="keyword">self</span> heightForRowAtIndex:indexPath.row];</span><br><span class="line">	cell.detailTextLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"Height %0.2f"</span>, height];</span><br><span class="line">	<span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/" data-id="cimehomka002g0m9k1a0sa444" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day18-detecting-facial-features-with-coreimage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" class="article-date">
-  <time datetime="2014-01-23T01:08:00.000Z" itemprop="datePublished">2014-01-23</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" class="article-date">
+      <time datetime="2014-01-23T01:08:00.000Z" itemprop="datePublished">2014-01-23</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -260,46 +473,62 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>运用<code>AVFoundation</code>和<code>CoreImage</code>,从iOS5开始就介绍了有关脸部识别的功能。在iOS7中，运用<code>CoreImage</code>进行脸部识别已经改进了许多新的识别特性(包括微笑和眨眼).这个API是十分简单易用的，所以我们创建一个应用程序，它运用<code>AVFoundation</code>进行查找脸部，然后在使用<code>CoreImage</code>来对寻找照片中的微笑和闭眼。</p>
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
 <h3 id="Face-detection-with-AVFoundation-运用AVFoundation进行面部识别"><a href="#Face-detection-with-AVFoundation-运用AVFoundation进行面部识别" class="headerlink" title="Face detection with AVFoundation - 运用AVFoundation进行面部识别"></a>Face detection with AVFoundation - 运用AVFoundation进行面部识别</h3><p>在<a href="/blog/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/">Day 16</a>中，我们使用<code>AVFoundation</code>中的<code>AVCatpureMetadataOutput</code>类来寻找和解析二维码。面部识别也是使用同样的方式，和二维码一样都是metadata对象。我们将会创建一个<code>AVCaptureMetadataOutput</code>对象，但是它具有不懂的metadata类型:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureMetadataObject</span> *output = [[<span class="built_in">AVCaptureMetadataOutput</span> alloc] init];</span><br><span class="line"><span class="comment">// Have to add the output before settig metadata types</span></span><br><span class="line">[_session addOutput:output];</span><br><span class="line"><span class="comment">// We're only interested in faces</span></span><br><span class="line">[output setMetadataObjectTypes:@[<span class="built_in">AVMetadataObjectTypeFace</span>]];</span><br><span class="line"><span class="comment">// This VC is the delegate, Please call use on the main queue</span></span><br><span class="line">[output setMetadataObjectsDelegate:<span class="keyword">self</span> queue:dispatch_get_main_queue()];</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" data-id="cimehomkc002j0m9kca7y9ffw" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day17-ibeacons" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/" class="article-date">
-  <time datetime="2014-01-22T03:42:00.000Z" itemprop="datePublished">2014-01-22</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/" class="article-date">
+      <time datetime="2014-01-22T03:42:00.000Z" itemprop="datePublished">2014-01-22</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -311,45 +540,61 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在iOS7发布主题中并没有很详细的提及到<code>iBeacons</code>概念。在Bluetooth LE中有些新的特性可以允许近距离的通知和测距。简单的使用通知的是当你接近一个商店的时候然后收到一组特价商品的列表，或者接近你付款账单的时候可以收到发票信息。另外还有很多其他的地方可以使用，我相信在未来的时间里面将会出现一些更加深入创造性的功能。</p>
 <p>今天，我们将会查看如何让一个iOS设备扮演成一个iBeacon,并且怎样使用一个不同的设备来估算出到iBeacon设备的距离。我们将会创建一个基于”Hot/Cold”捉迷藏的游戏，iBeacon设备可以隐藏，然后寻找器显示更新估算它们之间的距离。</p>
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/22/ios7-day-by-day-day17-ibeacons/" data-id="cimehomk8002e0m9kq77wz57w" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" class="article-date">
-  <time datetime="2014-01-20T15:56:00.000Z" itemprop="datePublished">2014-01-20</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" class="article-date">
+      <time datetime="2014-01-20T15:56:00.000Z" itemprop="datePublished">2014-01-20</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -361,46 +606,62 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在昨天，我们已经查看了<code>CoreImage</code>中包含的新的过滤器中的一些，并且发现在iOS7中，我们可以有能力自己生成一个二维码。所以，既然给出了如何生成二维码，就需要能够对这个二维码进行解码，当然不能让你失望了，我们在今天的文章中就来介绍如何使用<code>AVFoundation</code>框架中的一些新特性进行解码二维码。</p>
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
 <h3 id="AVFoundation-pipeline-AVFoundation工作流"><a href="#AVFoundation-pipeline-AVFoundation工作流" class="headerlink" title="AVFoundation pipeline - AVFoundation工作流"></a>AVFoundation pipeline - AVFoundation工作流</h3><p><code>AVFoundation</code>是一个大的框架，它可以促进创建，编辑，显示和捕获多媒体。这篇文章并不是主要介绍如何使用<code>AVFoundation</code>,而是我们要通过这个框架来提取手机屏幕上面的二维码，为了能够使用这个框架，我们首先需要导入这个框架:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import <span class="built_in">AVFoundation</span>;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" data-id="cimehomk6002c0m9k0n6wgrri" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day15-coreimage-filters" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" class="article-date">
-  <time datetime="2014-01-19T12:47:00.000Z" itemprop="datePublished">2014-01-19</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" class="article-date">
+      <time datetime="2014-01-19T12:47:00.000Z" itemprop="datePublished">2014-01-19</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -412,10 +673,12 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在iOS5中就引入了<code>CoreImage</code>这个框架，它是用来进行图像处理的。它抽象所有低级的与图像处理有关联的方法，从用户角度提供易于使用的过滤事件链架构。i0S7中介绍了新的过滤器，其中的一些，我们将会在进行的文章中介绍，我们将会来看看一些传统的图像过滤效果，然后在查看创建具有过滤效果的生成二维码的效果。</p>
@@ -423,36 +686,50 @@
 <h3 id="Photo-Effect-Filters-图像过滤效果"><a href="#Photo-Effect-Filters-图像过滤效果" class="headerlink" title="Photo Effect Filters - 图像过滤效果"></a>Photo Effect Filters - 图像过滤效果</h3><p>在移动应用程序世界里，能够应用比较酷的图片效果是一种趋势。例如instagram就十分的流行。<code>CoreImage</code>添加了很多十分简单的是可以使用的过滤效果来帮助我们在应用程序中添加很多功能。</p>
 <p>为了能够使用这些过滤器，我们需要首先为<code>CoreImage</code>做点功课。<code>CoreImage</code>指定它自己的图像类型-<code>CIImage</code>,它可以从很多不同的源被创建，包括与<code>CoreGraphics</code>等价的<code>CGImage</code>：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *_input<span class="built_in">UIImage</span> = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"shinobi-badge-head.jpg"</span>];</span><br><span class="line"><span class="built_in">CIImage</span> *_inputImage = [<span class="built_in">CIImage</span> imageWith<span class="built_in">CGImage</span>:[_input<span class="built_in">UIImage</span> <span class="built_in">CGImage</span>]];</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" data-id="cimehomk5002b0m9k8kdc3x3t" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day14-interactive-view-controller-transitions" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/" class="article-date">
-  <time datetime="2014-01-18T14:14:00.000Z" itemprop="datePublished">2014-01-18</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/" class="article-date">
+      <time datetime="2014-01-18T14:14:00.000Z" itemprop="datePublished">2014-01-18</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -464,10 +741,12 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>回顾<a href="/blog/2014/01/12/ios7-day-by-day-day10-custom-uiviewcontroller-transitions/">Day 10</a>，我们已经介绍了如何在导航(navigation)视图中创建自定义的平滑转换效果。交互式试图控制器转换添加了另外的维度，允许用户进行交互式控制，通常是手势操作。</p>
@@ -475,36 +754,50 @@
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
 <h3 id="Flip-Transition-Animation-翻转过渡效果"><a href="#Flip-Transition-Animation-翻转过渡效果" class="headerlink" title="Flip Transition Animation - 翻转过渡效果"></a>Flip Transition Animation - 翻转过渡效果</h3><p>交互转换扩大了自定义的动画，因此我们需要自己创建一个自定义的渐变动画。我们需要一个对象适配了<code>UIViewControllerAnimatedTransitioning</code>协议.</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCFlipAnimate</span>: <span class="title">NSObject</span> &lt;<span class="title">UIViewControllerAnimatedTransitioning</span>&gt;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">BOOL</span> dismissal;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/" data-id="cimehomk4002a0m9ku73gtir9" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day13-route-directions-with-mapkit" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/" class="article-date">
-  <time datetime="2014-01-15T01:30:00.000Z" itemprop="datePublished">2014-01-15</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/" class="article-date">
+      <time datetime="2014-01-15T01:30:00.000Z" itemprop="datePublished">2014-01-15</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -516,10 +809,12 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>对于iOS中的地图框架，在iOS7中添加了一些些小小的改变。一个简单的添加的例子就是我们可以通过两点来或者它们之间的路径。在今天的文章中，我们将会看看如何来使用这个简单的API构建一个一件的查询路径的应用程序。通过这个还可以看看添加层的渲染的API。</p>
@@ -530,36 +825,50 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MKMapItem</span> *source = [<span class="built_in">MKMapItem</span> mapItemForCurrentLocation];</span><br></pre></td></tr></table></figure>
 <p>当用户启动第一次启动应用程序的时候，就会弹出一个询问是否使用他们当前位置权限的对话框:</p>
 <img src="/images/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit-0.png">
-        
-          <p class="article-more-link">
-            <a href="/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/" data-id="cimehomk100280m9krhao2tjj" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/15/ios7-day-by-day-day13-route-directions-with-mapkit/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
   
     <article id="post-ios7-day-by-day-day12-dynamic-type-and-font-descriptors" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/" class="article-date">
-  <time datetime="2014-01-14T01:38:00.000Z" itemprop="datePublished">2014-01-14</time>
+  
+    <div class="article-meta">
+      <a href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/" class="article-date">
+      <time datetime="2014-01-14T01:38:00.000Z" itemprop="datePublished">2014-01-14</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -571,144 +880,121 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+          
+              <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
 <hr/>
 
 <h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>iOS7中介绍一个高级的有关文本渲染的框架叫做<code>TextKit</code>.<code>TextKit</code>是建立在强大的<code>CoreText</code>上的渲染引擎，并且现在所有的Apple提供的有关文本的组件都是已经更新到<code>TextKit</code>引擎上面了。<code>TextKi</code>添加到iOS中具有很重大的意义，其中一点就是它的动态类型的概念和字体描述符。今天本文将会来看看这些<code>TextKit</code>的新特性。</p>
 <p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day">github.com/ShinobiControls/iOS7-day-by-day</a></p>
 <h3 id="Dynamic-Type-动态类型"><a href="#Dynamic-Type-动态类型" class="headerlink" title="Dynamic Type - 动态类型"></a>Dynamic Type - 动态类型</h3><p>动态类型的概念是允许用户指定他们设备中应用程序内部的字体类型有多大。这并不是单单的改变字体大小的能力，而且也概念了其他的类型属性例如字距和行间距。这就确保文本的可读性，因为它可以自动设置不同的类型大小。为了做到这一点，你不需要指定文本类型的字体，而是使用语义表示。也就是不需要指定<code>Helvetica 11pt</code>,你需要把这些类型设置在文本主体中。这就有点类似于HTML中的标签表示，允许用户控制外观。因此，也不需要提前设置字体的大小，在<code>UIFont</code>中有一个新的方法可以用来纠正字体:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.subHeadingLabel.font = [<span class="built_in">UIFont</span> preferredFontForTextStyle:<span class="built_in">UIFontTextStyleSubheadline</span>];</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/#more">Read More</a>
-          </p>
-        
+          
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://kingiol.github.io/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/" data-id="cimehomk000270m9ku4khgm8m" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a><a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a><a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
-  
 
 
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
-  </nav>
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
-    </div>
-  </div>
+
+
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-  </div>
-
-
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
-    </div>
-  </div>
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
-          </li>
-        
-          <li>
-            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
-          </li>
-        
-          <li>
-            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
-          </li>
-        
-          <li>
-            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
+</div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Kingiol<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Kingiol
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
-  </div>
 </footer>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
 
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>
