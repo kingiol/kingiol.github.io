@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在昨天，我们已经查看了CoreImage中包含的新的过滤器中的一些，并且发现在iOS7中，我们可以有能力自己生成一个二维码。所以，既然给出了如何生成二维码，就需要能够对这个二维码进行解码，当然不能让你失望了，我们在今天的文章中就来介绍如何使用AVFoundation框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在昨天，我们已经查看了CoreImage中包含的新的过滤器中的一些，并且发现在iOS7中，我们可以有能力自己生成一个二维码。所以，既然给出了如何生成二维码，就需要能够对这个二维码进行解码，当然不能让你失望了，我们在今天的文章中就来介绍如何使用AVFoundation框架">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-2.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-3.png">
+<meta property="og:updated_time" content="2014-01-22T03:40:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在昨天，我们已经查看了CoreImage中包含的新的过滤器中的一些，并且发现在iOS7中，我们可以有能力自己生成一个二维码。所以，既然给出了如何生成二维码，就需要能够对这个二维码进行解码，当然不能让你失望了，我们在今天的文章中就来介绍如何使用AVFoundation框架">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" class="article-date">
+  <time datetime="2014-01-20T15:56:00.000Z" itemprop="datePublished">2014-01-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在昨天，我们已经查看了<code>CoreImage</code>中包含的新的过滤器中的一些，并且发现在iOS7中，我们可以有能力自己生成一个二维码。所以，既然给出了如何生成二维码，就需要能够对这个二维码进行解码，当然不能让你失望了，我们在今天的文章中就来介绍如何使用<code>AVFoundation</code>框架中的一些新特性进行解码二维码。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="AVFoundation-pipeline-AVFoundation工作流"><a href="#AVFoundation-pipeline-AVFoundation工作流" class="headerlink" title="AVFoundation pipeline - AVFoundation工作流"></a>AVFoundation pipeline - AVFoundation工作流</h3><p><code>AVFoundation</code>是一个大的框架，它可以促进创建，编辑，显示和捕获多媒体。这篇文章并不是主要介绍如何使用<code>AVFoundation</code>,而是我们要通过这个框架来提取手机屏幕上面的二维码，为了能够使用这个框架，我们首先需要导入这个框架:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import <span class="built_in">AVFoundation</span>;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>当我们捕获媒体的时候，我使用<code>AVCaptureSession</code>类来充当我们工作流的核心。然后我们需要添加输入和输出来完成这次会话。我们将会在<code>viewDidLoad</code>方法中设置这些。首先，创建一个会话:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *session = [[<span class="built_in">AVCaptureSession</span> alloc] init];</span><br></pre></td></tr></table></figure>
+<p>我们需要添加主要的摄像头作为会话的输入。输入就是一个<code>AVCaptureDeviceInput</code>对象，它是通过一个<code>AVCaptureDevice</code>对象创建的：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureDevice</span> *device = [<span class="built_in">AVCaptureDevice</span> defaultDeviceWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">AVCaptureDeviceInput</span> *input = [<span class="built_in">AVCaptureDeviceInput</span> deviceInputWithDevice:device error:&amp;error];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (input) &#123;</span><br><span class="line">	<span class="comment">// Add the input to the session</span></span><br><span class="line">	[session addInput:input];</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"error: %@"</span>, error);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们获得了一个默认视频输入的设备引用，它将代表设备上面的后置摄像头。然后使用这个设备创建一个<code>AVCaptureDeviceInput</code>输入对象，然后把它添加到会话中。</p>
+<p>为了获得获得视频中的内容，我们需要创建一个<code>AVCaptureVideoPreviewLayer</code>.它是一个<code>CALayer</code>的子类，当它添加到会话中的时候，它可以显示当前视图中的输出内容。考虑到这些，我们需要一个实例变量<code>_previewLayer</code>来作为<code>AVCaptureVideoPreviewLayer</code>的引用:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_previewLayer = [<span class="built_in">AVCaptureVideoPreviewLayer</span> layerWithSession:session];</span><br><span class="line">_previewLayer.videoGravit = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span>;</span><br><span class="line">_previewLayer.bounds = <span class="keyword">self</span>.view.bounds;</span><br><span class="line">_previewLayer.position = <span class="built_in">CGPointMake</span>(<span class="built_in">CGRectGetMidX</span>(<span class="keyword">self</span>.view.bounds), <span class="built_in">CGRectGetMidY</span>(<span class="keyword">self</span>.view.bounds));</span><br><span class="line">[<span class="keyword">self</span>.view.layer addSublayer:_previewLayer];</span><br></pre></td></tr></table></figure>
+<p><code>videoGravity</code>属性是用来指定视频是如何出现在层上面。由于视频的尺寸和屏幕不是相等的，我们可以把视频的边缘给砍掉，然后让它填充整个屏幕，所以使用<code>AVLayerVideoGravityResizeAspectFill</code>值。我们添加这个层作为视图层的子层。</p>
+<p>现在才是真正开启会话的时候:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Start the AVSession running</span></span><br><span class="line">[session startRunning];</span><br></pre></td></tr></table></figure>
+<p>如果你运行应用程序，你将会摄像头的输出信息呈现在屏幕上面-神奇的感觉。</p>
+<img src="/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-0.png">
+<h3 id="Capturing-metadata-捕获元数据"><a href="#Capturing-metadata-捕获元数据" class="headerlink" title="Capturing metadata - 捕获元数据"></a>Capturing metadata - 捕获元数据</h3><p>从iOS5开始就可以使用我们上述的内容，但是在这个章节，我们将会做很多事情，而这些东西只有在iOS7中才会存在的。</p>
+<p>一个<code>AVCaptureSession</code>对象有附加的<code>AVCaptureOutput</code>对象。形成一个工作流的终点。在这里我们感兴趣的是<code>AVCaptureOutput</code>的子类<code>AVCaptureMetadataOutpu</code>.它可以查出视频中的任何元数据然后输出它。这个类型的输出并不会形成图像或者视频，而是从图像或者视频中提取的元数据本身。设置这些如下所示:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*<span class="keyword">out</span> = [[<span class="built_in">AVCaptureMetadataOutput</span> alloc] init];</span><br><span class="line"><span class="comment">// Have to add the output before setting metadata types</span></span><br><span class="line">[session addOutput:output];</span><br><span class="line"><span class="comment">// What different things can we register to recognise?</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [output availableMetadataObjectTypes]);</span><br></pre></td></tr></table></figure>
+<p>这里，我们创建一个元数据输出对象，并且把它作为一个输出添加到会话中。然后我们可以提供一个方法用来记录不同的元数据类型的列表:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2013</span><span class="number">-10</span><span class="number">-09</span> <span class="number">11</span>:<span class="number">10</span>:<span class="number">26.085</span> CodeScanner[<span class="number">6277</span>:<span class="number">60</span>b] (</span><br><span class="line">    <span class="string">"org.gs1.UPC-E"</span>,</span><br><span class="line">    <span class="string">"org.iso.Code39"</span>,</span><br><span class="line">    <span class="string">"org.iso.Code39Mod43"</span>,</span><br><span class="line">    <span class="string">"org.gs1.EAN-13"</span>,</span><br><span class="line">    <span class="string">"org.gs1.EAN-8"</span>,</span><br><span class="line">    <span class="string">"com.intermec.Code93"</span>,</span><br><span class="line">    <span class="string">"org.iso.Code128"</span>,</span><br><span class="line">    <span class="string">"org.iso.PDF417"</span>,</span><br><span class="line">    <span class="string">"org.iso.QRCode"</span>,</span><br><span class="line">    <span class="string">"org.iso.Aztec"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>需要重要注意的就是我们在尝试这个的时候已经把我们的元数据输出设置到会话中。由于可用的类型依赖与输入设备。我们可以使用下面的代码注册查找的二维码类型:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// We're only interested in QR Codes</span></span><br><span class="line">[output setMetadataObjectTypes:@[<span class="built_in">AVMetadataObjectTypeQRCode</span>]];</span><br></pre></td></tr></table></figure>
+<p>这是一个数组类型，所以你可以只能多个你想要的元数据类型。</p>
+<p>当元数据对象从视频流中找到一些东西，它就可以生成元数据，然后通知它的代理，所以，我们需要设置代理:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This VC is the delegate, Please call us on the main queue</span></span><br><span class="line">[output setMetadataObjectsDelegate:<span class="keyword">self</span> queue:dispatch_get_main_queue()];</span><br></pre></td></tr></table></figure>
+<p>由于<code>AVFoundation</code>被设计成可以允许线程访问，所以我们需要指定代理在那个线程中使用。</p>
+<p>我们需要适配<code>AVCaptureMetadataOutputObjectsDelegate</code>协议:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCViewController</span> () &lt;<span class="title">AVCaptureMetadataOutputObjectsDelegate</span>&gt; </span>&#123;</span><br><span class="line">	<span class="built_in">AVCaptureVideoPreviewLayer</span> *_previewLayer;</span><br><span class="line">	<span class="built_in">UILabel</span> *_decodeMessage;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>我们需要实现协议的方法是<code>captureOutput:didOutputMetadataObjects:fromConnection:</code>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#prgma mark - AVCaptureMetadataOutputObjectsDelegate</span></span><br><span class="line">- (<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureOutput</span> *)captureOutput didOutputMetadataObjects:(<span class="built_in">NSArray</span> *)metadataObjects fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">AVMetadataObject</span> *metadata <span class="keyword">in</span> metadataObjects) &#123;</span><br><span class="line">		<span class="keyword">if</span> ([metadata.type isEqualToString:<span class="built_in">AVMetadataObjectTypeQRCode</span>]) &#123;</span><br><span class="line">			<span class="built_in">AVMetadataMachineReadableCodeObject</span> *transformed = (<span class="built_in">AVMetadataMachineReadableCodeObject</span> *)metadata;</span><br><span class="line">			<span class="comment">// Update the view with the decoded text</span></span><br><span class="line">			_decodedMessage.text = [transformed stringValue];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中的<code>metadataObjects</code>数组包含了<code>AVMetadataObject</code>对象(就是我们设置检索的类型的数据).由于我们只注册查找二维码类型，我们我们得到的数组里面的内容的类型都是<code>AVMetadataObjectTypeQRCode</code>.<code>AVMetadataMachineReadableCodeObject</code>类型具有一个<code>stringValue</code>属性，它包含了所有元数据队形解码的值信息。在这里，我们把获得到的字符串信息显示到<code>_decodedMessage</code>标签上面，标签我们可以在<code>viewDidLoad</code>方法中进行设置:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add a label to display the resultant message</span></span><br><span class="line">_decodedMessage = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.view.bounds) - <span class="number">75</span>, <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.view.bounds), <span class="number">75</span>)];</span><br><span class="line">_decodedMessage.numberOfLines = <span class="number">0</span>;</span><br><span class="line">_decodedMessage.backgroundColor = [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.8</span> alpha:<span class="number">0.9</span>];</span><br><span class="line">_decodedMessage.textColor = [<span class="built_in">UIColor</span> darkGrayColor];</span><br><span class="line">_decodedMessage.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:_decodedMessage];</span><br></pre></td></tr></table></figure>
+<p>运行应用程序，然后用摄像头对准二维码，我们就可以在标签上面解码出二维码上面的内容，然后显示出来，具体的效果如下图所示:</p>
+<img src="/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-1.png">
+<h3 id="Drawing-the-code-outline-给二维码添加上线框"><a href="#Drawing-the-code-outline-给二维码添加上线框" class="headerlink" title="Drawing the code outline - 给二维码添加上线框"></a>Drawing the code outline - 给二维码添加上线框</h3><p>除了提供解码元数据对象，它还包含了位置的边界，我们的应用程序将会直观的标识出具体的元数据对象的具体的位置。</p>
+<p>为了达到这个目的，首先我们需要创建一个<code>UIView</code>的子类，它可以提供一系列的点，然后将会连接起来。这将会使我们明确的来构建它:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCShapeView</span> : <span class="title">UIView</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSArray</span> *corners;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>其中的<code>corners</code>属性数组包含了<code>CGPoint</code>对象，每一个都代表我们希望绘制图像路径的拐角处。</p>
+<p>我们将会使用一个<code>CAShapeLayer</code>来进行绘制这些点，并且这是非常有效率的方法来绘制图形:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCShapeView</span>() </span>&#123;</span><br><span class="line">	<span class="built_in">CAShapeLayer</span> *_outline;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SCShapeView</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame &#123;</span><br><span class="line">	<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">		<span class="comment">// Initialization code</span></span><br><span class="line">		_outline = [<span class="built_in">CAShapeLayer</span> new];</span><br><span class="line">		_outline.strokeColor = [[[<span class="built_in">UIColor</span> blueColor] colorWithAlphaComponent:<span class="number">0.8</span>] <span class="built_in">CGColor</span>];</span><br><span class="line">		_outline.lineWidth = <span class="number">2.0</span>;</span><br><span class="line">		_outline.fillColor = [[<span class="built_in">UIColor</span> clearColor] <span class="built_in">CGColor</span>];</span><br><span class="line">		[<span class="keyword">self</span>.layer addSublayer:_outline];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>在这里我们创建一个图像层，设置一些外观的属性，然后把它添加到当前的层中。我们现在就需要设置图形的路径，也就是我们现在需要设置<code>corners</code>属性了:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setCorners:(<span class="built_in">NSArray</span> *)corners &#123;</span><br><span class="line">	<span class="keyword">if</span> (corners != _corners) &#123;</span><br><span class="line">		_corners = corners;</span><br><span class="line">		_outline.path = [[<span class="keyword">self</span> createPathFromPoints:corners] <span class="built_in">CGPath</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述含义是如果<code>corners</code>属性发生了变化，图形就将会使用新的位置进行绘制.我们使用一个工具方法来通过封装了<code>CGPoint</code>对象的数组对象来创建一个<code>UIBezierPath</code>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIBeazierPath</span> *)cratePathFromPoints:(<span class="built_in">NSArray</span> *)points &#123;</span><br><span class="line">	<span class="built_in">UIBezierPath</span> *path = [<span class="built_in">UIBezierPath</span> new];</span><br><span class="line">	<span class="comment">// Start at the first corner</span></span><br><span class="line">	[path moveToPoint:[[points firstObject] <span class="built_in">CGPointValue</span>]];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Now draw lines around the corners</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">NSUinter</span> i = <span class="number">1</span>, i &lt; points.count; i++) &#123;</span><br><span class="line">		[path addLineToPoint:[points[i] <span class="built_in">CGPointValue</span>]];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// And join it back to the first corner</span></span><br><span class="line">	[path addLineToPoint:[[points firstObject] <span class="built_in">CGPointValue</span>]];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这实际上是创建了一个完成的图形，运用了<code>UIBezierPath</code>的API。</p>
+<p>现在我们创建这个图形视图，我们需要在试图控制器中使用它，然后把它现在在我们查找的二维码上面。让我们创建一个实例变量，然后在<code>viewDidLoad</code>方法中进行初始化:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_boundingBox = [[SCShapeView alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line">_boundingBox.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">_boundingBox.hidden = <span class="literal">YES</span>;</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:_boundingBox];</span><br></pre></td></tr></table></figure>
+<p>现在我们需要更新这个视图中元数据输出的代理方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Transform the meta-data coordinates to screen coords</span></span><br><span class="line"><span class="built_in">AVMetadataMachineReadableCodeObject</span> *transformed = (<span class="built_in">AVMetadataMachineReadableCodeObject</span> *)[_previewLayer transformedMetadataObjectForMetadataObject:metadata];</span><br><span class="line"><span class="comment">// Update the frame on the _boundingBox view, and show it</span></span><br><span class="line">_boundingBox.frame = transformed.bounds;</span><br><span class="line">_boundingBox.hidden = <span class="literal">NO</span>;</span><br><span class="line"><span class="comment">// Now convert the corners array into CGPoints in the coordinate system</span></span><br><span class="line"><span class="comment">// of the bounding box itself</span></span><br><span class="line"><span class="built_in">NSArray</span> *translatedCorners = [<span class="keyword">self</span> translatePoints:transformed.corners fromView:<span class="keyword">self</span>.view toView:_boundingBox];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set the corners array</span></span><br><span class="line">_boundingBox.corners = translatedCorners;</span><br></pre></td></tr></table></figure>
+<p><code>AVFoundation</code>在屏幕上面进行绘制的时候，使用一个不同于UIKit的坐标系，所以第一部分我们需要使用<code>AVCaptureVideoPreviewLayer</code>中的一个代码片段<code>transformedMetadataObjectForMetadataObject:</code>方法来把自身的坐标系进行转换。使它编程我们自己预览层的坐标系统.</p>
+<p>然后我们设置我们图形层的frame，它是通过查找的二维码的bounds得到的，然后对图形层进行显示.</p>
+<p>现在我们就需要设置<code>corners</code>属性了，让图形层能够正确的显示，但是在此之前，我们需要再次改变系统坐标系。我们可以运用下面的工具类来达到这个目的:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSArray</span> *)translatePoints:(<span class="built_in">NSArray</span> *) fromView:(<span class="built_in">UIView</span> *)fromView toView:(<span class="built_in">UIView</span> *)toView &#123;</span><br><span class="line">	<span class="built_in">NSMutableArray</span> *translatedPoints = [<span class="built_in">NSMutableArray</span> new];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// The points are provided in a dictionary with keys X and Y</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">NSDictionary</span> *point <span class="keyword">in</span> points) &#123;</span><br><span class="line">		<span class="comment">// Let's turn them into CGPoints</span></span><br><span class="line">		<span class="built_in">CGPoint</span> pointValue = <span class="built_in">CGPointMake</span>([point[<span class="string">@"X"</span>] floatValue], [point[<span class="string">@"Y"</span>] floatValue]);</span><br><span class="line">		<span class="comment">// Now translate from one view to the other</span></span><br><span class="line">		<span class="built_in">CGPoint</span> translatedPoint = [fromView convertPoint:pointValue toView:toView];</span><br><span class="line">		<span class="comment">// Box them up and add to the array</span></span><br><span class="line">		[translatedPoint addObject:[<span class="built_in">NSValue</span> valueWith<span class="built_in">CGPoint</span>:translatedPoint]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> [translatedPoints <span class="keyword">copy</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的方法我们转换成为正确的<code>CGPoint</code>数组设置到<code>corners</code>属性中。</p>
+<p>如果你运行应用程序，你就会看到一个高亮的线框显示在我们的二维码上面:</p>
+<img src="/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-2.png">
+<img src="/images/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation-3.png">
+<p>最后一个小点是把绘制出来的线框过一段时间消失掉。这就阻止了当前没有发现二维码信息的时候，线框还存在的问题。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)startOverlayHideTimer</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Cancel it if we're already running</span></span><br><span class="line">    <span class="keyword">if</span>(_boxHideTimer) &#123;</span><br><span class="line">        [_boxHideTimer invalidate];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Restart it to hide the overlay when it fires</span></span><br><span class="line">    _boxHideTimer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">0.2</span></span><br><span class="line">                                                     target:<span class="keyword">self</span></span><br><span class="line">                                                   selector:<span class="keyword">@selector</span>(removeBoundingBox:)</span><br><span class="line">                                                   userInfo:<span class="literal">nil</span></span><br><span class="line">                                                    repeats:<span class="literal">NO</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)removeBoundingBox:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Hide the box and remove the decoded text</span></span><br><span class="line">    _boundingBox.hidden = <span class="literal">YES</span>;</span><br><span class="line">    _decodedMessage.text = <span class="string">@""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以在代理方法方法中进行调用计时器:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sart the timer which will hiden the overlay</span></span><br><span class="line">[<span class="keyword">self</span> startOverlayHideTimer];</span><br></pre></td></tr></table></figure>
+<h3 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion - 总结"></a>Conclusion - 总结</h3><p><code>AVFoundation</code>框架是强大且复杂的，但是在iOS7中，它变得更好了。以前在移动设备上面查找条形码是一个十分艰巨的任务，但是通过我们今天介绍的这些新的元数据输出类型，现在就变得十分的简单而高效。不管你是否需要使用到条形码，这都是一个你需要用到的简单方法。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/10/11/ios7-day-by-day-day-16-decoding-qr-codes-with-avfoundation/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 16 :: Decoding QR Codes with AVFoundation</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" data-id="cimehomk6002c0m9k0n6wgrri" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 17 :: iBeacons
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

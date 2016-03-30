@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>程序支持不同iOS的版本和设备 | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注:本文翻译之Supporting Multiple iOS Versions and Devices
+第一次翻译这么长的E文，深深的感觉到自己的E文还是有很大的上升空间的，翻译处女作，如果有什么翻译不当或者错误的地方，请多多指教，谢谢你的光临！
+正文当你编写一个iOS APP 的时候, 你很可能在模拟器或者多个设备上面测试，甚至你会在iOS的不同版本之前测试。
+但是这样做只能够覆盖少数不同组合的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序支持不同iOS的版本和设备">
+<meta property="og:url" content="http://kingiol.github.io/2013/09/05/supporting-multiple-ios-versions-and-devices/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="注:本文翻译之Supporting Multiple iOS Versions and Devices
+第一次翻译这么长的E文，深深的感觉到自己的E文还是有很大的上升空间的，翻译处女作，如果有什么翻译不当或者错误的地方，请多多指教，谢谢你的光临！
+正文当你编写一个iOS APP 的时候, 你很可能在模拟器或者多个设备上面测试，甚至你会在iOS的不同版本之前测试。
+但是这样做只能够覆盖少数不同组合的">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RW1.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RW2.png">
+<meta property="og:image" content="http://cdn5.raywenderlich.com/wp-content/uploads/2013/06/RW-3.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RW-4.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/alltheversions.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/07/intro.target-base.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/07/intro.deployment.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-7.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/07/Screen-Shot-2013-08-02-at-21.10.16.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RW-5.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/07/fix.ios5-select.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-6.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2013/07/fix.unsupported-frameworks.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-9.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-101.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-11.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-11.png">
+<meta property="og:image" content="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-12.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-13.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-14.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-15.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-18-e1371600504725.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-1.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-2-687x500.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-3-700x478.png">
+<meta property="og:image" content="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-4-700x471.png">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-21-700x480.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/largest_straight_line-700x466.jpeg">
+<meta property="og:image" content="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/most_beautiful-700x468.png">
+<meta property="og:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/biggest_collection.jpg">
+<meta property="og:updated_time" content="2013-09-10T02:08:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序支持不同iOS的版本和设备">
+<meta name="twitter:description" content="注:本文翻译之Supporting Multiple iOS Versions and Devices
+第一次翻译这么长的E文，深深的感觉到自己的E文还是有很大的上升空间的，翻译处女作，如果有什么翻译不当或者错误的地方，请多多指教，谢谢你的光临！
+正文当你编写一个iOS APP 的时候, 你很可能在模拟器或者多个设备上面测试，甚至你会在iOS的不同版本之前测试。
+但是这样做只能够覆盖少数不同组合的">
+<meta name="twitter:image" content="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RW1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-supporting-multiple-ios-versions-and-devices" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/05/supporting-multiple-ios-versions-and-devices/" class="article-date">
+  <time datetime="2013-09-05T13:41:00.000Z" itemprop="datePublished">2013-09-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/翻译/">翻译</a>►<a class="article-category-link" href="/categories/翻译/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      程序支持不同iOS的版本和设备
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>注:本文翻译之<a href="http://www.raywenderlich.com/42591/supporting-multiple-ios-versions-and-devices" target="_blank" rel="external">Supporting Multiple iOS Versions and Devices</a></p>
+<p>第一次翻译这么长的E文，深深的感觉到自己的E文还是有很大的上升空间的，翻译处女作，如果有什么翻译不当或者错误的地方，请多多指教，谢谢你的光临！</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>当你编写一个iOS APP 的时候, 你很可能在模拟器或者多个设备上面测试，甚至你会在iOS的不同版本之前测试。</p>
+<p>但是这样做只能够覆盖少数不同组合的iOS版本和设备类型，组合的类型增加<a href="http://www.mathwords.com/c/combination_formula.htm" target="_blank" rel="external">很迅速</a>！</p>
+<p>在本篇的教程中你将会见识怎样运用各种各样的技术来有效的让你支持不同的iOS版本和设备,你将会很快的让你的apps支持不同的iOS版本和设备。</p>
+<a id="more"></a>
+<p>在本篇教程中，你将会修改一个已经存在的名为<font color="green"><strong>RWRageFaces</strong></font>的iOS 6应用,让它兼容iOS 5版本，与此同时，并不会丢失iOS 6的相关功能。</p>
+<p>一路上，你将会涉及到各种各样的方法来发现和修改兼容性的问题，同时也会遭遇到许多的程序在iOS6中崩溃问题。对于许多的APIs,我们理所当然会给你一些见解。</p>
+<h2 id="iOS版本：概述"><a href="#iOS版本：概述" class="headerlink" title="iOS版本：概述"></a>iOS版本：概述</h2><p>每一个新版本的iOS发布，对于移动开发者而言，都是一个新的机遇，同时也是一个挑战。两年前，iOS 5 中引进 Storyboards, iCloud, Newsstand 和 集成的原生态的Twitter。去年，iOS 6 中引入了 Auto Layout, UICollectionView, PassKit 和 集成的原生态的Facebook。</p>
+<p>今年，苹果在iOS 7 同样加入了很多新的特性，包括 Text to Speech, AirDrop for iOS, Sprite Kit 和 一些非常令人兴奋的扩展。</p>
+<p>然而，新版本的iOS确实一把双刃剑；同时新的特性必然会造成程序向后兼容的问题。而你也只能够咬咬牙使用一小部分新的特性，因为很多的新类和框架并不能够在旧版本中使用。</p>
+<p>苹果的移动设备已经发展多年了，后置摄像头，前置摄像头，陀螺仪，磁力仪，视网膜屏幕，拉长的屏幕和多核CPU都已经添加到不同版本的iPhone和iPad中去了.</p>
+<p>很庆幸的是，确保你的程序能够支持大范围的版本和设备并没有你想象的那么难，本篇教程将会展示一些不同的软件和硬件让你的用户在不同的平台中都能够享受到最好的用户体验。</p>
+<blockquote>
+<p>Note:留意一下不同iOS对应的特性功能，查看苹果的<a href="https://developer.apple.com/devcenter/ios/checklist/" target="_blank" rel="external">iOS清单</a>,这篇清单介绍了WWDC 2013,并且大众期待的iOS 7 将会释放!</p>
+</blockquote>
+<h2 id="准备开始"><a href="#准备开始" class="headerlink" title="准备开始"></a>准备开始</h2><p><a href="http://cdn2.raywenderlich.com/wp-content/uploads/2013/07/RWRageFaces-iOS-6.zip" target="_blank" rel="external">下载RWRageFaces工程文件</a>,下载到一个便利的地点，在Xcode中打开它。</p>
+<blockquote>
+<p>下载可能有点儿慢因为在程序中包含了不少的图片资源!</p>
+</blockquote>
+<p>编译并且运行这个程序；首先你将会看到一个巨大的已经分段的愤怒表情图像集合视图，如下图所示:</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RW1.png">
+<p>转动你的设备，你将会发现这些视图如所预期的那样旋转，如下图所示：</p>
+<img src="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RW2.png">
+<p>当你点击一个愤怒的表情，应用程序将会展现一个模态的视图来显示一个大尺寸的选中愤怒表情图像，在图像的下方，红色字体的是种类名称，黑色字体的是图片的名称.</p>
+<p>在视图的右上角还有一个”Share”按钮，让你能够通过e-mail, Facebook和Twitter来分享表情,或者你可以把它负载到剪切板上面，如下图所示:</p>
+<img src="http://cdn5.raywenderlich.com/wp-content/uploads/2013/06/RW-3.png">
+<p>别急，还有更精彩的！这个模态的视图控制器包含了一个 <font color="green">UIPageViewController</font>,你可以向左或者向右混动来查看同一类型的表情，如下图所示:</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RW-4.png">
+<p>在更加深入了解你的app之前，有一些小小的思考有关<em>为什么需要支持不同的iOS版本…并且到什么地步是个底线</em></p>
+<h2 id="为什么支持不同的iOS版本如此的烦恼？"><a href="#为什么支持不同的iOS版本如此的烦恼？" class="headerlink" title="为什么支持不同的iOS版本如此的烦恼？"></a>为什么支持不同的iOS版本如此的烦恼？</h2><p>支持不同iOS版本和设备最大的收益就是可以使你的应用程序增加市场覆盖率。</p>
+<p>尽管拥有方便无线的系统更新，仍然有部分人不去更新他们的系统，除非你明确的支持这些旧版本，这些晚采用者(或者不采用者)将无法下载到他们爱的并且值得的应用程序。</p>
+<p>那么你是不是要尽你的最大努力去支持尽可能多的系统呢？</p>
+<img src="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/alltheversions.png">
+<p>并没有那么的容易，向后兼容需要花费时间和努力来让它变得正确，在许多的情况下，你将会需要重新设计APIs来让你的app的特性可以在旧版本中运行，将会花费大量的时间来做磨合。</p>
+<p>让一个受过教育的决定在哪个iOS版本支持,您必须理解苹果的采用率和发布周期。苹果不让官方公告关于iOS采用定期统计——你需要保持获取最新数据。</p>
+<p>例如,在2013年1月宣布,<a href="http://www.apple.com/pr/library/2013/01/28Apple-Updates-iOS-to-6-1.html" target="_blank" rel="external">3亿年苹果移动设备已经运行iOS 6</a>,占大约60%的iOS设备。五个月后,苹果公司宣布,<a href="http://www.theverge.com/2013/6/10/4415258/apple-announces-600-million-ios-devices-sold" target="_blank" rel="external">93%的iOS设备</a>上运行iOS 6.0或更好。</p>
+<p>基于这些统计数据,它看起来像案例支持iOS5按月也会变得更弱。Michael Jurewitz,前苹果框架传教士花, 认为任何人<a href="http://jury.me/blog/2013/4/2/thriving-in-an-app-store-world" target="_blank" rel="external">支持老iOS和硬件版本是浪费时间</a>。</p>
+<p>Jurewitz使一个好论点,以限制你花时间思考的向后兼容性。然而,有时建筑一个伟大的应用程序意味着违背规则。</p>
+<h2 id="Deployment-Target-Vs-Base-SDK"><a href="#Deployment-Target-Vs-Base-SDK" class="headerlink" title="Deployment Target Vs. Base SDK"></a>Deployment Target Vs. Base SDK</h2><p>在准备使 <em>RWRageFaces</em> 支持iOS 5 之前，首先需要重温一下理论知识，当我们决定要向后兼容，出现两个复杂的关系–<font color="green">deployment target</font>和<font color="green">base SDK</font>.</p>
+<font color="green"><strong>Base SDK</strong></font> 指的是最新版本的iOS,能够运行你的程序。检查您正在构建的基础SDK应用程序对,只需要你打开项目文件在Xcode,检查下面的<font color="green"><strong>Build Settings- &gt;Architecture</strong></font>,如下面屏幕截图所示:<br><br><img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/07/intro.target-base.png"><br><br>在Xcode 4.6有两个选项用来基地SDK;“iOS 6.1”和“Latest iOS”。“Latest iOS”应该默认选中,将参考最新版本的iOS;这意味着你不必担心更新你的base SDK当苹果发布一个新版本的iOS。<br><br><font color="green"><strong>Deployment Target</strong></font> 指的是老版本的iOS,能够运行您的项目。改变你的部署目标,打开项目文件在Xcode,检查下面的<font color="green"><strong>Build Settings -&gt; Deployment</strong></font>,如下面屏幕截图所示:<br><br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/07/intro.deployment.png"><br><br>## 识别向后兼容的问题<br><br>在你的iOS开发生涯中，几乎可以肯定你将会碰到向后兼容性的问题。幸运的是，有一些工具可以帮助你快速的处理和识别潜在的问题:<br><br>### 较旧的iOS设备<br><br>最好的方法测试向后兼容就是让你的应用程序在旧版本的iOS设备上面运行.在一个设备上面，你很难恢复之前的系统版本，所以你要尽可能的跳过升级系统，你将会很多的不同版本的设备供测试和开发。<br><br>&gt;Note:Ray问他的Twitter追随者提交他们的iOS的照片收藏，在教程末尾是挑选出来的胜利者,最大的iOS设备收集超过了15部！<br><br>### iOS模拟器<br><br>如果你手头并没有物理设备，其次是测试你的应用程序在模拟器运行iOS的早期版本。Xcode 4.6支持iOS版本回到5.0,应该足够你的大部分向后兼容性测试。然而,如果你真的需要运行你的应用程序早于5.0版本,你可以参考<a href="http://apple.stackexchange.com/questions/31412/how-can-i-install-iphone-simulator-4-2-on-xcode-4-2/31777#31777" target="_blank" rel="external">别人的做法</a><br><br>### 苹果官方文档(Apple docs)<br><br>苹果的官方文档非常有用,当你需要知道哪个版本的iOS引入一个特定的类或方法。例如,抬头,你会看到<a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UITableView_Class/Reference/Reference.html" target="_blank" rel="external">UITableView</a>的文档,UITableView 在 iOS 2.0中引入。<br><br>如果你需要知道当一个特定属性或方法的介绍,你可以发现这在“Availability”副标题,如下面屏幕截图所示:<br><br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-7.png"><br><br>### 头文件(Header Files)<br><br>有时最好的方法和类的文档包含正确的源代码。<br><br>简单的command-click组合键表示你想检查,Xcode将带你去它的头文件,在那里你可以找到你需要的信息随着参数的预处理器宏<font color="green">NS_AVAILABLE_IOS()</font>和<font color="green">NS_CLASS_AVAILABLE_IOS()</font>。如果一个类或方法声明不使用任何这些可用性宏,你可以假定他们不会造成任何兼容性问题。<br><br>&gt;Note:ALT + click 将会在xcode中出现一个包含基本解释信息的弹出框<br><br>### API diffs<br><br>苹果发布一个详尽的清单的东西添加或修改在每次发布iOS的时候。作为一个例子,<a href="http://developer.apple.com/library/ios/#releasenotes/General/iOS60APIDiffs/" target="_blank" rel="external">iOS 6.0 API diff</a>文件相关的所有更改和添加。<br><br>API差别不一定会帮你在细节的发展,但是他们推荐阅读任何开发人员需要了解的问题参与支持旧版本的iOS。<br><br>### Deploymate<br><br>如果你的Xcode代码部署目标和提醒你关于任何不受支持的api那就更好了?那一天到来之前的Mac应用程序<a href="http://www.deploymateapp.com/" target="_blank" rel="external">Deploymate</a>将帮您完成这项工作。<br><br>Deploymate是一个静态分析器,扫描你的源代码,并警告您当遇到不受支持的api或废弃。这节教程你会了解更多关于在项目中的Deploymate,其中包括一个详细的演示Deploymate的行为。<br><br>### MJGAvailability<br><br>教程团队成员 <a href="http://www.raywenderlich.com/about#mgalloway" target="_blank" rel="external">Matt Galloway</a>,发布了一个<a href="https://github.com/mattjgalloway/MJGFoundation/blob/master/Source/Utilities/MJGAvailability.h" target="_blank" rel="external">简单的头文件</a>,在Deployment Target下，来知道你使用的APIs是不是可用的，它解决了这个问题通过诱骗编译器认为这样的api是弃用。当然,他们不是,但编译器认为他们和警告是必要的。<br><br>## 向后兼容问题的解决<br><br>一旦你确定了在你的应用程序存在向后兼容性问题,下一步是找出并修复它们。每个新版本的iOS都会引入新框架、类、方法、常量、枚举值,这是一个特定的策略来处理每一种。<br><br>### 未支持框架(Unsupported frameworks)<br><br>在Deployment Target版本中连接了未被支持的框架会让程序在运行的时候崩溃，为了解决这个，你需要在工程中设置这些未支持的框架为”Optional”.<br><br>为了达到这个目的，选择你的工程中的”Targets”区段，打开<strong>Build Phase-&gt;Link Binary With Libraries</strong>.每一个框架你都可以指定<em>Required</em>或者<em>Optional</em>, 选中 Optional 将作为一个弱连接，这样就可以解决兼容问题。<br><br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/07/Screen-Shot-2013-08-02-at-21.10.16.png"><br><br>&gt;Note:你可以了解更多有关弱连接，访问<a href="http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Concepts/WeakLinking.html#//apple_ref/doc/uid/20002378-BBCJICEC" target="_blank" rel="external"> Apple’s Framework Programming Guide</a><br><br>### 不支持的类(Unsupported classes)<br><br>有的时候你需要添加一些base SDK中的类，但是这些类却在Deployment target中不存在。你需要检查运行总的类是否可用来避免程序的崩溃。崩溃的原因就是在Objective-C运行的时候运用了一个不存在的类。如iOS 4.2中，类都是弱连接的，所以你可以运用方法 <font color="green">+class</font> 来执行运行检查，例如：<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([SLComposeViewController class]) &#123;</span><br><span class="line">    <span class="comment">//Safe to use SLComposeViewController </span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//Fail gracefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>### 不支持的方法(Unsupported methods)<br><br>同样的，如果你使用了base SDK中的方法，但是在Deployment target中却不存在，为了避免这些，你可以用一些内省。<br><br><font color="green">-respondsToSelector:</font>和<font color="green">+instancesRespondToSelector:</font>就是做同样的事情，例如:<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="keyword">self</span>.image respondsToSelector:<span class="keyword">@selector</span>(resizableImageWithCapInsets:resizingMode:)]) &#123;</span><br><span class="line">    <span class="comment">//Safe to use this way of creating resizable images</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//Fail gracefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="built_in">UIView</span> respondsToSelector:<span class="keyword">@selector</span>(requiresConstraintBasedLayout)]) &#123;</span><br><span class="line">    <span class="comment">//Safe to use this method</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//Fail gracefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>&gt;Note:如果你要检查类中是否存在某些属性，你可以测试实例的有关属性的getter和setter方法。<br><br>&gt;例如：为了查看UILabel是否有attributedText属性(iOS 6引入的),执行显示的setter方法<font color="green">@selector(setAttributedText)</font>.<br><br>### 未支持的常量/C 函数<br><br>有些时候常量在Deployment Target中会有所缺失，它们通常的形式格式为<font color="green">extern NSString <em></em></font>或者 C 函数。这种情形下，您可以执行一个运行时检查NULL来确定它的存在。<br><br>例如,这个C函数<font color="green">ABAddressBookCreateWithOptions(…)</font>在 iOS 6中引入，但是任然可以在你的 iOS 5中存在，像这样:<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ABAddressBookCreateWithOptions != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="comment">//Safe to use</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//Fail gracefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>同样的方法也适用于常量，例如，iOS 4.0中引入了多任务的支持，如果你想检查<font color="green">UIApplicationWillEnterForegroundNotification</font>是否存在，你需要编写简单的检测如下所示：<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (&amp;<span class="built_in">UIApplicationWillEnterForegroundNotification</span>) &#123;</span><br><span class="line">    <span class="comment">//Safe to assume multitasking support</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//Fail gracefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>为了更进一步的证明，查看Xcode中的<strong>UIApplication.h</strong>文件，你将会看到<font color="green">UIApplicationWillEnterForegroundNotification</font>就是一个简单的常量，<font color="green">extern NSString </font>声明在文档的底部。<br><br>当你的程序加载到内存中的时候，那些常量也都初始化并且贮存在内容中，<font color="green"><strong>&amp;</strong></font>操作时获取常量的内存地址，如果内存地址不为nil,则这个常量是可用的，否则它使不可用的。<br><br>&gt;Note:这个机制使工作变成弱连接，之前讨论过的，当一个二进制加载动态链接器取代了在应用程序二进制任何地址的事情(函数、常量等)在动态加载的库。如果是弱链接然后如果符号在库中没有被发现然后地址设置为NULL。<br><br>### 未支持的枚举值(Unsupported enumeration values)<br><br>检查声明在<font color="green">NS_ENUM</font>和<font color="green">NS_OPTIONS</font>中的枚举值或者位掩码值，并且在运行时检查十分的困难，为什么？<br><br>深层次的，一个枚举值就是仅仅一个放回数字类型的方法，当编译的时候就回自动的替换为一个整型值，并且一直存在在系统中<br><br>如果你需要面对查看一个枚举值是否真实的存在，你要做的就是明确的检查系统的版本(当然了这个是不推荐的)或者检查另外新的API元素同时引入了新的枚举值。<br><br>&gt;Note:无论你怎么做,一定要添加足够的评论任何这样的代码,并考虑包装代码在一个专用的兼容性助手。<br><br>### 明确iOS的版本检查<br><br>你一般要远离检查明确的iOS版本，但是有些特定情况下面，这是不可避免的。例如：如果你需要占用以前可以用的补丁修正方法，你需要使用下面的代码来返回系统的版本：<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *osVersion = [[<span class="built_in">UIDevice</span> currentDevice] systemVersion];</span><br></pre></td></tr></table></figure><br><br>你可以用使用NSString的<font color="green">compare:options:</font>方法，通过<font color="green">NSNumericSearch</font>作为选项来比较系统版本。但是在实际的6.1.1大于6.1.0版本中，如果首先转换成浮点值，就是导致程序出错，并且它们转换后都返回6.1<br><br>&gt;Note:你可以查看有关这个主题更加详细的介绍, <a href="http://developer.apple.com/library/ios/#documentation/developertools/conceptual/cross_development/Introduction/Introduction.html" target="_blank" rel="external">Apple’s SDK Compatibility Guide</a>.<br><br>## 让RWRageFaces支持iOS 5<br><br>好了，我们现在把理论知识运用到实际中，在RWRageFaces中添加支持 iOS 5 的能力!<br><br>点击你项目中的”PROJECT”,在”Info”选项卡中改变Deployment Target为 iOS 5, 如下图所示:<br><br><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RW-5.png"><br><br>在左边的模拟器设备中选择iPad 5.0 或者 iPad 5.1,如下图所示:<br><br><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/07/fix.ios5-select.png"><br><br>编译并且运行你的应用程序，然后…就没有然后了！<br><br><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-6.png"><br><br>应用程序在启动的时候就立马崩溃了，并且打印出下面的错误信息:<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dyld: Library not loaded: /System/Library/Frameworks/Social.framework/Social</span><br></pre></td></tr></table></figure><br><br><font color="green"><strong>dyld</strong></font>是iOS和Mac OSX中的一个动态的链接库。程序崩溃的原因就是程序用使用了分享到Facebook和Twitter的Social framework，但是这个库是在 iOS 6 中引入的，所以dyld在 iOS 5 的模拟器中不能够找到具体的实现。<br><br>为了解决，首先在Xcode中选择你的应用程序的Target， 选择<font color="green"><strong>Build Phases</strong></font>选项卡，在<font color="green"><strong>Link With Binary Libraries</strong></font>下面，使<font color="green">Social.framework</font>变成<font color="green"><strong>Optional</strong></font>,如下图所示:<br><br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2013/07/fix.unsupported-frameworks.png"><br><br>再一次编译运行，然后…另外的一个崩溃又发生了。<br><br><img src="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-9.png"><br><br>这一次的错误信息好像有些不同，也许它可以提供一些线索：<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSInvalidUnarchiveOperationException</span>, reason: ‘Could not instantiate class named <span class="built_in">UICollectionView</span>’</span><br></pre></td></tr></table></figure><br><br>这就是问题所在了，在应用程序我试图使用<font color="green">UICollectionView</font>来创建表格试图；问题就是直到 iOS 6 中才添加了collection试图。<br><br>注意这个错误关系到<em>unarchiving</em>,线索就是iOS试图从一个NIB文件或者storyboard中解档一个<font color="green">UICollectionView</font>失败了。<br><br>在Xcode中，打开<font color="green"><strong>MainStoryboard.storyboard</strong></font>，你可以看到在初始化的view controller中包含了一个<font color="green">UICollectionView</font>,如下图所示：<br><br><img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-101.png"><br><br>为了避免这个问题，你将使用Peter Steinberger写的一个开源的库，名叫<font color="green">PSTCollectionView</font>.<a href="https://codeload.github.com/steipete/PSTCollectionView/tar.gz/1.1.0" target="_blank" rel="external">从Github上面下载此库</a>.<br><br>解压刚刚下载的库，然后拖动全部的<font color="green">PSTCollectionView</font>文件夹到Xcode中的<font color="green">frameworks</font>中，如下图所示：<br><br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-11.png"><br><br>通过Github上面的<a href="https://github.com/steipete/PSTCollectionView/blob/master/README.md#dependencies" target="_blank" rel="external">介绍</a>可知，你需要添加 QuartzCore framework到工程中.如下图所示：<br><br><img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-11.png"><br><br><font color="green">PSTCollectionView</font>是一个很可靠的实现了<font color="green">UICollectionView</font>的功能，你可以在 iOS 4.3版本之后部署它。<br><br>更有用的就是，<font color="green">PSTCollectionView</font>可以确定自己用那个模型来适应运行的环境，如果在 iOS 6中，就会自动切换到<font color="green">UICollectionView</font>,否则就会用<font color="green">PSTCollectionView</font>自己定义的类，非常的优雅。<br><br>在<font color="green"><strong>RWGridViewController.m</strong></font>中导入：<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"PSTCollectionView.h"</span></span></span><br></pre></td></tr></table></figure><br><br>接下来，浏览整个<font color="green"><strong>RWGridViewController.m</strong></font>,把<font color="green"><strong>UICollectionView</strong></font>替换成<font color="green"><strong>PSUICollectionView</strong></font>。这样下面的一些还需要进行替换：<br><br><em> <font color="green"><strong>UICollectionView</strong></font>变成<font color="green"><strong>PSUICollectionView</strong></font>
+</em> <font color="green"><strong>UICollectionViewDataSource</strong></font>变成<font color="green"><strong>PSUICollectionViewDataSource</strong></font><br><em> <font color="green"><strong>UICollectionViewDelegateFlowLayout</strong></font>变成<font color="green"><strong>PSUICollectionViewDelegateFlowLayout</strong></font>
+</em> <font color="green"><strong>UICollectionViewCell</strong></font>变成<font color="green"><strong>PSUICollectionViewCell</strong></font><br><em> <font color="green"><strong>UICollectionViewLayout</strong></font>变成<font color="green"><em>*PSUICollectionViewLayout</em></font></em>
+
+<p>一旦你都修改好之后，编译运行你的应用程序，<br>但是Xcode再一次惊人的崩溃了：</p>
+<img src="http://cdn1.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-12.png">
+<p>这一次，错误信息如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*** Terminating app due to uncaught exception 'NSInvalidUnarchiveOperationException', reason: 'Could not instantiate class named NSLayoutConstraint’</span><br></pre></td></tr></table></figure>
+<p>准备的。。。<font color="green">NSLayoutConstraint</font>是来用自动布局的，直到 iOS 6中才引入的。</p>
+<h3 id="处理iOS-5中的自动布局问题"><a href="#处理iOS-5中的自动布局问题" class="headerlink" title="处理iOS 5中的自动布局问题"></a>处理iOS 5中的自动布局问题</h3><p>为了解决这个问题，你需要打开 main storyboard并且点击 <font color="green"><strong>File Inspector</strong></font>,取消<font color="green"><strong>Use Autolayout</strong></font>,如下图所示：</p>
+<img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-13.png">
+<p>再次编译和运行，这一次就能够很正常的运行了，如果还会出现崩溃，并且错误信息有关<font color="green">UICollectionView</font>,请参照上面把它们修改到<font color="green">PSTCollectionView</font>中的一些类</p>
+<p>旋转你的设备，如果你在是模拟器上面工作，按<font color="green"><strong>Command+Left/Right arrow</strong></font>.</p>
+<p>但是，应用程序并没有像所想象的那样旋转，因为 iOS 5 和 iOS 6 调用了不同的有关旋转的方法。</p>
+<p>在<font color="green"><strong>RWGridViewController.m</strong></font>的viewDidLoad方法下面添加如下代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)shouldAutorotateToInterfaceOrientation:(<span class="built_in">UIInterfaceOrientation</span>)toInterfaceOrientation &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法是在 iOS 5中的一个旧方法，目的是告诉UIKit什么样的方向对于view controller是可用的，在iOS 6中这个方法不是必须的，但是在 iOS 5中是必须要用的。</p>
+<p>编译&amp;运行你的程序，试着再次选装设备或者模拟器,应用程序正常选择，但是navigation bar却不在正确的位置，效果如下图所示:</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-14.png">
+<p>通过关闭自动布局功能，导航条设置了自己的自动布局方式，也就是说，使用springs和struts.看起来你做得还不够！</p>
+<p>我们再次回到main storyboard,并且在<font color="green"><strong>Grid View Controller Scene</strong></font>选择navigation bar.在<strong>Inspector</strong>的右边,把top struct打开，在<font color="green">RWDetailViewController</font>也做同样的事情。</p>
+<p>接下来，在<font color="green">RWGridViewController</font>中的collection view设置宽度和高度自适应大小。通过这个可以当屏幕旋转的时候可以让collection view自动适应屏幕的大小。</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-15.png">
+<p>再一次，编译&amp;运行&amp;选择；这一次程序运行的很完美了！</p>
+<p>如果你选择一个头像表情，程序再次崩溃了！</p>
+<p>你将会看到一些错误信息出现在控制台:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2013-08-02 21:52:46.127 RWRageFaces[1126:c07] *** Terminating app due to uncaught exception 'NSInvalidUnarchiveOperationException', reason: 'Could not instantiate class named UIStoryboardEmbedSegueTemplate'</span><br><span class="line">*** First throw call stack:</span><br><span class="line">(0x14a0022 0x1195cd6 0x1448a48 0x14489b9 0x6194a3 0x61967b 0x619383 0x3bdf99 0x51a135 0x619c6e 0x619383 0x519cad 0x619c6e 0x61967b 0x619383 0x519105 0x722eef 0x723477 0x3c05ab 0x33b7 0xfb94 0xf73d 0xef01 0x14a1e99 0x3e5c49 0x3e5cb6 0x14a1e99 0x3e5c49 0x3e5cb6 0x5bca1a 0x147499e 0x140b640 0x13d74c6 0x13d6d84 0x13d6c9b 0x22ab7d8 0x22ab88a 0x2f8626 0x242d 0x2355)</span><br><span class="line">terminate called throwing an exception</span><br></pre></td></tr></table></figure>
+<p>这个表示这是一个异常，你将要打开一个异常的断点看看到底问题出现在哪一行，为了达到这个目的，你需要在断点导航栏(breakpoint navigator)-在第六个选项卡左下角点击<font color="green"><strong>+</strong></font>,然后点击<font color="green"><strong>Add Exception Breakpoint</strong></font>,然后在弹出框中点击<font color="green"><strong>Done</strong></font></p>
+<p>编译&amp;运行,再次像上面的操作流程，当你点击头像表情的时候，你将会看到具体的异常在哪一行：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSegueWithIdentifier:<span class="string">@"toDetailViewController"</span> sender:indexPath];</span><br></pre></td></tr></table></figure>
+<p>看起来是由于<font color="green">-performSegueWithIdentifier:</font>这个方法导致的，在main storyboard中选择<font color="green">RWDetailViewController</font>,它通过<font color="green"><strong>embed segue</strong></font>的方式包含了一个<font color="green">UIPageViewController</font>.</p>
+<p>在Interface Builder 中 Embed segues 能够很方面的管理视图控制器间的传递。但是这些东西只能够在 iOS 6 中运用，而在 iOS 5中却不支持.</p>
+<h3 id="处理-iOS-5-中的-Embed-Segues"><a href="#处理-iOS-5-中的-Embed-Segues" class="headerlink" title="处理 iOS 5 中的 Embed Segues"></a>处理 iOS 5 中的 Embed Segues</h3><p>打开 <font color="green"><strong>MainStoryboard.storyboard</strong></font>.</p>
+<p>选择容器视图嵌入<strong>Detail View Controller Scene</strong>(它说“容器”在中间),并删除它。接下来,选择UIPageViewController和删除它。在界面构建器中就自动地摆脱了embed segue。</p>
+<p>接下来，打开<font color="green"><strong>RWDetailViewController.m</strong></font>,删除<font color="green">prepareForSegue:</font>,你不得不把这个转为旧的方式。</p>
+<p>同样是在<font color="green"><strong>RWDetailViewController.m</strong></font>用下面的代码替换<font color="green">viewDidLoad</font>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"> </span><br><span class="line">    RWRageFaceViewController *rageFaceViewController =</span><br><span class="line">    [<span class="keyword">self</span>.storyboard instantiateViewControllerWithIdentifier:<span class="string">@"RWRageFaceViewController"</span>];</span><br><span class="line"> </span><br><span class="line">    rageFaceViewController.index = <span class="keyword">self</span>.index;</span><br><span class="line">    rageFaceViewController.imageName = <span class="keyword">self</span>.imageNames[<span class="keyword">self</span>.index];</span><br><span class="line">    rageFaceViewController.categoryName = <span class="keyword">self</span>.categoryName;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//Initialize UIPageViewController programatically</span></span><br><span class="line">    <span class="keyword">self</span>.pageViewController = [[<span class="built_in">UIPageViewController</span> alloc] initWithTransitionStyle:<span class="built_in">UIPageViewControllerTransitionStyleScroll</span></span><br><span class="line">                                                              navigationOrientation:<span class="built_in">UIPageViewControllerNavigationOrientationHorizontal</span></span><br><span class="line">                                                                            options:<span class="literal">nil</span>];</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">CGFloat</span> navBarHeight = <span class="keyword">self</span>.navigationBar.frame.size.height;</span><br><span class="line">    <span class="built_in">CGRect</span> detailViewControllerFrame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, navBarHeight, <span class="keyword">self</span>.view.frame.size.width,</span><br><span class="line">                                                  <span class="keyword">self</span>.view.frame.size.height - navBarHeight);</span><br><span class="line">    <span class="keyword">self</span>.pageViewController.view.frame = detailViewControllerFrame;</span><br><span class="line">    <span class="keyword">self</span>.pageViewController.view.autoresizingMask = (<span class="built_in">UIViewAutoresizingFlexibleWidth</span> | <span class="built_in">UIViewAutoresizingFlexibleHeight</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">self</span>.pageViewController.delegate = <span class="keyword">self</span>;</span><br><span class="line">    <span class="keyword">self</span>.pageViewController.dataSource = <span class="keyword">self</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//Add UIPageViewController as a child view controller</span></span><br><span class="line">    [<span class="keyword">self</span> addChildViewController:<span class="keyword">self</span>.pageViewController];</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.pageViewController.view];</span><br><span class="line">    [<span class="keyword">self</span>.pageViewController didMoveToParentViewController:<span class="keyword">self</span>];</span><br><span class="line"> </span><br><span class="line">    [<span class="keyword">self</span>.pageViewController setViewControllers:@[rageFaceViewController]</span><br><span class="line">                                      direction:<span class="built_in">UIPageViewControllerNavigationDirectionForward</span></span><br><span class="line">                                       animated:<span class="literal">NO</span></span><br><span class="line">                                     completion:<span class="literal">nil</span>];</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，你需要自己初始化<font color="green">UIPageViewController</font>代替通过storyboard的自动创建，然后你需要设置它的frame,delegate和datasource,然后把它作为孩子节点添加到<font color="green">RWDetailViewController</font>中。</p>
+<p>编译&amp;运行应用程序，然后点击头像表情，Xcode仍然崩溃，但是此时崩溃的地点发生了变化：<font color="green"><strong>RWRageFaceViewController.m</strong></font>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[attributedTitle addAttribute:<span class="built_in">NSForegroundColorAttributeName</span></span><br><span class="line">                            value:[<span class="built_in">UIColor</span> redColor]</span><br><span class="line">                            range:categoryRange];</span><br></pre></td></tr></table></figure>
+<p>在原始的iOS 6应用程序 label 下面的图像显示图像表情的类别名称为红色和图像的名称为黑色,使用一个NSAttributedString来做这项工作。</p>
+<p>你大概可以猜到,直到 iOS 6 中才推出NSAttributedString!</p>
+<h3 id="处理-iOS5中的NSAttributedString"><a href="#处理-iOS5中的NSAttributedString" class="headerlink" title="处理 iOS5中的NSAttributedString"></a>处理 iOS5中的NSAttributedString</h3><p>最简单的办法来解决这个是填充使用NSAttributedString UILabel在iOS 6,并具有规则的NSString在iOS 5。</p>
+<p>打开<font color="green"><strong>RWRageFaceViewController.m</strong></font>,然后替换<font color="green">viewDidLoad</font>中的代码:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">self</span>.imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="keyword">self</span>.imageName];</span><br><span class="line">    <span class="built_in">NSString</span> *titleString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@: %@"</span>, <span class="keyword">self</span>.categoryName, <span class="keyword">self</span>.imageName];</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* Use NSAttributedString with iOS 6 + */</span></span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.imageLabel respondsToSelector:<span class="keyword">@selector</span>(setAttributedText:)]) &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">NSMutableAttributedString</span> *attributedTitle = [[<span class="built_in">NSMutableAttributedString</span> alloc] initWithString:titleString];</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">NSRange</span> categoryRange = [titleString rangeOfString:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@: "</span>, <span class="keyword">self</span>.categoryName]];</span><br><span class="line">        <span class="built_in">NSRange</span> titleRange = [titleString rangeOfString:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, <span class="keyword">self</span>.imageName]];</span><br><span class="line"> </span><br><span class="line">        [attributedTitle addAttribute:<span class="built_in">NSForegroundColorAttributeName</span></span><br><span class="line">                                value:[<span class="built_in">UIColor</span> redColor]</span><br><span class="line">                                range:categoryRange];</span><br><span class="line"> </span><br><span class="line">        [attributedTitle addAttribute:<span class="built_in">NSForegroundColorAttributeName</span></span><br><span class="line">                                value:[<span class="built_in">UIColor</span> blackColor]</span><br><span class="line">                                range:titleRange];</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">self</span>.imageLabel.attributedText = attributedTitle;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* Simple UILabel with iOS 5 */</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.imageLabel.text = titleString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改变方法第一件事件就是检查<font color="green">UILabel</font>中的<font color="green">attributedText</font>属性是否存在，就像上面理论部分教程的内容一样，如果检查通过了，我们就知道使用attributed字符串是安全的。</p>
+<p>再一次编译&amp;运行,点击任意的头像表情，程序不出现崩溃的现象了，现在可以进行简单的滑动手势，向左或者向右滑动，但是界面好像和我们预期的有些出入：</p>
+<img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-18-e1371600504725.png">
+<p>即使你初始化了 UIPageViewController 使用了转换的类型 <font color="green">UIPageViewControllerTransitionStyleScroll</font>,但是不知道为什么会出现这种现象？</p>
+<p>出现这样的情况就是因为<font color="green">UIPageViewControllerTransitionStyleScroll</font>是一个枚举值，在 i0S 6 中引入。在 iOS 5 中，page view controller并不知道这个值具体代表什么，所以就选择了默认的转换类型。</p>
+<p>正如前面所讨论的一样,没有办法核对枚举值的存在在运行时因为它计算结果为整数。这就像问的问题,“是整数1存在吗?”。</p>
+<h3 id="处理-iOS-5-中的-Page-Transitions"><a href="#处理-iOS-5-中的-Page-Transitions" class="headerlink" title="处理 iOS 5 中的 Page Transitions"></a>处理 iOS 5 中的 Page Transitions</h3><p>为了解决这个问题，你需要检查这个<font color="green">UIPageViewControllerOptionInterPageSpacingKey</font>常量是不是可用，而它也是定义在 iOS 6中。</p>
+<p>在<font color="green"><strong>RWDetailViewController.m</strong></font>中，改变<font color="green">viewDidLoad</font>的实现方式：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"> </span><br><span class="line">    RWRageFaceViewController *rageFaceViewController = [<span class="keyword">self</span>.storyboard instantiateViewControllerWithIdentifier:<span class="string">@"RWRageFaceViewController"</span>];</span><br><span class="line"> </span><br><span class="line">    rageFaceViewController.index = <span class="keyword">self</span>.index;</span><br><span class="line">    rageFaceViewController.imageName = <span class="keyword">self</span>.imageNames[<span class="keyword">self</span>.index];</span><br><span class="line">    rageFaceViewController.categoryName = <span class="keyword">self</span>.categoryName;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">CGFloat</span> navBarHeight = <span class="keyword">self</span>.navigationBar.frame.size.height;</span><br><span class="line">    <span class="built_in">CGRect</span> detailViewControllerFrame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, navBarHeight, <span class="keyword">self</span>.view.frame.size.width,</span><br><span class="line">                                                  <span class="keyword">self</span>.view.frame.size.height - navBarHeight);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* Use UIPageViewController in iOS 6+ */</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">//1</span></span><br><span class="line">    <span class="keyword">if</span> (&amp;<span class="built_in">UIPageViewControllerOptionInterPageSpacingKey</span>) &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//2</span></span><br><span class="line">        <span class="keyword">self</span>.pageViewController = [[<span class="built_in">UIPageViewController</span> alloc] initWithTransitionStyle:<span class="built_in">UIPageViewControllerTransitionStyleScroll</span></span><br><span class="line">                                                                  navigationOrientation:<span class="built_in">UIPageViewControllerNavigationOrientationHorizontal</span></span><br><span class="line">                                                                                options:@&#123;<span class="built_in">UIPageViewControllerOptionInterPageSpacingKey</span>: @(<span class="number">35</span>)&#125;];</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">self</span>.pageViewController.delegate = <span class="keyword">self</span>;</span><br><span class="line">        <span class="keyword">self</span>.pageViewController.dataSource = <span class="keyword">self</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">self</span>.pageViewController.view.frame = detailViewControllerFrame;</span><br><span class="line">        <span class="keyword">self</span>.pageViewController.view.autoresizingMask = (<span class="built_in">UIViewAutoresizingFlexibleWidth</span> | <span class="built_in">UIViewAutoresizingFlexibleHeight</span>);</span><br><span class="line">        [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.pageViewController.view];</span><br><span class="line"> </span><br><span class="line">        [<span class="keyword">self</span>.pageViewController setViewControllers:@[rageFaceViewController]</span><br><span class="line">                                          direction:<span class="built_in">UIPageViewControllerNavigationDirectionForward</span></span><br><span class="line">                                           animated:<span class="literal">NO</span></span><br><span class="line">                                         completion:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line"> </span><br><span class="line">        [<span class="keyword">self</span> addChildViewController:rageFaceViewController];</span><br><span class="line">        rageFaceViewController.view.autoresizingMask = (<span class="built_in">UIViewAutoresizingFlexibleWidth</span> | <span class="built_in">UIViewAutoresizingFlexibleHeight</span>);</span><br><span class="line">        rageFaceViewController.view.frame = detailViewControllerFrame;</span><br><span class="line">        [<span class="keyword">self</span>.view addSubview:rageFaceViewController.view];</span><br><span class="line">        [rageFaceViewController didMoveToParentViewController:<span class="keyword">self</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一步一步解释上面的意图：</p>
+<p>1.检查常量 <font color="green">UIPageViewControllerOptionInterPageSpacingKey</font> 使用 <strong>&amp;</strong> 操作符，如果内存地址存在，就说明常量存在，你必须运行在 i0S 6上。</p>
+<p>2.既然你已经发现 <font color="green">UIPageViewControllerOptionInterPageSpacingKey</font>存在，你可以添加35点的相差在头像表情视图控制器上面。</p>
+<p>3.如果 <font color="green">UIPageViewControllerOptionInterPageSpacingKey</font> 不可用，这说明应用程序运行的版本在 iOS5.0或者以下。既然切换的类型不可用，那就放弃使用page view controller,一次只显示一个头像表情。</p>
+<p>再次编译&amp;运行,点击头像表情，注意，这次你不能够左右滑动，因为程序运行在 iOS 5上面，这样你就可以继续操作了。</p>
+<blockquote>
+<p>Note:根据您的需求,就完全可以放弃一个功能在一个旧版本的iOS和专注你的工作在其他地方。如果你真的需要支持滚动过渡风格在iOS 5,你面临着找到一个开源的解决方案,以满足您的需要或实现自己的<font color="green">UIPageViewController</font>。两个选项是非常耗时间的,所以确保值得努力去之前,沿着这条路!</p>
+</blockquote>
+<p>当 <font color="green">RWDetailViewController</font> 出现在屏幕的最前端，点击右上角的 <strong>Share</strong> 按钮，将会出现一个弹出提示框。</p>
+<p>选择Facebook 或者 Twitter都会在 iOS 5的情况下面崩溃，例如，点击 Facebook 崩溃地点如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) &#123;</span><br></pre></td></tr></table></figure>
+<p>分享功能使用的是 <font color="green">SLComposeViewController</font>,你可以猜得出来，在 iOS 5 中是不存在的。</p>
+<p>最简单的方法处理就是丢弃这些功能点，但是这样真的有效吗?</p>
+<h3 id="处理-iOS-5-中的-SLComposeViewController"><a href="#处理-iOS-5-中的-SLComposeViewController" class="headerlink" title="处理 iOS 5 中的 SLComposeViewController"></a>处理 iOS 5 中的 SLComposeViewController</h3><p>向下滚动到分享按钮的 <font color="green">IBAction</font> 方法 <font color="green">-shareButtonTapped:</font>,重新实现这个方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)shareButtonTapped:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">    <span class="comment">//Email, Facebook, Twitter, Clipboard</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">self</span>.actionSheet = [[<span class="built_in">UIActionSheet</span> alloc] initWithTitle:<span class="string">@"Share"</span></span><br><span class="line">                                                   delegate:<span class="keyword">self</span></span><br><span class="line">                                          cancelButtonTitle:<span class="literal">nil</span></span><br><span class="line">                                     destructiveButtonTitle:<span class="literal">nil</span></span><br><span class="line">                                          otherButtonTitles:<span class="literal">nil</span>];</span><br><span class="line"> </span><br><span class="line">    [<span class="keyword">self</span>.actionSheet addButtonWithTitle:<span class="string">@"E-mail"</span>];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> ([SLComposeViewController class]) &#123;</span><br><span class="line">        [<span class="keyword">self</span>.actionSheet addButtonWithTitle:<span class="string">@"Facebook"</span>];</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    [<span class="keyword">self</span>.actionSheet addButtonWithTitle:<span class="string">@"Twitter"</span>];</span><br><span class="line">    [<span class="keyword">self</span>.actionSheet addButtonWithTitle:<span class="string">@"Clipboard"</span>];</span><br><span class="line"> </span><br><span class="line">    [<span class="keyword">self</span>.actionSheet showFromBarButtonItem:<span class="keyword">self</span>.shareButton animated:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个新的实现,SLComposeViewController测试,看看是否存在。如果是这样,那么Facebook分享按钮显示,否则就不是。这是因为SLComposeViewController要求Facebook分享。</p>
+<p>然后就是Twitter了，这是一个比较容易因为即使Twitter原生支持现在的Social framework,相同的代码确实存在,但只是在iOS 5在特定的Twitter框架。</p>
+<p>这个功能将保持不变，但是你的应用程序将使用<font color="green">TWTweetComposeViewController</font>代替<font color="green">SLComposeViewController</font>,可以同时兼顾 iOS 5 和 iOS 6.</p>
+<p>为了添加 Twitter 框架，移步设置target <font color="green"><strong>Build Phases -&gt; Link Binary With Libraries</strong></font>添加Twitter.framework 作为 “Required” 库，确保不要删除 Social framework 因为它使为了facebook使用的。</p>
+<p>回到 <font color="green"><strong>RWDetailViewController.m</strong></font>,添加：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Twitter/Twitter.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>打开 <font color="green"><strong>RWDetailViewController.m</strong></font>,找到<font color="green">actionSheet:clickedButtonAtIndex:</font>方法，然后找到如下代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RWRageFaceViewController *rageFaceViewController = <span class="keyword">self</span>.pageViewController.viewControllers[<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSString</span> *imageName = rageFaceViewController.imageName;</span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:imageName];</span><br></pre></td></tr></table></figure>
+<p>然后替换成下面的代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *imageName = <span class="keyword">self</span>.imageNames[<span class="keyword">self</span>.index];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.pageViewController) &#123;</span><br><span class="line">    RWRageFaceViewController *rageFaceViewController = <span class="keyword">self</span>.pageViewController.viewControllers[<span class="number">0</span>];</span><br><span class="line">    imageName = rageFaceViewController.imageName;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:imageName];</span><br></pre></td></tr></table></figure>
+<p>从本质上讲,这可以确保你分享正确的图像兼容每个操作系统版本。如果你在iOS 5,那里只有一个图像每RWDetailViewController您访问通过self.imageNames[self.index]。</p>
+<p>然而,如果应用程序是运行在iOS 6将会有一个UIPageViewController和形象,你分享是由任何视图控制器是目前UIPageViewController显示。</p>
+<p>如果你看看剩下的这个方法你会发现它使用的索引键来确定行为了。这个逻辑不再工作,因为Facebook可能或可能不存在,那么您将使用按钮名称代替。</p>
+<p>在<font color="green">actionSheet:clickedButtonAtIndex:</font>的开头，添加：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];</span><br></pre></td></tr></table></figure>
+<p> 然后替换判断的逻辑：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([buttonTitle isEqualToString:<span class="string">@"E-mail"</span>]) &#123; <span class="comment">/* E-mail*/</span></span><br><span class="line">        <span class="comment">// ... same content as before ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([buttonTitle isEqualToString:<span class="string">@"Facebook"</span>]) &#123; <span class="comment">/* Facebook */</span></span><br><span class="line">        <span class="comment">// ... same content as before ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([buttonTitle isEqualToString:<span class="string">@"Twitter"</span>]) &#123; <span class="comment">/* Twitter */</span></span><br><span class="line">        <span class="comment">// ... same content as before ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([buttonTitle isEqualToString:<span class="string">@"Clipboard"</span>]) &#123; <span class="comment">/* Copy to Clipboard */</span></span><br><span class="line">        <span class="comment">// ... same content as before ...</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这是改变使用按钮index确定哪个按钮被点击。这是必需的,因为这个按钮indx不再映射到哪些按钮被按下,因为在iOS 5和 iOS 6中有不同数量的按钮。</p>
+<p>在<font color="green">actionSheet:clickedButtonAtIndex:</font>方法中，向下滚动到 <font color="green">else-if</font>语句，处理Twitter,修改其实现方式如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ([buttonTitle isEqualToString:<span class="string">@"Twitter"</span>]) &#123; <span class="comment">/* Twitter */</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> ([SLComposeViewController class] &amp;&amp; [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) &#123;</span><br><span class="line">            SLComposeViewController* twitterVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];</span><br><span class="line">            [twitterVC setInitialText:<span class="string">@"Check out this Rage Face at raywenderlich.com via @RWRageFaces"</span>];</span><br><span class="line">            [twitterVC addURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.raywenderlich.com"</span>]];</span><br><span class="line">            [twitterVC addImage:image];</span><br><span class="line"> </span><br><span class="line">            [<span class="keyword">self</span> presentViewController:twitterVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ([TWTweetComposeViewController class] &amp;&amp; [TWTweetComposeViewController canSendTweet]) &#123;</span><br><span class="line">            TWTweetComposeViewController *twitterVC = [[TWTweetComposeViewController alloc] init];</span><br><span class="line">            [twitterVC setInitialText:<span class="string">@"Check out this Rage Face at raywenderlich.com via @RWRageFaces"</span>];</span><br><span class="line">            [twitterVC addURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.raywenderlich.com"</span>]];</span><br><span class="line">            [twitterVC addImage:image];</span><br><span class="line"> </span><br><span class="line">            [<span class="keyword">self</span> presentViewController:twitterVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">UIAlertView</span> *alertView = [[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="string">@"No Twitter Accounts"</span></span><br><span class="line">                                                                message:<span class="string">@"Please add a Twitter account by going to Settings &gt; Twitter"</span></span><br><span class="line">                                                               delegate:<span class="literal">nil</span></span><br><span class="line">                                                      cancelButtonTitle:<span class="string">@"Cancel"</span></span><br><span class="line">                                                      otherButtonTitles:<span class="literal">nil</span>];</span><br><span class="line"> </span><br><span class="line">            [alertView show];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码确保TWTweetComposeViewController用在iOS 5和更新,SLComposeViewController是用在它存在的iOS 6。尽管TWTweetComposeViewController将被弃用,你需要使用它在iOS 5作为唯一方法是实现Twitter分享本地。</p>
+<p>编译&amp;运行程序，这一次一些就变得非常的完美了。</p>
+<h2 id="Deploymate-Sanity-Check"><a href="#Deploymate-Sanity-Check" class="headerlink" title="Deploymate Sanity Check"></a>Deploymate Sanity Check</h2><p>你认为自己能够修改所有的兼容性问题，但是一些旧有的规则会告诉你，你不可能解决所有的bugs,因为压根你就不知道还有什么问题存在，在程序打包之前，用工具(Deploymate)来检测你的程序是一个很好的主意。</p>
+<p>Deploymate 是lvan Vasic(@ivanvasic)专门为 OS X 写的静态分析工具，它可以根据你的Deployment target找出你代码中有哪些不被支持的APIs,在你上传应用程序到App Store之前，它能够很快的完美的检测出存在的问题，你可以在这里<a href="http://www.deploymateapp.com/" target="_blank" rel="external">下载</a>。</p>
+<blockquote>
+<p>Note:演示版并不能够报告所有的API问题，只是其中的一小部分，所以你不应该依赖于演示版本来进行工作，应该选择收费版本的强大功能！</p>
+</blockquote>
+<p>当你第一次打开Deploymate,你将会看到如下图所示：</p>
+<img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-1.png">
+<p>选择 <font color="green"><strong>Open existing Xcode project</strong></font>, 然后选择RWRageFaces工程中的 <font color="green"><strong>RWRageFaces.xcodeproj</strong></font>,然后就出现一个很熟悉的页面，如下图所示：</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-2-687x500.png">
+<p>检查你的”Deployment OS” 是不是选择正确的(当前是iOS 5),然后点击 <font color="green"><strong>Analyze</strong></font></p>
+<p>Deploymate将会花一点儿时间来浏览你整个工程，花销的时间长短取决于你工程文件的多少。在它完成分析之后，你就可以看到如下信息:</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-3-700x478.png">
+<p>哇，等一下，为什么出现了26个不可用的APIs调用。</p>
+<p>谨记，Deploymate是一个<font color="green"><strong>静态(static)</strong></font>分析工具，所以它按照你的程序已经检查，并不去思考你的代码时候在运行时做动态的变换。</p>
+<p>在左边的导航栏中随便选择一个问题，然后 Deploymate 就会跳转到具体的哪里代码引起的问题的地点：</p>
+<img src="http://cdn2.raywenderlich.com/wp-content/uploads/2013/06/Deploymate-4-700x471.png">
+<p>在实际的情况中，Deploymate指出<font color="green">NSForegroundColorAttributeName</font>是在 iOS 6 中引入的。</p>
+<p>注意，<font color="green">NSForegroundColorAttributeName</font>是包装在一个判断条件里面的，检查<font color="green">UILabel</font>是不是能够运用这个属性的，所以这些内容在 iOS 5的设备中并不运行。</p>
+<p>花一点时间，把所有的问题过一下，确保每一个检测出来的问题都不会引起程序的崩溃.</p>
+<p>最后一点不足的就是Deploymate并不会去浏览你的NIB或者storyboards文件，所以你最好关闭Auto Layout或者删除embed segue。</p>
+<h2 id="支持多设备"><a href="#支持多设备" class="headerlink" title="支持多设备"></a>支持多设备</h2><p>这篇教程只做了向后兼容，但是，要确保程序能够运行在不同的设备上面才是至关重要的。</p>
+<p>很明显，除了iPhone和iPad以外的设备将不会在本教程中涉及。然而，查看<a href="http://www.raywenderlich.com/1111/ipad-tutorial-for-ios-how-to-port-an-iphone-application-to-the-ipad" target="_blank" rel="external">移植iPhone应用程序到iPad上面</a>或者<a href="http://www.raywenderlich.com/33150/how-to-update-your-apps-for-the-4-inch-iphone-5-display" target="_blank" rel="external">更新应用程序来适应iPhone 5的4英寸</a>的屏幕显示，显然这是和我们要讨论的支持多设备相关的主题。</p>
+<p>保持向后兼容的硬件很简单:iOS设备没有太多的不同的硬件组件。就像你执行运行时检查是否一个特定的API是可用的,你必须执行运行时检查是否一个硬件组件可以在你尝试使用它。</p>
+<p>但是,如果设备没有硬件你需要为你的应用程序?如果一个特定的硬件组件绝对是至关重要的,你的应用程序,它是最好的如果你限制你的应用程序的分配设备,有这样的组件。你能想象一个手电筒软件安装在一个设备没有照相机闪光灯吗?</p>
+<p>通过改变你工程中的Info.plist,你可改变 <font color="green">UIRequiredDeviceCapabilities</font> 的值来指定应用程序所需要的硬件特性。点击工程的target,然后在 <font color="green"><strong>Info/Required device capabilities</strong></font>,如下图所示：</p>
+<img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/RWRageFaces-21-700x480.png">
+<p><font color="green">UIRequiredDeviceCapabilities</font>这个值可以让你设置设备的功能特点，例如前置摄像头(front camera),后置摄像头(back camera), 相机闪光灯(camera flash), GPS, 磁力仪(magnetometer), 陀螺仪(gyroscope),蓝牙(Bluetooth)或者更多。可以移步到<a href="http://developer.apple.com/library/ios/#documentation/general/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html" target="_blank" rel="external">苹果官方文档</a>查看更加详细的信息。</p>
+<p>如果你的应用程序不是很复杂，可以选择程序进行判断.例如:你可以用下面的两个方法来检车前置和后置摄像头是否可用:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isCameraDeviceAvailable:<span class="built_in">UIImagePickerControllerCameraDeviceRear</span>]) &#123;</span><br><span class="line">        <span class="comment">//safe to use back camera</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isCameraDeviceAvailable:<span class="built_in">UIImagePickerControllerCameraDeviceFront</span>]) &#123;</span><br><span class="line">        <span class="comment">//safe to use front camera</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><font color="green">isCameraDeviceAvailable</font>:在 iOS 4中是可用的。</p>
+<p><font color="green">UIImagePickerController</font>:也是一个有用的方法来检查你的摄像头是否有闪光灯、录像等功能。</p>
+<p>如果要检查你的设备是否支持麦克风，你可以用下面的 AVFoundation API:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVAudioSession</span> *session = [<span class="built_in">AVAudioSession</span> sharedInstance];</span><br><span class="line">    <span class="keyword">if</span> (session.inputIsAvailable) &#123;</span><br><span class="line">        <span class="comment">//safe to use microphone</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><font color="green">inputIsAvailable</font>在 iOS 6中已经废弃你可以使用<font color="green">inputAvailable</font>来代替。</p>
+<p>附加的，你可以使用Core Motion中的 <font color="green">CMMotionManager</font>来检查你的设备是否有陀螺仪、磁力仪和加速器。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CMMotionManager *motionManager = [[CMMotionManager alloc] init];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (motionManager.gyroAvailable) &#123;</span><br><span class="line">        <span class="comment">//safe to use gryoscope</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (motionManager.magnetometerAvailable) &#123;</span><br><span class="line">        <span class="comment">//safe to use magnetometer</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (motionManager.accelerometerAvailable) &#123;</span><br><span class="line">        <span class="comment">//safe to use accelerometer</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><font color="green">gyroAvailable</font>和<font color="green">accelerometerAvailable</font>在 iOS 4中就可用了，而<font color="green">magnetometerAvailable</font>只有在 iOS 5中才可用，为了使磁力仪能够在 iOS 5之前的系统中使用，可以使用<font color="green">CLLocationManager</font>中的<font color="green">headingAvailable</font>API,这个API在 Core Location framework中存在。</p>
+<p>还有一些其他的硬件需要检查这里没有涉及到，唯一的宗旨就是不要工作在某一个特定的设备上，不然就不能够完美的运行在一个更新的设备或者旧的设备。</p>
+<h2 id="收集设备的赢家"><a href="#收集设备的赢家" class="headerlink" title="收集设备的赢家"></a>收集设备的赢家</h2><p>最长的观光带(<a href="https://twitter.com/libovness" target="_blank" rel="external">@libovness</a>):</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/largest_straight_line-700x466.jpeg">
+<p>最漂亮的集合(<a href="https://twitter.com/blakespot" target="_blank" rel="external">@blakespot</a>):</p>
+<img src="http://cdn3.raywenderlich.com/wp-content/uploads/2013/06/most_beautiful-700x468.png">
+<p>最齐全的集合(<a href="https://twitter.com/_DavidSmith" target="_blank" rel="external">@DavidSmith</a>):</p>
+<img src="http://cdn4.raywenderlich.com/wp-content/uploads/2013/06/biggest_collection.jpg">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2013/09/05/supporting-multiple-ios-versions-and-devices/" data-id="cimehomhg000f0m9kzce1qnf1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/09/10/xcode-unknown-carsh-support/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Xcode工程莫名其妙的崩溃
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/09/01/happy-a-day-in-sep-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开心，仅仅是开始</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

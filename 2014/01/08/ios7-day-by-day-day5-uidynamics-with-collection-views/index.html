@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 5 :: UIDynamics with Collection Views | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+回顾前面的章节，我们介绍了动态UIKit的物理引擎，并且我们使用来创建了一个牛顿的实验，尽管那个非常的有趣，但是对于创建一个应用程序来说，并不是十分的明显。今天我们就来做一个实际的应用把物理引擎添加到UICollectionViews中，形成一些明显的效果。
+本章的项目就是做一个水平的有弹性的旋转木马，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 5 :: UIDynamics with Collection Views">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+回顾前面的章节，我们介绍了动态UIKit的物理引擎，并且我们使用来创建了一个牛顿的实验，尽管那个非常的有趣，但是对于创建一个应用程序来说，并不是十分的明显。今天我们就来做一个实际的应用把物理引擎添加到UICollectionViews中，形成一些明显的效果。
+本章的项目就是做一个水平的有弹性的旋转木马，">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-2.png">
+<meta property="og:updated_time" content="2014-01-09T06:35:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 5 :: UIDynamics with Collection Views">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+回顾前面的章节，我们介绍了动态UIKit的物理引擎，并且我们使用来创建了一个牛顿的实验，尽管那个非常的有趣，但是对于创建一个应用程序来说，并不是十分的明显。今天我们就来做一个实际的应用把物理引擎添加到UICollectionViews中，形成一些明显的效果。
+本章的项目就是做一个水平的有弹性的旋转木马，">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day5-uidynamics-with-collection-views" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views/" class="article-date">
+  <time datetime="2014-01-08T04:57:00.000Z" itemprop="datePublished">2014-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 5 :: UIDynamics with Collection Views
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<p>回顾前面的章节，我们介绍了动态<a href="/blog/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/">UIKit的物理引擎</a>，并且我们使用来创建了一个牛顿的实验，尽管那个非常的有趣，但是对于创建一个应用程序来说，并不是十分的明显。今天我们就来做一个实际的应用把物理引擎添加到<code>UICollectionViews</code>中，形成一些明显的效果。</p>
+<p>本章的项目就是做一个水平的有弹性的旋转木马，然后会添加他们的动态效果。</p>
+<p>完成的代码已经在github可供下载使用:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="Building-a-Carousel-创建旋转木马"><a href="#Building-a-Carousel-创建旋转木马" class="headerlink" title="Building a Carousel - 创建旋转木马"></a>Building a Carousel - 创建旋转木马</h3><p>为了在一个collection view上面展示物理的效果。首先，我们需要用<code>UICollectionView</code>创建一个旋转木马。本篇并不是着重介绍<code>UICollectionView</code>的教程，所以我们将会跳过创建的部分。我们将会设置collection view的代理(delegate)和数据源(datasource),实现的方法如下所示:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pargma mark - UICollectionViewDataSource methods</span></span><br><span class="line">- (<span class="built_in">NSIneteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">	<span class="keyword">return</span> [_collectionViewCellContent count];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	SCCollectionViewSampleCell *cell = (SCCollectionViewSampleCell *)[<span class="keyword">self</span>.collectionView dequeuqReusableCellWithReuseIdentifier:<span class="string">@"SpringyCell"</span> forIndexPath:indexPath];</span><br><span class="line">	cell.numberLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%d"</span>, [_collectionViewCellContent[indexPath.row] integerValue]];</span><br><span class="line">	<span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - UICollectionViewDelegate methods</span></span><br><span class="line">- (<span class="built_in">CGSize</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView layout:(<span class="built_in">UICollectionViewLayout</span> *)collectionViewLayout sizeForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	<span class="keyword">return</span> itemSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>每一个元素都是正方形的，在上面有一个显示数字的<code>UILabel</code>, 元素上面的数字我们保存在一个数组中(_collectionViewCellContent).我们做这些目的是为了能够排序，能够很好的对新插入的数据进行处理。</p>
+<p>为了是collection view能够展示成旋转木马的效果，我们需要提供一个自定义的布局，经常用的是流布局，做法如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCSpringCarousel</span> : <span class="title">UICollectionViewFlowLayout</span></span></span><br><span class="line"></span><br><span class="line">- (instancetype)initWithItemSize:(<span class="built_in">CGSize</span>)size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>为了能够是每一个元素都在视图的地步，我们需要知道他们的高度，因此构造器需要元素的大小， 我们重写<code>prepareLayout</code>方法来设置collection view中底部元素的内容大小:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareLayout &#123;</span><br><span class="line">	<span class="comment">// We update the section inset before we layout</span></span><br><span class="line">	<span class="keyword">self</span>.sectionInset = <span class="built_in">UIEdgeInsetsMake</span>(<span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.collectionView.bounds) - _itemSize.height, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	[<span class="keyword">super</span> prepareLayout];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照这样的设置，我们就会创建一个水平的旋转木马的效果。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">	[<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">	</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">// Provide the layout</span></span><br><span class="line">	_collectionViewLayout = [[SCSpringCarousel alloc] initWithItemSize:itemSize];</span><br><span class="line">	<span class="keyword">self</span>.collectionView.collectionViewLayout = _collectionViewLayout;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-0.png">
+<h3 id="Adding-springs-添加弹簧效果"><a href="#Adding-springs-添加弹簧效果" class="headerlink" title="Adding springs - 添加弹簧效果"></a>Adding springs - 添加弹簧效果</h3><p>现在让我们来做一些比较振奋人心的事情，让我们为刚刚实现的collection view添加上UIKit动态物理引擎。</p>
+<p>这个物理模型会将刚刚创建的每一个元素连接在一个流布局上面，然后使它们的位置附上弹簧的效果。然后，让我们滚动视图的时候，弹簧就会被拉伸，就可以看到它们拉伸的效果，我们需要设置弹簧的拉伸距离和触摸点的距离成正比。</p>
+<p>把这个模型转换成动态的概念，我们需要做如下的事情:</p>
+<blockquote>
+<ul>
+<li>我们需要在流布局的超类中获得布局的位置信息</li>
+<li>我们需要添加适当的行为到那些位置对象上面，让他们能够在物理的世界里面有动画的效果</li>
+<li>这些行为和位置对象都交给animator进行管理，这样仿真效果才可能运行</li>
+<li>需要重新重写<code>UICollectionViewLayout</code>的方法来替代从流布局的超类中获取animator的位置信息</li>
+</ul>
+</blockquote>
+<p>上述听起来是一个很复杂的过程，但是，我们需要这么一步步的来实践.</p>
+<h5 id="Behavior-Manager-行为管理"><a href="#Behavior-Manager-行为管理" class="headerlink" title="Behavior Manager - 行为管理"></a>Behavior Manager - 行为管理</h5><p>为了使代码看来清晰简洁，我们需要创建创建一个类，专门管理动态行为的animator, 代码如下所示:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SCItemBehaviorManager</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">UIGravityBehavior</span> *gravityBehavior;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">UICollisionBehavior</span> *collisionBehavior;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">NSDictionary</span> *attachmentBehavior;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">UIDynamicAnimator</span> *animator;</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithAnimator:(<span class="built_in">UIDynamicAnimator</span> *)animator;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)addItem:(<span class="built_in">UICollectionViewLayoutAttributes</span> *)item anchor:(<span class="built_in">CGPoint</span>)anchor;</span><br><span class="line">- (<span class="keyword">void</span>)removeItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</span><br><span class="line">- (<span class="keyword">void</span>)updateItemCollection:(<span class="built_in">NSArray</span> *)items;</span><br><span class="line">- (<span class="built_in">NSArray</span> *)currentlyManagedItemIndexPaths;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>每一个元素的行为都是有一个共享的<code>UIGravityBehavior</code>，一个共享的<code>UICollisionBehaviro</code>和独立的<code>UIAttachmentBehvaior</code>构成的。我们创建了一个管理行为的<code>UIDynamicAnimator</code>对象和一些其他的方法，例如添加，删除元素，还有一些放来用来更新元素的集合.</p>
+<p>当我们创建了一个管理对象，我们需要创建共享的行为，并且把他们添加到animator中:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithAnimator:(<span class="built_in">UIDynamicAnimator</span> *)animator &#123;</span><br><span class="line">	<span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">		_animator = animator;</span><br><span class="line">		_attachmentBehaviors = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">		[<span class="keyword">self</span> createGravityBehavior];</span><br><span class="line">		[<span class="keyword">self</span> createCollisionBehavior];</span><br><span class="line">		<span class="comment">// Add the global behaviors to the animator</span></span><br><span class="line">		[<span class="keyword">self</span>.animator addBehavior:<span class="keyword">self</span>.gravityBehavior];</span><br><span class="line">		[<span class="keyword">self</span>.animator addBehavior:<span class="keyword">self</span>.collisionBehavior];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里调用了两个比较的简单的方法，我们可以在本系类的章节中找到相关的代码:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)createGravityBehavior &#123;</span><br><span class="line">	_gravityBehavior = [[<span class="built_in">UIGravityBehavior</span> alloc] init];</span><br><span class="line">	_gravityBehavior.magnitude = <span class="number">0.3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)createCollisionBehavior &#123;</span><br><span class="line">	_collisionBehavior = [[<span class="built_in">UICollisionBehavior</span> alloc] init];</span><br><span class="line">	_collisionBehavior.collisionMode = <span class="built_in">UICollisionBehaviorModeBoundaries</span>;</span><br><span class="line">	_collisionBehavior.translatesReferenceBoundsIntoBoundary = <span class="literal">YES</span>;</span><br><span class="line">	<span class="comment">// Need to add item behavior specific to this</span></span><br><span class="line">	<span class="built_in">UIDynamicItemBehavior</span> *itemBehavior = [[<span class="built_in">UIDynamicItemBehavior</span> alloc] init];</span><br><span class="line">	itemBehavior.elasticity = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// Add it as a child behavior</span></span><br><span class="line">	[_collisionBehavior addChildBehavior:itemBehavior];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你会注意到在这个阶段我们并没有为行为添加任何的动态元素，是因为我们现在确实没有任何可添加的元素。碰撞行为并不能够添加了单个的元素上面，代替的方法就是设置了collection view的边界.因此，我们需要设置两个属性:<code>collisionMode</code>和<code>translatesReferenceBoundsIntoBoundary</code>。我们还需要添加一个<code>UIDynamicItemBehavior</code>来指定碰撞的弹性。</p>
+<p>现在我们已经创建了全局的行为，我们需要来实现<code>addItem:</code>和<code>removeItem:</code>方法。这个添加的方法将会添加新的元素到全局的行为中并且设置把这个设置这个元素的弹簧效果。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)addItem:(<span class="built_in">UICollectionViewLayoutAttributes</span> *)item anchor:(<span class="built_in">CGPoint</span>)anchor &#123;</span><br><span class="line">	<span class="built_in">UIAttachmentBehavior</span> *aatachmentBehavior = [<span class="keyword">self</span> createAttachmentBehaviorForItem:item anchor:anchor];</span><br><span class="line">	<span class="comment">// Add the behavior to the animator</span></span><br><span class="line">	[<span class="keyword">self</span>.animator addBehavior:attachmentBehavior];</span><br><span class="line">	<span class="comment">// Add store it in the dictionary. Keyed by the index path</span></span><br><span class="line">	[_attachmentBehaviors setObject:attachmentBehavior forKey:item.indexPath];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Also need to add this item to the global behaviors</span></span><br><span class="line">	[<span class="keyword">self</span>.gravityBehavior addItem:item];</span><br><span class="line">	[<span class="keyword">self</span>.collisionBehavior addItem:item];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>弹性行为的需要用一个工具的方法进行创建:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIAttachmentBehavior</span> *)createAttachmentBehaviorForItem:(<span class="keyword">id</span>&lt;<span class="built_in">UIDynamicItem</span>&gt;)item anchor:(<span class="built_in">CGPoint</span>)anchor &#123;</span><br><span class="line">	<span class="built_in">UIAttachmentBehavior</span> *attachmentBehavior = [[<span class="built_in">UIAttachmentBehavior</span> alloc] initWithItem:item attachedToAnchor:anchor];</span><br><span class="line">	attachmentBehavior.damping = <span class="number">0.5</span>;</span><br><span class="line">	attachmentBehavior.frequency = <span class="number">0.8</span>;</span><br><span class="line">	attachmentBehavior.length = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> attachmentBehavior;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们同样需要依附行为保存包一个字典中，用<code>NSIndexPath</code>作为key。这样的话就可以更好的添加和删除节点。</p>
+<p>一旦我们创建了依附行为，我们需要把它添加到animator中,并且还需要把他们添加到共享的重力和碰撞行为中。</p>
+<p>删除方法执行完全相反操作,删除附件行为动画师和项目从共享重力和碰撞行为:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)removeItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	<span class="comment">// Remove the attachment behavior from the animator</span></span><br><span class="line">	<span class="built_in">UIAttachmentBehavior</span> *attachmentBehavior = <span class="keyword">self</span>.attachmentBehaviors[indexPath];</span><br><span class="line">	[<span class="keyword">self</span>.animator removeBehavior:attachmentBehavior];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Remove the item from the global behaviors</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UICollectionViewLayoutAttributes</span> *attr <span class="keyword">in</span> [<span class="keyword">self</span>.gravityBehavior.items <span class="keyword">copy</span>]) &#123;</span><br><span class="line">		<span class="keyword">if</span> ([attr.indexPath isEqual:indexPath]) &#123;</span><br><span class="line">			[<span class="keyword">self</span>.grvityBehavior removeItem:attr];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UICollectionViewLayoutAttributes</span> *attr <span class="keyword">in</span> [<span class="keyword">self</span>.collisionBehavior.items <span class="keyword">copy</span>]) &#123;</span><br><span class="line">		<span class="keyword">if</span> ([attr.indexPath isEqual:indexPath]) &#123;</span><br><span class="line">			[<span class="keyword">self</span>.collisonBehavior removeItem:attr];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// And remove the entry from our dictionary</span></span><br><span class="line">	[_attachmentBehaviors removeObjectForKey:indexPath];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法比我们想象的稍微复杂一点。删除依附的行为是我们所期望的，但是从共享的行为中删除元素有一点儿复杂。元素对象被复制，并且有不同的引用。所以我们就需要查找重力行为中的对象，并且通过相同的index path删除元素对象。因此我们需要遍历来进程查找出相同index path的对象。</p>
+<p>下面我们再看看看另外的一个行为管理方法<code>updateItemCollection:</code>，这个方法的入参是一个元素对象的集合，然后通过修正过的参数来调用<code>addItem:anchor:</code>和<code>removeItem:</code>确保管理的是当前的修改的对象。我们将会看到为什么这样做是有效的，但是首先让我们看看是如何实现的:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)updateItemCollection:(<span class="built_in">NSArray</span> *)items &#123;</span><br><span class="line">	<span class="comment">// Let's find the ones we need to remove. We work in indexPaths here</span></span><br><span class="line">	<span class="built_in">NSMutableSet</span> *toRemove = [<span class="built_in">NSMutableSet</span> setWithArray:[<span class="keyword">self</span>.attachmentBehaviors allKeys]];</span><br><span class="line">	[toRemove minusSet:[<span class="built_in">NSSet</span> setWithrray[items valueForKeyPath:<span class="string">@"indexPath"</span>]]];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Let's remove any we no longer need</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">NSIndexPath</span> *indexPath <span class="keyword">in</span> toRemove) &#123;</span><br><span class="line">		[<span class="keyword">self</span> removeItemAtIndexPath:indexPath];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Find the items we need to add springs to. A bit more complicated =(</span></span><br><span class="line">	<span class="comment">// Loop through the items we want</span></span><br><span class="line">	<span class="built_in">NSArray</span> *existingIndexPaths = [<span class="keyword">self</span> currentlyManagedItemIndexPaths];</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UICollectionViewLayoutAttributes</span> *attr <span class="keyword">in</span> items) &#123;</span><br><span class="line">		<span class="comment">// Find whether this item matches an existing index path</span></span><br><span class="line">		<span class="built_in">BOOL</span> alreadyExists = <span class="literal">NO</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="built_in">NSIndexPath</span> *indexPath <span class="keyword">in</span> existingIndexPaths) &#123;</span><br><span class="line">			<span class="keyword">if</span> ([indexPath isEqual:attr.indexPath]) &#123;</span><br><span class="line">				alreadyExists = <span class="literal">YES</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// If it doesn't when let's add it</span></span><br><span class="line">		<span class="keyword">if</span> (!alreadyExists) &#123;</span><br><span class="line">			<span class="comment">// Need to add</span></span><br><span class="line">			[<span class="keyword">self</span> addItem:attr anchor:attr.center];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个比较简单的方法，我们首先找出我们需要删除的元素,通过一些运算<code>({items we currently have}/{items we should have})</code>。然后循环结果的集合调用<code>removeItem:</code>方法。</p>
+<p>我们需要把新加入的元素(没有存在行为管理里面的)进行行为管理.所以我们调用<code>addItem:anchor:</code>方法。值得注意的是这里的锚点是在<code>UIDynamicItem</code>对象中提供的当前中心位置。对于<code>UICollectionView</code>而言，我们需要把这些位置锚点在流布局上面。</p>
+<h5 id="Using-the-manager-in-the-collection-view-layout-在collection-view布局上面使用行为管理"><a href="#Using-the-manager-in-the-collection-view-layout-在collection-view布局上面使用行为管理" class="headerlink" title="Using the manager in the collection view layout - 在collection view布局上面使用行为管理"></a>Using the manager in the collection view layout - 在collection view布局上面使用行为管理</h5><p>到目前为止，我们已经创建了行为管理类，而且也实现了我们需要的<code>UIDynamics</code>代码。接下来的任务就是要把它们与collection view layout关联在一起。这需要在<code>SCSpringyCarousel</code>中覆盖<code>UICollectionViewFlowLayout</code>中的方法。</p>
+<p>我们已经覆盖了<code>prepareLayout</code>方法来编写一个水平形式的木马。现在我们需要继续修改这些代码来确保让animator来控制这些动态的元素:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareLayout &#123;</span><br><span class="line">	<span class="comment">// We update the section inset before we layout</span></span><br><span class="line">	<span class="keyword">self</span>.sectionInset = <span class="built_in">UIEdgeInsetsMake</span>(<span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.collectionView.bounds) - _itemSize.height, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	[<span class="keyword">super</span> prepareLayout];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Get a list of the objects around the current view</span></span><br><span class="line">	<span class="built_in">CGRect</span> expandedViewPort = <span class="keyword">self</span>.collectionView.bounds;</span><br><span class="line">	expandedViewPort.origin.x -= <span class="number">2</span> * _itemSize.width;</span><br><span class="line">	expandedViewPort.size.width += <span class="number">4</span> * _itemSize.width;</span><br><span class="line">	<span class="built_in">NSArray</span> *currentItem = [<span class="keyword">super</span> layoutAttributesForElementsInRect:expandedViewPort];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// We update our behavior collection to just contain the objects we can currently (almost) see</span></span><br><span class="line">	[_behaviorManager updateitemCollection:currentItems];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前一行代码就是我们之前编写的，然后我们需要扩展viewport的大小.这是b包含当前的viewport向左和向右拉伸，确定元素能够在动态的animator控制下展示在屏幕上面。一旦我们从超类中获取布局属性，然后所有的元素就会以矩形的形式出现在屏幕上面。和<code>UIView</code>一样，<code>UICollectionViewLayoutAttributes</code>也是实现了<code>UIDynamicItem</code>协议，因此可以被<code>UIDynamicAnimator</code>进行管理动画。我们把这些布局上面的元素取出来交给animator进行管理，这样就能够添加一些动画效果。</p>
+<p>下面一个需要复写的方法是<code>shouldInvalidateLayoutForBoundsChange:</code>,我们实际上并不想改变这个方法的行为(默认的返回值是NO，这个我们不需要修改的),但是这个方法会在collection view变化的时候进行调用。在scroll view的世界里，属性bounds代表了当前的viewport的位置，例如,x和y的值都不是0.然而，属性bounds变化了实际上是由于<code>UIScrollView</code>滚动了导致的。</p>
+<p>这个方法的内部实现是比较复杂的，所以我们需要一步步的深入:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)shouldInvalidateLayoutForBoundsChange:(<span class="built_in">CGRect</span>)newBounds &#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">CGFloat</span> scrollDelta = newBounds.origin.x - <span class="keyword">self</span>.collectionView.bounds.origin.x;</span><br><span class="line">	<span class="built_in">CGPPoint</span> touchLocation = [<span class="keyword">self</span>.collectionView.panGestureRecognizer locationInView:<span class="keyword">self</span>.collectionView];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UIAttachmentBehavior</span> *behavior <span class="keyword">in</span> [_behaviorManager.attachmentBehaviors allValues]) &#123;</span><br><span class="line">		<span class="built_in">CGPoint</span> anchorPoint = behavior.anchorPoint;</span><br><span class="line">		<span class="built_in">CGFloat</span> distFromTouch = ABS(anchorPoint.x - touchLocation.x);</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">UICollectionViewLayoutAttributes</span> *attr = [behavior.items firstObject];</span><br><span class="line">		<span class="built_in">CGPoint</span> center = attr.center;</span><br><span class="line">		<span class="built_in">CGFloat</span> scrollFacor = MIN(<span class="number">1</span>, distFromTouch / <span class="number">500</span>);</span><br><span class="line">		</span><br><span class="line">		center.x += scrollDelta * scrollFactor;</span><br><span class="line">		attr.center = center;</span><br><span class="line">		</span><br><span class="line">		[_dynamicAnimator updateItemUsingCurrentState:attr];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>首先，我们要计算出滚动的偏移是多少，计算出来的值，我们需要在后面运用弹簧效果的时候使用。</li>
+<li>我们需要通过手势操作找出我们当前触摸在collection view上面的点的位置</li>
+<li>现在我们需要循环每一个行为管理的对象，更新它们.</li>
+<li>首先，我们需要找出我们的触摸点和锚点之间的水平距离。因为我们将会使用这个值来实现弹簧的拉伸效果。</li>
+<li>然后我们需要计算出当前元素的新位置，使用上面计算出来的<code>scrollDelta</code>和<code>scrollFactor</code>.</li>
+<li>我们告诉动态的animator来属性元素的状态.当一个元素添加到动态的animator中，animator就是复制元素的状态，然后就会对他进行动画处理，为了推动新状态我们更新theUIDynamicItem属性,然后告诉animator应该重新加载这个元素的状态。</li>
+<li>最后我们返回NO - 我们已经让动态animator管理了所有cell的位置，我们不需要重新加载布局。</li>
+</ol>
+</blockquote>
+<p>还有其他的两个方法我们需要复写,目的都是消除流布局的控制，把他们交给动态animator进行管理:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSArray</span> *)layoutAttributesForElementsInRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">	<span class="keyword">return</span> [_dynamicAnimator itemsInRect:rect];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">UICollectionViewLayoutAttributes</span> *)layoutAttributesForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	<span class="keyword">return</span> [_dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>动态的animator有两个辅助方法来实现这样的目的，这将会很好的插入集合视图布局类。这些方法被collection view用来定位cell的位置。我们简单的动过animator来返回cell的位置。</p>
+<h3 id="Test-run-运行测试"><a href="#Test-run-运行测试" class="headerlink" title="Test run - 运行测试"></a>Test run - 运行测试</h3><p>OK,如果你运行项目就可以看到一个旋转木马的页面，你拖拽的话，就可以看到他们的弹簧效果。</p>
+<img src="/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-1.png">
+<h3 id="Inserting-items-添加新元素"><a href="#Inserting-items-添加新元素" class="headerlink" title="Inserting items - 添加新元素"></a>Inserting items - 添加新元素</h3><p>现在我们可以看到运行的效果了，我们将会更加深入的看看通过动态的animator今天添加一个新的元素是多么的复杂。我们确实做了很多的工作，让我们来看看我们还需要做些什么。</p>
+<p>标准的<code>UICollectionView</code>,布局为显示的元素提供了布局属性，并且通过collection让元素运动到最后的位置（具体的位置是由<code>layoutAttributesForItemAtIndexPath:</code>返回的）。然而，我们使用<code>UIDynamicAnimator</code>执行动画效果，所以我们需要阻止<code>UIView</code>的动画。为了达到这个目的，我们需要在<code>prepareLayout</code>方法的最后添加上如下的代码:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIView</span> setAnimationsEnabled:<span class="literal">NO</span>];</span><br></pre></td></tr></table></figure>
+<p>这就保证了我们没有两个动画进程进行相互的干扰。</p>
+<p>如前所述,<code>UICollectionViewLayout</code>会调用方法来定位新的元素的位置,使用<code>initialLayoutAttributesForAppearingItemAtIndexPath:</code>方法。我们要让我们的动画处理:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UICollectionViewLayoutAttributes</span> *)initialLayoutAttributesForAppearingItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)itemIndexPath &#123;</span><br><span class="line">	<span class="keyword">return</span> [_dynamicAnimator layoutAttributesForCellAtIndexPath:itemIndexPath];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们需要需要通知animator一个新的元素添加了，适当更新原来已有的元素的位置,并且设置新增的元素。为了达到这个目的，我们需要复写<code>SCSpringyCarousel</code>来中的<code>prepareForCollectionViewUpdates:</code>的方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareForCollectionViewUpdates:(<span class="built_in">NSArray</span> *)updateItems &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UICollectionViewUpdateItem</span> *updateItem <span class="keyword">in</span> updateItems) &#123;</span><br><span class="line">		<span class="keyword">if</span> (updateItem.updateAction == <span class="built_in">UICollectionUpdateActionInsert</span>) &#123;</span><br><span class="line">			<span class="comment">// Reset the springs of the existing items</span></span><br><span class="line">			[<span class="keyword">self</span> resetItemSpringsForInsertAtIndexPath:updateItrm.indexPathAfterUpdate];</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// Where would the flow layout like to place the new cell?</span></span><br><span class="line">			<span class="built_in">UICollectionViewLayoutAttributes</span> *attr = [<span class="keyword">super</span> initialLayourAttributesForAppearingItemAtIndexPath:updateItem.indexPathAfterUpdate];</span><br><span class="line">			<span class="built_in">CGPoint</span> center = attr.center;</span><br><span class="line">			<span class="built_in">CGSize</span> contentSize = [<span class="keyword">self</span> collectionViewContentSize];</span><br><span class="line">			center.y -= contentSize.height - <span class="built_in">CGRectGetHeight</span>(attr.bounds);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// Now reset the center of insertion point for the animator</span></span><br><span class="line">			<span class="built_in">UICollectionViewLayoutAttributes</span> *insertionPointAttr = [<span class="keyword">self</span> layoutAttributesForItemAtIndexPath:updateItem.indexPathAfterUpdate];</span><br><span class="line">			insertionPointAttr.center = center;</span><br><span class="line">			[_dynamicAnimator updateItemUsingCurrentState:insertionPointAttr];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个内容很多的方法，但是我们可以把它分解成许多简单的部分:</p>
+<blockquote>
+<ol>
+<li>这个方法会被添加，移除效果和移动等状态调用。我们只对添加对象感兴趣，所以我们只需要判断出更新状态<code>UICollectionUpdateActionInsert</code>来做一些操作。</li>
+<li>让新增操作发生，collection view将会重新分配布局来修改元素的索引值和它相邻元素的索引值(例如:如果当前插入的索引值是4，则当前元素5的元素就会设置索引值为6).在我们的场景中，我们想要保持锚点的行为和相邻布局有关，但是位置必须是自己的，而不是相邻的。我们执行这个使用了一个工具的方法<code>resetItemSpringsForInsertAtIndexPath:</code>,这个我们等会在细看</li>
+<li>现在，我们需要处理的新的元素已经被添加了。我们需要告诉流布局如何放置它。我们希望它出现在collection view的上方，然后animator会通过重力行为把它拖拽下来。我们计算出添加的元素放置的中心位置。</li>
+<li>现在我们要求animator管理刚刚我们插入的index path, 然后更新位置和我们刚刚计算的相匹配。</li>
+</ol>
+</blockquote>
+<p>最后这个这个方法是我们上述提到过的，用来更新弹簧的空隙，让新的元素可以填充其中:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)resetItemSpringsForInsertAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">	<span class="comment">// Get a list of items, sorted by their indexPath</span></span><br><span class="line">	<span class="built_in">NSArray</span> *items = [_behaviorManager currentlyManagedItemIndexPaths];</span><br><span class="line">	<span class="comment">// Now loop backwards, updating centers appropriately;</span></span><br><span class="line">	<span class="comment">// We need to get 2 enumerators - copy from one to the other</span></span><br><span class="line">	<span class="built_in">NSEnumerator</span> *fromEnumerator = [items reverseObjectEnumerator];</span><br><span class="line">	<span class="comment">// We want to skip the lastmost object in the array as we're copying left to right</span></span><br><span class="line">	[fromEnumerator nextObject];</span><br><span class="line">	<span class="comment">// Now enumarate the array - through the 'to' positions</span></span><br><span class="line">	[items enumerateObjectsWithOptions:<span class="built_in">NSEnumerationReverse</span> usingBlock:^(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">		<span class="built_in">NSIndexPath</span> *toIndex = (<span class="built_in">NSIndexPath</span> *)obj;</span><br><span class="line">		<span class="built_in">NSIndexPath</span> *fromIndex = (<span class="built_in">NSIndexPath</span> *)[fromEnumerator nextObject];</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// If the 'from' cell is after the insert then need to reset the springs</span></span><br><span class="line">		<span class="keyword">if</span> (fromIndex &amp;&amp; fromIndex.item &gt;= indexPath.item) &#123;</span><br><span class="line">			<span class="built_in">UICollectionViewLayoutAttributes</span> *toItem = [<span class="keyword">self</span> layoutAttributesForItemAtIndexPath:toIndex];</span><br><span class="line">			<span class="built_in">UICollectionViewLayoutAttributes</span> *fromItem = [<span class="keyword">self</span> layoutAttributesForItemAtIndexPath:fromIndex];</span><br><span class="line">			toItem.center = fromItem.center;</span><br><span class="line">			[_dynamicAnimator updateItemUsingCurrentState:toItem];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还需要添加一个按钮用来添加新的元素,我们在storyboard中今天添加，具体触发的方法如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)newViewButtonPressed:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="comment">// What's the new number we're creating?</span></span><br><span class="line">	<span class="built_in">NSNumber</span> *newTitle = @([_collectionViewCellContent count]);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// We want to place it in at the correct position</span></span><br><span class="line">	<span class="built_in">NSIndexPath</span> *rightOfCenter = [<span class="keyword">self</span> indexPathOfItemRightOfCenter];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Insert the new item content</span></span><br><span class="line">	[_collectionViewCellContent insertObject:newTitle atIndex:rightOfCenter.item];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Redraw</span></span><br><span class="line">	[<span class="keyword">self</span>.collectionView insertItemsAtIndexPaths:@[rightOfCenter]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有一个工具的方法来计算出右边可见元素的中心位置:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSIndexPath</span> *)indexPathOfItemRightOfCenter &#123;</span><br><span class="line">	<span class="comment">// Find all the currently visible items</span></span><br><span class="line">	<span class="built_in">NSArray</span> *visibleItems = [<span class="keyword">self</span>.collectionView indexPathsForVisibleItems];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Calculate the middle of the current collection view content</span></span><br><span class="line">	<span class="built_in">CGFlot</span> midx = <span class="built_in">CGRectGetMidX</span>(<span class="keyword">self</span>.collectionView.bounds);</span><br><span class="line">	<span class="built_in">NSUinteger</span> indexOfItem;</span><br><span class="line">	<span class="built_in">CGFloat</span> curMin = <span class="built_in">CGFLOAT_MAX</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Loop through the visible cells to find the left of center one</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">NSIndexPath</span> *indexPath <span class="keyword">in</span> visibleItems) &#123;</span><br><span class="line">		<span class="built_in">UICollectionViewCell</span> *cell = [<span class="keyword">self</span>.collectionView cell ForItemAtIndexPath:indexPath];</span><br><span class="line">		<span class="keyword">if</span> (ABS(<span class="built_in">CGRectGetMidX</span>(cell.frame) - midX) &lt; ABS(curMin)) &#123;</span><br><span class="line">			curMin = <span class="built_in">CGRectGetMidX</span>(cell.frame) - midX;</span><br><span class="line">			indexOfItem = indexPath.item;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// If min is -ve then we have left of centre. If +ve then we have right of centre.</span></span><br><span class="line">	<span class="keyword">if</span> (curMin &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		indexOfItem += <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// And now get the index path to pass back</span></span><br><span class="line">	<span class="keyword">return</span> [<span class="built_in">NSIndexPath</span> indexPathForItem:indexOfItem inSection:<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到此为止就结束了，重新运行app,尝试添加元素，然后可以看到牛X的效果，在滚动视图的时候同时添加元素，同样可以看待比较强大的动画效果，这就是dynamic animator的强大之处.</p>
+<img src="/images/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views-2.png">
+<h3 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion - 总结"></a>Conclusion - 总结</h3><p>在<a href="/blog/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/">这篇</a>里面我们已经介绍了<code>UIKit Dynamics</code>的物理引擎是如此的简单，但是今天我们的例子是一个面向现实世界的。这样来做其实是有点儿复杂，但是我们建议你是用一些这样的效果，因为这样可以取悦用户。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/09/26/ios7-day-by-day-day-5-uidynamics-with-collection-views/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 5 :: UIDynamics with Collection Views</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/08/ios7-day-by-day-day5-uidynamics-with-collection-views/" data-id="cimehomjk001u0m9k0w4w8mtm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/09/ios7-day-by-day-day6-tint-color/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 6 :: Tint Color
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/08/ios7-day-by-day-day4-avspeechsynithesizer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 4 :: AVSpeechSynthesizer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

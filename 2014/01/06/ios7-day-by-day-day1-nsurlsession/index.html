@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 1 :: NSURLSession | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+在过去的网络环境中我们都是用全局的状态NSURLConnection来管理cookies和authentication， 因此会出现两个不同的连接互相竞争共享的设置，NSURLSession着重就是解决这些问题和其他的一些问题的。
+伴随着这个指南，我们讨论三个不同的下载情形.这篇文章不会描述所有的项目，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 1 :: NSURLSession">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/06/ios7-day-by-day-day1-nsurlsession/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+在过去的网络环境中我们都是用全局的状态NSURLConnection来管理cookies和authentication， 因此会出现两个不同的连接互相竞争共享的设置，NSURLSession着重就是解决这些问题和其他的一些问题的。
+伴随着这个指南，我们讨论三个不同的下载情形.这篇文章不会描述所有的项目，">
+<meta property="og:updated_time" content="2014-01-07T10:02:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 1 :: NSURLSession">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+在过去的网络环境中我们都是用全局的状态NSURLConnection来管理cookies和authentication， 因此会出现两个不同的连接互相竞争共享的设置，NSURLSession着重就是解决这些问题和其他的一些问题的。
+伴随着这个指南，我们讨论三个不同的下载情形.这篇文章不会描述所有的项目，">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day1-nsurlsession" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/06/ios7-day-by-day-day1-nsurlsession/" class="article-date">
+  <time datetime="2014-01-06T08:07:00.000Z" itemprop="datePublished">2014-01-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 1 :: NSURLSession
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<p>在过去的网络环境中我们都是用全局的状态<code>NSURLConnection</code>来管理cookies和authentication， 因此会出现两个不同的连接互相竞争共享的设置，<code>NSURLSession</code>着重就是解决这些问题和其他的一些问题的。</p>
+<p>伴随着这个指南，我们讨论三个不同的下载情形.这篇文章不会描述所有的项目，只是突出一些与<code>NSURLSession API</code>相关的内容。</p>
+<p>完成的代码已经在github可供下载使用:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="简单下载"><a href="#简单下载" class="headerlink" title="简单下载"></a>简单下载</h3><p>NSURLSession代表了多重连接所有相关的状态,在以前是一个共享的全局状态。会话对象通过一个配置对象的工厂方法进行创建.</p>
+<p>有3中可能的session：</p>
+<blockquote>
+<ol>
+<li>默认的，进程内会话</li>
+<li>短暂的(内存内),进程内会话</li>
+<li>后台会话</li>
+</ol>
+</blockquote>
+<p>为了一个简单的下载我们将会使用一个默认的会话:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLSessionConfiguration</span> *sessionConfig = [<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration];</span><br></pre></td></tr></table></figure>
+<p>一旦一个配置的对象已经被创建，则它具有很多的属性可以控制它的行为。例如：它可以设置TLS安全的访问级别，不管cookies是否允许或者超时，其中两个令人关注的属性是<code>allowsCellularAccess</code>和<code>discretionary</code>.前者指定设备在蜂窝网络下面是否允许进行网络会话。设置一个会话，可以在合适的时间内允许操作系统进行网络的访问，(如WIKI已经连接上),并且让设备更加的节能。最主要的意图就是用在后台进程会话中，设置默认值为true.</p>
+<a id="more"></a>
+<p>如果我们有一个会话的配置对象，我们就可以创建自身会话:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLSession</span> *inProcessSession;</span><br><span class="line">inProcessSession = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:sessionConfig delegate:<span class="keyword">self</span> delegateQueue:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>注意，我们设置了自身为代理,代理的方法用来通知我们数据传输的进度和请求信息进行用户验证，我们将很快实现这些方法.</p>
+<p>在任务中数据传输都是加密的，传输有3种类型:</p>
+<blockquote>
+<ol>
+<li>数据任务(NSURLSessionDataTask)</li>
+<li>上传任务(NSURLSessionUploadTask)</li>
+<li>下载任务(NSURLSessionDownloadTask)</li>
+</ol>
+</blockquote>
+<p>为了使用会话来执行一个传输任务，我们需要创建一个任务，下面是一个简单的文件下载:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *url = <span class="string">@"http://appropriate/url/here"</span>;</span><br><span class="line"><span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:url]];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSessionDownloadTask</span> *cancellableTask = [inProcessSession downloadTaskWithRequest:request];</span><br><span class="line">[cancellableTask resume];</span><br></pre></td></tr></table></figure>
+<p>就是这么多，然后会话就会异步的下载指定URL的文件。</p>
+<p>为了能够了解到request的状态信息，我们需要实现一个代理方法:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask didFinishDownloadintToURL:(<span class="built_in">NSURL</span> *)location &#123;</span><br><span class="line">	<span class="comment">// we've successfully finished the edownload. Let's save the file</span></span><br><span class="line">	<span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">NSArray</span> *URLs = [fileManager URLsForDirectory:<span class="built_in">NSDocumentDirectory</span> inDomains:<span class="built_in">NSUserDomainMask</span>];</span><br><span class="line">	<span class="built_in">NSURL</span> *documentsDirectory = URLs[<span class="number">0</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">NSURL</span> *destinationPath = [documentsDirectory URLByAppendingPathComponent:[location lastPatchComponent]];</span><br><span class="line">	<span class="built_in">NSError</span> *error;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Make sure we overwrite anything that's already there</span></span><br><span class="line">	[fileManager removeItemAtURL:destinationPath error:<span class="literal">NULL</span>];</span><br><span class="line">	<span class="built_in">BOOL</span> success = [fileManager copyItemAtURL:location toURL:destinationPath error:&amp;error];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (success) &#123;</span><br><span class="line">		<span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">			<span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWithContentsOfFile:[destinationPath path]];</span><br><span class="line">			<span class="keyword">self</span>.imageView.image = image;</span><br><span class="line">			<span class="keyword">self</span>.imageView.contentMode = <span class="built_in">UIViewContentModeScaleAspectFill</span>;</span><br><span class="line">			<span class="keyword">self</span>.imageView.hidden = <span class="literal">NO</span>;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"Couldn't copy the downloaded file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (downloadTask == cancellableTask) &#123;</span><br><span class="line">		cancellableTask = <span class="literal">nil</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个方法定义在<code>NSURLSessionDownloadTaskDelegate</code>中，我们把下载的临时文件转换成下载文件，保存到文档(document)目录下面，然后得到一个图像文件，再展示给用户。</p>
+<p>上述代理的方式只有在下载任务运行成功的时候才执行，接下来的方法是在每一个任务结束的时候执行-<code>NSURLSessionDelegate</code>,不管任务是不是正常结束:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session task:(<span class="built_in">NSURLSessionTask</span> *)task didCompleteWithError:(<span class="built_in">NSError</span> *)error &#123;</span><br><span class="line">	<span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">		<span class="keyword">self</span>.progressIndicator.hidden = <span class="literal">YES</span>;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果error为空就表示任务是正确运行结束的，否则就需要是查找异常问题了。如果部分的下载完成后错误对象中包含一个引用的NSData对象，则可以通过它在后面的阶段恢复传输.</p>
+<h3 id="追终任务进度"><a href="#追终任务进度" class="headerlink" title="追终任务进度"></a>追终任务进度</h3><p>你应该已经发现了，在上面一节最后部门，我们在任务完成后隐藏了进度指示器，动态更新这个进度条并不是十分简单，还需要附加的代理方法来处理任务的生命周期。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask didWriteData:(int64_t)bytesWritten BytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite &#123;</span><br><span class="line">	<span class="keyword">double</span> currentProcess = totalBytesWritten / (<span class="keyword">double</span>)totalBytesExpectedToWrite;</span><br><span class="line">	<span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">		<span class="keyword">self</span>.progressIndicator.hidden = <span class="literal">NO</span>;</span><br><span class="line">		<span class="keyword">self</span>.progressIndicator.progress = currentProgress;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是<code>NSURLSessionDownloadTaskDelegate</code>代理中的另外一个方法，我们使用它来更新进度指示器的进度。</p>
+<h3 id="取消一个下载"><a href="#取消一个下载" class="headerlink" title="取消一个下载"></a>取消一个下载</h3><p>一旦一个<code>NSURLConnection</code>已经发送请求，则它就不可能取消。但是在<code>NSURLSessionTask</code>中进行取消是非常简单的:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)cancelCancellable:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="keyword">if</span> (cancellableTask) &#123;</span><br><span class="line">		[cancellableTask cancel];</span><br><span class="line">		cancellableTask = <span class="literal">nil</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就是这么的简单，但是值得注意的就是一旦一个任务取消了就会调用<code>URLSession:task:didCompleteWithError:</code>这个方法，让你能够重新更新UI的行为，然后就会取消下载的任务,<code>URLSession:downloadTask:didWriteData:BytesWritten:totalBytesExpectedToWrite:</code>这个方法会被再次的调用，然而didComplete方法会继续运行。</p>
+<h3 id="重新启动下载"><a href="#重新启动下载" class="headerlink" title="重新启动下载"></a>重新启动下载</h3><p>重新启动下载任务也是相当的简单。在取消任务的时候提供了一个NSData对象，可以用它来开启一个新的任务，继续进行传输。如果服务器支持恢复下载，然后数据对象将包含已经下载的字节数:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)cancelCancellable:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>.resumableTask) &#123;</span><br><span class="line">		[<span class="keyword">self</span>.resumableTask cancelByProductingResumeData:^(<span class="built_in">NSData</span> *resumeData) &#123;</span><br><span class="line">			partialDownload = resumeData;</span><br><span class="line">			<span class="keyword">self</span>.resumableTask = <span class="literal">nil</span>;</span><br><span class="line">		&#125;];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个我们把恢复的数据保存到一个类变量中，这样我们就可以在以后使用它再次进行下载了。当我们重新创建一个下载的时候，而不是提供一个请求，可以提供已经保存的数据对象。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="keyword">self</span>.resumableTask) &#123;</span><br><span class="line">	<span class="keyword">if</span> (partialDownload) &#123;</span><br><span class="line">		<span class="keyword">self</span>.resumableTask = [inProcessSession downloadTaskWithResumeData:partialDownload];</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">NSString</span> *url = <span class="string">@"http://url/for/image"</span>;</span><br><span class="line">		<span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:url]];</span><br><span class="line">		<span class="keyword">self</span>.resumableTask = [inProcessSession downloadTaskWithRequest:request];</span><br><span class="line">	&#125;</span><br><span class="line">	[<span class="keyword">self</span>.resumableTask resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们已经保存了已下载的部分内容，我们就可以用它来生成一个新的下载会话，否则的话，就需要重新创建一个新的下载会话。</p>
+<p>唯一需要注意的就是记得在任务完成以后，需要设置<code>partialDownload = nil</code>。</p>
+<h3 id="后台下载"><a href="#后台下载" class="headerlink" title="后台下载"></a>后台下载</h3><p><code>NSURLSession</code>另外一个主要的特点就是当app不在运行的时候依然可以进行数据传输。为了达到这个目的，我们需要把会话(session)设置成后台会话:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSURLSession</span> *)backgroundSession &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">NSURLSession</span> *backgroundSession = <span class="literal">nil</span>;</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">	<span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">		<span class="built_in">NSURLSessionConfiguration</span> *config = [<span class="built_in">NSURLSessionConfiguration</span> backgroundSessionConfiguration:<span class="string">@"com.shinobicontrols.BackgroundDownload.BackgroundSession"</span>];</span><br><span class="line">		backgroundSession = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:config delegate:<span class="keyword">self</span> delegateQueue:<span class="literal">nil</span>];</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">return</span> backgroundSession;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开启一个后台下载任务和我们之前的做法一致,所有的’后台’功能都被我们刚刚创建的<code>NSURLSession</code>管理了:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *url = <span class="string">@"http://url/for/picture"</span>;</span><br><span class="line"><span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:url]];</span><br><span class="line"><span class="keyword">self</span>.backgroundTask = [<span class="keyword">self</span>.backgroundSession downloadTaskWithRequest:request];</span><br><span class="line">[<span class="keyword">self</span>.backgroundTask resume];</span><br></pre></td></tr></table></figure>
+<p>现在，即使你关闭了应用程序，这个下载任务依然在后台运行。</p>
+<p>当这个下载任务完成了，然后iOS将会重新启动app来让任务知道，对这个我们不必放在心上。为了达到这个目的，我们可以在app的代理中调用下面的代码:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application handleEventsForBackgroundURLSession:(<span class="built_in">NSString</span> *)identifier completionHandler:(<span class="keyword">void</span> (^)())completionHandler &#123;</span><br><span class="line">	<span class="keyword">self</span>.backgroundURLSessionCompletionHandler = completionHandler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们进行统一的处理下载的数据和更新UI.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask didFinishDownloadingToURL:(<span class="built_in">NSURL</span> *)location &#123;</span><br><span class="line">	<span class="comment">// Save the file off as before, and set it as an image view</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (session == <span class="keyword">self</span>.backgroundSession) &#123;</span><br><span class="line">		<span class="keyword">self</span>.backgroundTask = <span class="literal">nil</span>;</span><br><span class="line">		<span class="comment">// Get hold of the app delegate</span></span><br><span class="line">		S<span class="built_in">CAppDelegate</span> *appDelegate = (S<span class="built_in">CAppDelegate</span> *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate];</span><br><span class="line">		<span class="keyword">if</span> (appDeledate.backgroundURLSessionCompletionHandler) &#123;</span><br><span class="line">			<span class="comment">// Need to copy the completion handler</span></span><br><span class="line">			<span class="keyword">void</span> (^handler)() = appDelegate.backgroundURLSessionCompletionHandler;</span><br><span class="line">			appDelegate.backgroundURLSessionCompletionHandler = <span class="literal">nil</span>;</span><br><span class="line">			handler();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有些事情需要注意一下:</p>
+<blockquote>
+<ul>
+<li>我们不能够比较<code>downloadTask</code>和<code>self.backgroundTask</code>,因为我们不能够保证<code>self.backgroundTask</code>是否已经被赋值了(由于这是一个新启动的app),使用session比较是有效的。</li>
+<li>我们使用app的delegate(代理), 还有其他的方式来放置handler。</li>
+<li>一旦我们保存文件结束，我们需要把完成的handler删除掉，然后运行它，这就告诉操作系统我们已经处理完新的下载。</li>
+</ul>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>NSURLSession</code>提供了很多新的有价值的特性来处理iOS和OSX 10.9中的网络问题，可以用来替代原有的旧的处理方式。在最新的操作系统中都可以来使用它。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/09/20/ios7-day-by-day-day-1-nsurlsession/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 1 :: NSURLSession</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/06/ios7-day-by-day-day1-nsurlsession/" data-id="cimehomj1001l0m9kepeobjri" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/07/ios7-day-by-day-day2-asset-catalog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 2 :: Asset Catalog
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

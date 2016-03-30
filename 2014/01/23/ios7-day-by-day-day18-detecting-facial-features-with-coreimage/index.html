@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍运用AVFoundation和CoreImage,从iOS5开始就介绍了有关脸部识别的功能。在iOS7中，运用CoreImage进行脸部识别已经改进了许多新的识别特性(包括微笑和眨眼).这个API是十分简单易用的，所以我们创建一个应用程序，它运用AVFoundation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍运用AVFoundation和CoreImage,从iOS5开始就介绍了有关脸部识别的功能。在iOS7中，运用CoreImage进行脸部识别已经改进了许多新的识别特性(包括微笑和眨眼).这个API是十分简单易用的，所以我们创建一个应用程序，它运用AVFoundation">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-2.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-3.png">
+<meta property="og:updated_time" content="2014-01-25T02:47:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍运用AVFoundation和CoreImage,从iOS5开始就介绍了有关脸部识别的功能。在iOS7中，运用CoreImage进行脸部识别已经改进了许多新的识别特性(包括微笑和眨眼).这个API是十分简单易用的，所以我们创建一个应用程序，它运用AVFoundation">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day18-detecting-facial-features-with-coreimage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" class="article-date">
+  <time datetime="2014-01-23T01:08:00.000Z" itemprop="datePublished">2014-01-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>运用<code>AVFoundation</code>和<code>CoreImage</code>,从iOS5开始就介绍了有关脸部识别的功能。在iOS7中，运用<code>CoreImage</code>进行脸部识别已经改进了许多新的识别特性(包括微笑和眨眼).这个API是十分简单易用的，所以我们创建一个应用程序，它运用<code>AVFoundation</code>进行查找脸部，然后在使用<code>CoreImage</code>来对寻找照片中的微笑和闭眼。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="Face-detection-with-AVFoundation-运用AVFoundation进行面部识别"><a href="#Face-detection-with-AVFoundation-运用AVFoundation进行面部识别" class="headerlink" title="Face detection with AVFoundation - 运用AVFoundation进行面部识别"></a>Face detection with AVFoundation - 运用AVFoundation进行面部识别</h3><p>在<a href="/blog/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/">Day 16</a>中，我们使用<code>AVFoundation</code>中的<code>AVCatpureMetadataOutput</code>类来寻找和解析二维码。面部识别也是使用同样的方式，和二维码一样都是metadata对象。我们将会创建一个<code>AVCaptureMetadataOutput</code>对象，但是它具有不懂的metadata类型:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureMetadataObject</span> *output = [[<span class="built_in">AVCaptureMetadataOutput</span> alloc] init];</span><br><span class="line"><span class="comment">// Have to add the output before settig metadata types</span></span><br><span class="line">[_session addOutput:output];</span><br><span class="line"><span class="comment">// We're only interested in faces</span></span><br><span class="line">[output setMetadataObjectTypes:@[<span class="built_in">AVMetadataObjectTypeFace</span>]];</span><br><span class="line"><span class="comment">// This VC is the delegate, Please call use on the main queue</span></span><br><span class="line">[output setMetadataObjectsDelegate:<span class="keyword">self</span> queue:dispatch_get_main_queue()];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>我们和之前一样来实现代理方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCpatureOutput</span> *)captureOutput didOutputMetadataObjects:(<span class="built_in">NSArray</span> *)metadataObjects fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">AVMetadataObject</span> *metadataObject <span class="keyword">in</span> metadataObjects) &#123;</span><br><span class="line">		<span class="keyword">if</span> ([metadataObject.type isEqualToString:<span class="built_in">AVMetadataObjectTypeFace</span>]) &#123;</span><br><span class="line">			<span class="comment">// Take an image of the face and pass to CoreImage for detection</span></span><br><span class="line">			<span class="built_in">AVCaptureConnection</span> *stillConnection = [_stillImageOutput connectionWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line">			[_stillImageOutput captureStillImageSaynchronouslyFromConnection:stillConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">				<span class="keyword">if</span> (error) &#123;</span><br><span class="line">					<span class="built_in">NSLog</span>(<span class="string">@"There was a problem"</span>);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="built_in">NSData</span> *jpegData = [<span class="built_in">AVCaptureStillImageOutput</span> jpegStillImage<span class="built_in">NSDataRepresentation</span>:imageDataSampleBuffer];</span><br><span class="line">				</span><br><span class="line">				<span class="built_in">UIImage</span> *smileImage = [<span class="built_in">UIImage</span> imageWithData:jpegData];</span><br><span class="line">				_previewLayer.hidden = <span class="literal">YES</span>;</span><br><span class="line">				[_session stopRunning];</span><br><span class="line">				<span class="keyword">self</span>.imageView.hidden = <span class="literal">NO</span>;</span><br><span class="line">				<span class="keyword">self</span>.imageView.image = smileyImage;</span><br><span class="line">				<span class="keyword">self</span>.activityView.hidden = <span class="literal">NO</span>;</span><br><span class="line">				<span class="keyword">self</span>.statusLabel.text = <span class="string">@"Processing"</span>;</span><br><span class="line">				<span class="keyword">self</span>.statusLabel.hidden = <span class="literal">NO</span>;</span><br><span class="line">				</span><br><span class="line">				<span class="built_in">CIImage</span> *image = [<span class="built_in">CIImage</span> imageWithData:jpegData];</span><br><span class="line">				[<span class="keyword">self</span> imageContainsSmiles:image callback:^(<span class="built_in">BOOL</span> happyFace) &#123;</span><br><span class="line">					<span class="keyword">if</span> (happyFace) &#123;</span><br><span class="line">						<span class="keyword">self</span>.statusLabel.text = <span class="string">@"Happy Face Found!"</span>;</span><br><span class="line">					&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">self</span>.statusLabel.text = <span class="string">@"Not a good photo..."</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">self</span>.activityView.hidden = <span class="literal">YES</span>;</span><br><span class="line">					<span class="keyword">self</span>.retakeButton.hidden = <span class="literal">NO</span>;</span><br><span class="line">				&#125;];</span><br><span class="line">			&#125;];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和二维码一样都是十分相似的，只是现在我们在会话中添加了一个新的输出类型(<code>AVCaptureStillImageOutput</code>)。这就允许我们把拍的照片作为输入源,这就是<code>captureStillImageAsynchronouslyFromConnection:completionHandler:</code>所做的。我们当我们通知<code>AVFoundation</code>来进行脸部识别的时候，我们需要在当前的输入中保持一个image,然后停止会话.</p>
+<p>我们创建一个JPEG代表捕获到的图像:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSData</span> *jpegData = [<span class="built_in">AVCaptureStillImageOutput</span> jpegStillImage<span class="built_in">NSDataRepresentation</span>:imageDataSampleBuffer];</span><br></pre></td></tr></table></figure>
+<p>现在我们把它放置到一个<code>UIImageView</code>中，然后创建一个<code>CIImage</code>版本，为<code>CoreImage</code>来进行面部特征识别做准备。我们将会来看看你<code>imageContainsSmiles:callback:</code>的方法。</p>
+<h3 id="Feature-finding-with-CoreImage-运用CoreImage来寻找面部特性"><a href="#Feature-finding-with-CoreImage-运用CoreImage来寻找面部特性" class="headerlink" title="Feature finding with CoreImage - 运用CoreImage来寻找面部特性"></a>Feature finding with CoreImage - 运用CoreImage来寻找面部特性</h3><p><code>CoreImage</code>需要一个<code>CIContext</code>和一个<code>CIDetector</code>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!_ciContext) &#123;</span><br><span class="line">	_ciContext = [<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!_faceDetector) &#123;</span><br><span class="line">	_faceDetector = [<span class="built_in">CIDetector</span> detectorOfType:<span class="built_in">CIDetectorTypeFace</span> context:_ciContext options:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们得到查询器来执行它的检索，我们需要调用<code>featuresInImage:options:</code>方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *features = [_faceDetector featuresInImage:image options:@&#123;<span class="built_in">CIDetectorEyeBlink</span>: @YES, <span class="built_in">CIDetectorSmile</span>: @YES, <span class="built_in">CIDetectorImageOrientation</span>: @<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<p>为了能够让查询器来执行微笑和眨眼的检索，我们需要指定查询器的参数(CIDetectorEyeBlink和CIDetectorSmile)。<code>CoreImage</code>面部查询器是需要指定方向的，因此，我们需要设置查询器的方向来匹配程序中的设计.</p>
+<p>现在我们需要循环特性数组(它包含<code>CIFaceFeature</code>对象)，然后我们需要辨别寻找出哪个包含了微笑或者眨眼的动作:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> happyPicture = <span class="literal">NO</span>;</span><br><span class="line"><span class="keyword">if</span> ([features count] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	happyPicture = <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">CIFeature</span> *feature <span class="keyword">in</span> features) &#123;</span><br><span class="line">	<span class="keyword">if</span> ([feature isKindOfClass:[<span class="built_in">CIFaceFeature</span> class]]) &#123;</span><br><span class="line">		<span class="built_in">CIFaceFeature</span> *faceFeature = (<span class="built_in">CIFaceFeature</span> *)feature;</span><br><span class="line">		<span class="keyword">if</span> (!faceFeature.hasSmile) &#123;</span><br><span class="line">			happyPicture = <span class="literal">NO</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (faceFeature.leftEyeClosed || faceFeature.rightEyeClosed) &#123;</span><br><span class="line">			happyPicture = <span class="literal">NO</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们在主线程上面执行一个回调函数:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">	callback(happyPicture);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们的回调函数更新标签来描述是不是一个好的图片:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> imageContainsSmiles:image callback:^(<span class="built_in">BOOL</span> happyFace) &#123;</span><br><span class="line">	<span class="keyword">if</span> (happyFace) &#123;</span><br><span class="line">		<span class="keyword">self</span>.statusLabel.text = <span class="string">@"Happy Face Found!"</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">self</span>.statusLabel.text = <span class="string">@"Not a good photo..."</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">self</span>.activityView.hidden = <span class="literal">YES</span>;</span><br><span class="line">	<span class="keyword">self</span>.retakeButton.hidden = <span class="literal">NO</span>;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>如果你运行应用程序，将会发现<code>CoreImage</code>是来进行面部特性的检测是多少的牛X：</p>
+<img src="/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-0.png" width="180">
+<img src="/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-1.png" width="180">
+<img src="/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-2.png" width="180">
+<img src="/images/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage-3.png" width="180">
+<p>除了这些属性之外,还可以找到不同的面部特征的位置,如眼睛和嘴巴。</p>
+<h3 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion - 总结"></a>Conclusion - 总结</h3><p>虽然不是一个突破性的API,<code>CoreImage</code>面部查询器添加一个漂亮的询问你的面部图像的能力。它可以使一个不错的添加到摄影应用,帮助用户把所有他们所需要的不一样的功能。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/10/15/ios7-day-by-day-day-18-detecting-facial-features-with-coreimage" target="_blank" rel="external">iOS7 Day-by-Day :: Day 18 :: Detecting Facial Features with CoreImage</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" data-id="cimehomkc002j0m9kca7y9ffw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/25/ios7-day-by-day-day19-uitableview-row-height-estimation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 19 :: UITableView Row Height Estimation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 17 :: iBeacons</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

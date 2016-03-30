@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS5中就引入了CoreImage这个框架，它是用来进行图像处理的。它抽象所有低级的与图像处理有关联的方法，从用户角度提供易于使用的过滤事件链架构。i0S7中介绍了新的过滤器，其中的一些，我们将会在进行的文章中介绍，我们将会来看看一些传统的图像过滤效果，然后在查看创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/19/ios7-day-by-day-day15-coreimage-filters/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS5中就引入了CoreImage这个框架，它是用来进行图像处理的。它抽象所有低级的与图像处理有关联的方法，从用户角度提供易于使用的过滤事件链架构。i0S7中介绍了新的过滤器，其中的一些，我们将会在进行的文章中介绍，我们将会来看看一些传统的图像过滤效果，然后在查看创">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-2.png">
+<meta property="og:updated_time" content="2014-01-20T15:51:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS5中就引入了CoreImage这个框架，它是用来进行图像处理的。它抽象所有低级的与图像处理有关联的方法，从用户角度提供易于使用的过滤事件链架构。i0S7中介绍了新的过滤器，其中的一些，我们将会在进行的文章中介绍，我们将会来看看一些传统的图像过滤效果，然后在查看创">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day15-coreimage-filters" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" class="article-date">
+  <time datetime="2014-01-19T12:47:00.000Z" itemprop="datePublished">2014-01-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 15 :: CoreImage Filters
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在iOS5中就引入了<code>CoreImage</code>这个框架，它是用来进行图像处理的。它抽象所有低级的与图像处理有关联的方法，从用户角度提供易于使用的过滤事件链架构。i0S7中介绍了新的过滤器，其中的一些，我们将会在进行的文章中介绍，我们将会来看看一些传统的图像过滤效果，然后在查看创建具有过滤效果的生成二维码的效果。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="Photo-Effect-Filters-图像过滤效果"><a href="#Photo-Effect-Filters-图像过滤效果" class="headerlink" title="Photo Effect Filters - 图像过滤效果"></a>Photo Effect Filters - 图像过滤效果</h3><p>在移动应用程序世界里，能够应用比较酷的图片效果是一种趋势。例如instagram就十分的流行。<code>CoreImage</code>添加了很多十分简单的是可以使用的过滤效果来帮助我们在应用程序中添加很多功能。</p>
+<p>为了能够使用这些过滤器，我们需要首先为<code>CoreImage</code>做点功课。<code>CoreImage</code>指定它自己的图像类型-<code>CIImage</code>,它可以从很多不同的源被创建，包括与<code>CoreGraphics</code>等价的<code>CGImage</code>：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *_input<span class="built_in">UIImage</span> = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"shinobi-badge-head.jpg"</span>];</span><br><span class="line"><span class="built_in">CIImage</span> *_inputImage = [<span class="built_in">CIImage</span> imageWith<span class="built_in">CGImage</span>:[_input<span class="built_in">UIImage</span> <span class="built_in">CGImage</span>]];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>使用过滤器十分的简单，而且你还可以把他们串联起来，但是我们的目的是指定一个简单的过滤器:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CIFilter</span> *filter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIPhotoEffectChrome"</span>];</span><br><span class="line">[filter setValue:_inputImage forKey:k<span class="built_in">CIInputImageKey</span>];</span><br></pre></td></tr></table></figure>
+<p>一个<code>CoreImage</code>过滤器就是代表了一个<code>CIFilter</code>类，它可以通过一个工厂方法来创建一个指定的过滤器对象。这些过滤器对象都是通过使用KVC的方式来指定相关的过滤参数的。所有的新图像的过滤器都是通过这些简单的属性-输入的图像，它指定使用一个字符串<code>kCIInputImageKey</code>表示的key值。</p>
+<p>然后我们可以把获得的过滤器输出的图像转换成<code>UIImage</code>,然后展示在<code>UIImageView</code>上面:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *outputImage = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CIImage</span>:filter.outputImage];</span><br></pre></td></tr></table></figure>
+<p>新的图像的效果过滤器引用的key值有下面的一些:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">@"CIPhotoEffectChrome"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectFade"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectInstant"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectMono"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectNoir"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectProcess"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectTonal"</span></span><br><span class="line"><span class="string">@"CIPhotoEffectTransfer"</span></span><br></pre></td></tr></table></figure>
+<p>在今天我们需要完成的是一个示例是我们有一个collection视图,他们用来示范同一个输入的图像在新的过滤器上面的不同输出图像。</p>
+<p>我们还需要构造<code>CGImage</code>版本对应每个<code>CIImage</code>过滤输出。这是因为属性<code>outputImage</code>是懒加载的。为了达到目的，我们使用一个<code>CIContext</code>来绘制<code>CIImage</code>到<code>CoreGraphics</code>的上下文中:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CGImageRef</span> cgImage = [[<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>] create<span class="built_in">CGImage</span>:filter.outputImage fromRect:filter.outputImage.extent];</span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:cgImage];</span><br><span class="line"><span class="built_in">CGImageRelease</span>(cgImage);</span><br><span class="line"></span><br><span class="line">[images addObject:image];</span><br></pre></td></tr></table></figure>
+<p>接下来的程序都是写在<code>SCPhotoFiltersViewController</code>中的使用了自定义的cell。如果你运行程序，你可以看到下面不同的过滤效果:</p>
+<img src="/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-0.png">
+<img src="/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-1.png">
+<h3 id="QR-Code-Generation-生成二维码"><a href="#QR-Code-Generation-生成二维码" class="headerlink" title="QR Code Generation - 生成二维码"></a>QR Code Generation - 生成二维码</h3><p>在iOS7中添加的图像效果过滤器中也引入了一个过滤器，它可以有能力来生成一个二维码来代表特性的数据对象。在应用程序的第二个页签(SCQRGeneratorViewController)示例中，当’Generate’按钮点击之后，文本框中的内容就会被编码到二维码中，展示出来。</p>
+<p>生成二维码的代码也是十分的简单:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CIImage</span> *)createQRForString:(<span class="built_in">NSString</span> *)qrString &#123;</span><br><span class="line">	<span class="comment">// Need to convert the string to a UTF-8 encoded NSData object</span></span><br><span class="line">	<span class="built_in">NSData</span> *stringData = [qrString dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Create the filter</span></span><br><span class="line">	<span class="built_in">CIFilter</span> *qrFilter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIQRCodeGenerator"</span>];</span><br><span class="line">	<span class="comment">// Set the message content and error-correction level</span></span><br><span class="line">	[qrFilter setValue:stringData forKey:<span class="string">@"inputMessage"</span>];</span><br><span class="line">	[qrFilter setValue:<span class="string">@"H"</span> forKey:<span class="string">@"inputCorrectionLevel"</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Send the image back</span></span><br><span class="line">	<span class="keyword">return</span> qrFilter.outputImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>生成二维码的过滤器需要一个NSData对象，所以我们首先把NSString对象使用UTF-8的编码转换成一个NSData对象。</p>
+<p>然后和之前我们做的一样，创建一个<code>CIFilter</code>对象，使用<code>filterWithName:</code>工厂方法,指定名字为<code>CIQRCodeGenerator</code>，这种情况下面我们需要设置两个key，一个是设置<code>inputMessage</code>,它代表我们刚刚创建的NSData对象，还有一个<code>inputCorrectionLevel</code>用来指定生成二维码的等级，一共有4中等级:</p>
+<blockquote>
+<ul>
+<li>L 7%的错误弹性</li>
+<li>M 15%的错误弹性</li>
+<li>Q 25%的错误弹性</li>
+<li>H 30%的错误弹性</li>
+</ul>
+</blockquote>
+<p>一旦我们完成了这些，然后我们可以返回一个过滤器的输出图像，它是一个1pt的最小的分辨率的<code>CIImage</code>对象。</p>
+<p>我们想要重设这个图像的大小，但是我们并不想对它进行篡改。为了达到这个目的，我们创建一个新的方法来进行图像的调整:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIImage</span> *)createNonInterpolated<span class="built_in">UIImageFormCIImage</span>:(<span class="built_in">CIImage</span> *)image withScale:(<span class="built_in">CGFloat</span>) scale &#123;</span><br><span class="line">	<span class="comment">// Render the CIImage into a CGImage</span></span><br><span class="line">	<span class="built_in">CGImageRef</span> cgImage = [[<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>] create<span class="built_in">CGImage</span>:image fromRect:image.extent];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Now we'll rescale using CoreGraphics</span></span><br><span class="line">	<span class="built_in">UIGraphicsBeginImageContext</span>(<span class="built_in">CGSizeMake</span>(image.extent.size.width * scale, image.extent.size.width * scale));</span><br><span class="line">	<span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">	<span class="comment">// We don't want to interpolate (since we've got a pixel-corrent image)</span></span><br><span class="line">	<span class="built_in">CGContextSetInterpolationQuality</span>(context, k<span class="built_in">CGInterpolationNone</span>);</span><br><span class="line">	<span class="built_in">CGContextDrawImage</span>(context, <span class="built_in">CGContextGetClipBoundingBox</span>(context), cgImage);</span><br><span class="line">	<span class="comment">// Get the image out</span></span><br><span class="line">	<span class="built_in">UIImage</span> *scaledImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line">	<span class="comment">// Tidy up</span></span><br><span class="line">	<span class="built_in">UIGraphicsEndImageContext</span>();</span><br><span class="line">	<span class="built_in">CGImageRelease</span>(cgImage);</span><br><span class="line">	<span class="keyword">return</span> scaledImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个上面的例子一样，我们首先创建了一个<code>CGImage</code>来代表<code>CIImage</code>.然后我们创建一个核心的图像上下文来重新调节。最重要的一行是设置质量不能篡改。如果我们重新调节图像，它看来就是十分可怕的，并且形成像素化，但是这里我们就是需要像素化的二维码:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CGContextSetInterpolationQuality</span>(context, k<span class="built_in">CGInterpolationNone</span>);</span><br></pre></td></tr></table></figure>
+<p>一旦我们绘制这个图像到上下文中，我们就可以抓住这个形成的<code>UIImage</code>然后返回它。到此为止，我们完成的生成器就像这个样子:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)handleGenerateButtonPressed:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="comment">// Disable the UI</span></span><br><span class="line">	[<span class="keyword">self</span> set<span class="built_in">UIElementsAsEnabled</span>:<span class="literal">NO</span>];</span><br><span class="line">	[<span class="keyword">self</span>.stringTextField resignFirstResponder];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Get the string</span></span><br><span class="line">	<span class="built_in">NSString</span> *stringToEncode = <span class="keyword">self</span>.stringTextField.text;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Generate the image</span></span><br><span class="line">	<span class="built_in">CIImage</span> *grCode = [<span class="keyword">self</span> createQRForString:stringToEncode];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Convert to an UIImage</span></span><br><span class="line">	<span class="built_in">UIImage</span> *qrCodeImg = [<span class="keyword">self</span> createNonInterpolated<span class="built_in">UIImageFromCIImage</span>:qrCode withScale <span class="number">2</span> * [[<span class="built_in">UIScreen</span> mainScreen] scale]];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// And push the image on to the screen</span></span><br><span class="line">	<span class="keyword">self</span>.qrImageView.image = qrCodeImg;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Re-enable the UI</span></span><br><span class="line">	[<span class="keyword">self</span> set<span class="built_in">UIElementsAsEnable</span>:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里还有一个工具的方法来用进行禁用UI的(当生成二维码过程中):</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)set<span class="built_in">UIElementsAsEnabled</span>:(<span class="built_in">BOOL</span>)enabled &#123;</span><br><span class="line">	<span class="keyword">self</span>.generateButton.enabled = enabled;</span><br><span class="line">	<span class="keyword">self</span>.stringTextField.enabled = enabled;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你运行应用程序，你就会看到可以有能力随时生成二维码，这是我们不做处理，以后我们就可以给出一个方法来阅读他们.</p>
+<img src="/images/2014/01/19/ios7-day-by-day-day15-coreimage-filters-2.png">
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>CoreImage是一个方便的框架做一些相当先进的图像处理,而不必太涉及低级图像处理。它的怪癖,但它可以是非常有用的。与新图像过滤器和QR代码生成器可能就挽救了你找到一个外部依赖项或编写自己的版本。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/10/10/ios7-day-by-day-day-15-coreimage-filters/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 15 :: CoreImage Filters</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/19/ios7-day-by-day-day15-coreimage-filters/" data-id="cimehomk5002b0m9k8kdc3x3t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/18/ios7-day-by-day-day14-interactive-view-controller-transitions/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 14 :: Interactive View Controller Transitions</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 17 :: iBeacons | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS7发布主题中并没有很详细的提及到iBeacons概念。在Bluetooth LE中有些新的特性可以允许近距离的通知和测距。简单的使用通知的是当你接近一个商店的时候然后收到一组特价商品的列表，或者接近你付款账单的时候可以收到发票信息。另外还有很多其他的地方可以使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 17 :: iBeacons">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/22/ios7-day-by-day-day17-ibeacons/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS7发布主题中并没有很详细的提及到iBeacons概念。在Bluetooth LE中有些新的特性可以允许近距离的通知和测距。简单的使用通知的是当你接近一个商店的时候然后收到一组特价商品的列表，或者接近你付款账单的时候可以收到发票信息。另外还有很多其他的地方可以使用">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/22/ios7-day-by-day-day17-ibeacons-0.jpg">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/22/ios7-day-by-day-day17-ibeacons-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/22/ios7-day-by-day-day17-ibeacons-2.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/22/ios7-day-by-day-day17-ibeacons-3.png">
+<meta property="og:updated_time" content="2014-01-22T09:04:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 17 :: iBeacons">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍在iOS7发布主题中并没有很详细的提及到iBeacons概念。在Bluetooth LE中有些新的特性可以允许近距离的通知和测距。简单的使用通知的是当你接近一个商店的时候然后收到一组特价商品的列表，或者接近你付款账单的时候可以收到发票信息。另外还有很多其他的地方可以使用">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/22/ios7-day-by-day-day17-ibeacons-0.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day17-ibeacons" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/22/ios7-day-by-day-day17-ibeacons/" class="article-date">
+  <time datetime="2014-01-22T03:42:00.000Z" itemprop="datePublished">2014-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 17 :: iBeacons
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>在iOS7发布主题中并没有很详细的提及到<code>iBeacons</code>概念。在Bluetooth LE中有些新的特性可以允许近距离的通知和测距。简单的使用通知的是当你接近一个商店的时候然后收到一组特价商品的列表，或者接近你付款账单的时候可以收到发票信息。另外还有很多其他的地方可以使用，我相信在未来的时间里面将会出现一些更加深入创造性的功能。</p>
+<p>今天，我们将会查看如何让一个iOS设备扮演成一个iBeacon,并且怎样使用一个不同的设备来估算出到iBeacon设备的距离。我们将会创建一个基于”Hot/Cold”捉迷藏的游戏，iBeacon设备可以隐藏，然后寻找器显示更新估算它们之间的距离。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<a id="more"></a>
+<h3 id="Create-a-beacon"><a href="#Create-a-beacon" class="headerlink" title="Create a beacon"></a>Create a beacon</h3><p>为了能够创建一个应用程序扮演成iBeacon设备，我们需要使用<code>CoreLocation</code>来创建beacon属性，然后需要使用<code>CoreBluetooth</code>在适当的时候来广播。</p>
+<p>iBeacons具有一些属性，他们都是唯一的标识。</p>
+<blockquote>
+<ul>
+<li>proximityUUID.有一个<code>NSUUID</code>对象它可以标识你的电脑的beacons.你可以拥有相同uuid的beacons.并且设置<code>CoreLocation</code>来通知你是否当前有设备进入到监测范围内。</li>
+<li>major.是一个<code>NSNumber</code>代表这个beacon物理设备的主要ID，它可以唯一标识一个特性的设备。这个数字代表了一个16位的无符号整数。</li>
+<li>minor.另外一个<code>NSNumber</code>,它可以代表私人的beacon。</li>
+</ul>
+</blockquote>
+<p>可以通过设置<code>CoreLocation</code>来通知iBeacon中3个可能的ID。也就是说不管什么时候任何在检测范围内的iBeacon具有相同的UUID或者相同的UUID和marjor ID，或者需要一个指定的beacon(UUID、marjor和minor的ID全部匹配)。</p>
+<p>我们需要包含<code>CoreLocation</code>和<code>CoreBluetooth</code>：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@import CoreLocation;</span><br><span class="line">@import CoreBluetooth;</span><br></pre></td></tr></table></figure>
+<p>为了能够让应用程序作为beacon出现，我们需要创建一个<code>CLBeaconRegion</code>对象，指定我们需要的ID。在我们的情况下面，我们之需要设置UUID:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_rangedRegion = [[CLBeaconRegion alloc] initWithProximityU<span class="built_in">UID</span>:_beaconU<span class="built_in">UID</span> identifier:<span class="string">@"com.shinobicontrols.HotOrCold"</span>];</span><br></pre></td></tr></table></figure>
+<p>上述提到的UUID我们是这样创建的:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_beaconU<span class="built_in">UID</span> = [[<span class="built_in">NSUUID</span> alloc] initWithU<span class="built_in">UIDString</span>:<span class="string">@"3B2DCB64-A300-4F62-8A11-F6E7A06E4BC0"</span>];</span><br></pre></td></tr></table></figure>
+<p>我们可以通过使用使用OS X的<code>uuidgen</code>工具生成一个<code>UUIDString</code>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="number">17</span>-ibeacons git:(days/<span class="number">17</span>-ibeacons) ✗ uuidgen</span><br><span class="line"><span class="number">874</span>D949F<span class="number">-3325</span><span class="number">-4</span>B3F-A6F4-AB5BBCE440F6</span><br></pre></td></tr></table></figure>
+<p>我们还需要创建一个<code>CoreBluetooth</code>的外部管理者:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_cbPeripheralManager = [[CBPeripheralManger alloc] initWithDelegate:<span class="keyword">self</span> queue:dispatch_get_main_queue()];</span><br></pre></td></tr></table></figure>
+<p>一个<code>CBPeripheralManager</code>需要设置一个代理，然后这个代理需要使用一个方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - CBPeripheralManager delegate methods</span></span><br><span class="line">- (<span class="keyword">void</span>)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral &#123;</span><br><span class="line">	<span class="comment">// We don't really care...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们作为一个iBeacon开始发送通知，然后我们从<code>CLBeaconRegion</code>得到一个字典的设置,然后把他们专递到<code>CBPeripheralManager</code>中开始发送通知:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)handleHidingButtonPressed:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="keyword">if</span> (_cbPeripheralManager.state &lt; CBPeripheralManagerStatePoweredOn) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"Bluetooth must be enabled in order to act as an iBeacon"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Now we construct a CLBeaconRegion to represent ourself</span></span><br><span class="line">	<span class="built_in">NSDictionary</span> *toBoadcast = [_rangedRegion peripheralDataWithMeasuredPower:@<span class="number">-60</span>];</span><br><span class="line">	</span><br><span class="line">	[_cbPeripheralManager startAdvertising:toBroadcast];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，在构造通知设置之前，我们需要检查peripheral manager是不是已经启动了，然后开始做广告的细节。<code>measuredPower</code>属性指定了位置为1m内观察监测距离。</p>
+<img src="/images/2014/01/22/ios7-day-by-day-day17-ibeacons-0.jpg">
+<p>我们可以在<code>CBPeripheralManger</code>对象中调用<code>stopAdvertising</code>方法来停止iBeacon。</p>
+<h3 id="Beacon-Ranging-Beancon测距"><a href="#Beacon-Ranging-Beancon测距" class="headerlink" title="Beacon Ranging - Beancon测距"></a>Beacon Ranging - Beancon测距</h3><p>使用<code>CoreLocation</code>,当一个具有详细ID的iBeacon出现在我们的监测范围内的时候，我们就可以收到通知。在我们的”Hot/Cold”游戏中，我们将在请求范围内更新我们上面创建的beacon。</p>
+<p>我们需要创建一个<code>CoreLocation CLLocationManager</code>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_clLocationManager = [CLLocationManager new];</span><br><span class="line">_clLocationManager.delegate = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
+<p>我们已经设置好了代理，接下来就是实现代理中的方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)locationManager:(CLLocationManager *)manager didRangeBeacons:(<span class="built_in">NSArray</span> *)beacons inRegion:(CLBeaconRegion *)region &#123;</span><br><span class="line">	<span class="keyword">if</span> ([region isEqual:_rangedRegion]) &#123;</span><br><span class="line">		<span class="comment">// Let's just take the first beacon</span></span><br><span class="line">		CLBeacon *beacon = [beacons firstObject];</span><br><span class="line">		<span class="keyword">self</span>.statusLabel.textColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">		<span class="keyword">self</span>.signalStrengthLabel.textColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">		<span class="keyword">self</span>.signalStrengthLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%ddB"</span>, beacon.rssi];</span><br><span class="line">		<span class="keyword">switch</span> (beacon.proximity) &#123;</span><br><span class="line">			<span class="keyword">case</span> CLProximityUnknown: &#123;</span><br><span class="line">				<span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</span><br><span class="line">				[<span class="keyword">self</span> setStatus:<span class="string">@"Freezing!"</span>];</span><br><span class="line">			&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">case</span> CLProximityFar: &#123;</span><br><span class="line">				<span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</span><br><span class="line">				[<span class="keyword">self</span> setStatus:<span class="string">@"Cold!"</span>];</span><br><span class="line">			&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">case</span> CLProximityImmediate: &#123;</span><br><span class="line">				<span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> purpleColor];</span><br><span class="line">				[<span class="keyword">self</span> setStatus:<span class="string">@"Warmer"</span>];</span><br><span class="line">			&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">case</span> CLProximityNear: &#123;</span><br><span class="line">				<span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">				[<span class="keyword">self</span> setStatus:<span class="string">@"Hot!"</span>];</span><br><span class="line">			&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个代理方法响应设备与beacons的距离更新。这个代理方法被调用的频率是1Hz,并且给方法提供了一个装有beacons的数组，一个<code>CLBeacon</code>有属性确定它的唯一标识。我们将会通过这个来设置视图的背景色，更新标签的状态可以通过下面的工具方法进行设置:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setStatus:(<span class="built_in">NSString</span> *)status &#123;</span><br><span class="line">	<span class="keyword">self</span>.statusLabel.hidden = <span class="literal">NO</span>;</span><br><span class="line">	<span class="keyword">self</span>.statusLabel.text = status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了是代理的方法能够被调用，我们需要让location manager开启寻找beacon:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_clLocationManager startRangeingBeaconsInRegion:_rangeRegion];</span><br></pre></td></tr></table></figure>
+<p>还有一个方法可以用来停止对beacons的监测:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_clLocationManager stopRangingBeaconsInRegion:_rangeRegion];</span><br></pre></td></tr></table></figure>
+<p>如果你在两个设置上面运行这个应用程序(其中一个设置具有Bluetooth LE),设置一个隐藏和一个进行查找:</p>
+<img src="/images/2014/01/22/ios7-day-by-day-day17-ibeacons-1.png" width="250">
+<img src="/images/2014/01/22/ios7-day-by-day-day17-ibeacons-2.png" width="250">
+<img src="/images/2014/01/22/ios7-day-by-day-day17-ibeacons-3.png" width="250">
+<h3 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion - 总结"></a>Conclusion - 总结</h3><p>iBeacons提供出色的潜力——他们甚至可以iOS7的最具破坏性的新特性之一。我认为他们都是苹果的答案,最后一击,NFC的移动设备。希望手机不仅会很快我们得到正确的信息当我们到达一个服务台,但我们也开始看到室内导航。我鼓励你去看看iBeacon API——它不是很复杂,我期待您的创新使用!</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/10/14/ios7-day-by-day-day-17-ibeacons/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 17 :: iBeacons</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/22/ios7-day-by-day-day17-ibeacons/" data-id="cimehomk8002e0m9kq77wz57w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/23/ios7-day-by-day-day18-detecting-facial-features-with-coreimage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 18 :: Detecting Facial Features with CoreImage
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/20/ios7-day-by-day-day16-decoding-qr-codes-with-avfoundation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 16 :: Decoding QR Codes with AVFoundation</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

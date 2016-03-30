@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+伴随着介绍苹果的iOS7,将会使你清晰的认清设备和现实世界的相互作用，UIKit Dynamics就是众多新API中的一个, UIKit Dyanmics是UIKit下的一个二维的物理引擎，在今天的文章里面，我们就介绍一下UIKit Dynamics并且构建一个牛顿模拟重力实验。
+本章的实例程序能够在g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+伴随着介绍苹果的iOS7,将会使你清晰的认清设备和现实世界的相互作用，UIKit Dynamics就是众多新API中的一个, UIKit Dyanmics是UIKit下的一个二维的物理引擎，在今天的文章里面，我们就介绍一下UIKit Dynamics并且构建一个牛顿模拟重力实验。
+本章的实例程序能够在g">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-1.jpg">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-2.png">
+<meta property="og:updated_time" content="2014-01-07T10:02:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+伴随着介绍苹果的iOS7,将会使你清晰的认清设备和现实世界的相互作用，UIKit Dynamics就是众多新API中的一个, UIKit Dyanmics是UIKit下的一个二维的物理引擎，在今天的文章里面，我们就介绍一下UIKit Dynamics并且构建一个牛顿模拟重力实验。
+本章的实例程序能够在g">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day0-uikit-dynamics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/" class="article-date">
+  <time datetime="2014-01-06T03:22:00.000Z" itemprop="datePublished">2014-01-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 0 :: UIKit Dynamics
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<p>伴随着介绍苹果的iOS7,将会使你清晰的认清设备和现实世界的相互作用，UIKit Dynamics就是众多新API中的一个, UIKit Dyanmics是UIKit下的一个二维的物理引擎，在今天的文章里面，我们就介绍一下UIKit Dynamics并且构建一个牛顿模拟重力实验。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="物理世界"><a href="#物理世界" class="headerlink" title="物理世界"></a>物理世界</h3><p>为了模拟现实世界中的物理效果，我们使用<code>UIDynamicBehavior</code>的子类来确定对象(这些对象都实现了<code>UIDynamicItem</code>协议)的不同行为。一些行为的例子包含：重力作用、碰撞作用和弹性作用。当然了实现了<code>UIDynamicItem</code>的对象也可以创建自己独特的行为,极其重要的<code>UIView</code>就已经这么做了。<code>UIDynamicBehavior</code>对象可以融合在一起生成一个新的综合行为的对象，它包含所有的行为对于一个给定的对象或一组对象。</p>
+<p>一旦我们指定了动态对象的行为，我们就可以为他们提供一个<code>UIDynamicAnimator</code>实例(也就是物理引擎自身).它就可以自己运行根据不同的行为来计算不同对象间的相互影响。下图用来展示UIKit Dynamics世界中的概念图:</p>
+<img src="/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-0.png">
+<a id="more"></a>
+<h3 id="构建一个摆钟"><a href="#构建一个摆钟" class="headerlink" title="构建一个摆钟"></a>构建一个摆钟</h3><p>我们回忆到大学的实验，最简单的牛顿物理实验就是一个摆钟。我们创建一个<code>UIView</code>来代表一个钟摆球:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIView</span> *ballBearing = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">40</span>, <span class="number">40</span>)];</span><br><span class="line">ballBearing.backgroundColor = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">ballBearing.layer.cornerRadius = <span class="number">10</span>;</span><br><span class="line">ballBearing.layer.borderColor = [<span class="built_in">UIColor</span> grayColor].CGColor;</span><br><span class="line">ballBearing.layer.borderWidth = <span class="number">2</span>;</span><br><span class="line">ballBearing.center = <span class="built_in">CGPointMake</span>(<span class="number">200</span>, <span class="number">300</span>);</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:ballBearing];</span><br></pre></td></tr></table></figure>
+<p>现在我们可以为钟摆球添加一些行为，我们将会创建一个复合的行为集合(包含了很多基本行为)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIDynamicBehavior</span> *behavior = [[<span class="built_in">UIDynamicBehavior</span> alloc] init];</span><br></pre></td></tr></table></figure>
+<p>接下来我们将开始添加我们需要模拟的行为，首先是重力行为:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIGravityBehavior</span> *gravity = [[<span class="built_in">UIGravityBehavior</span> alloc] initWithItems:@[ballBearing]];</span><br><span class="line">gravity.magnitude = <span class="number">10</span>;</span><br><span class="line">[behavior addChildBehavior:gravity];</span><br></pre></td></tr></table></figure>
+<p><code>UIGravityBehavior</code>代表了对象本身和地球之间的重力吸引力，它有一些属性允许你设置矢量的万有引力(就是重力系数<code>magnitude</code>和方向<code>direction</code>),我们这里增加了重力系数，但是保持重力的方向在y轴上面。</p>
+<p>另外一个连结物的行为(attachment behavior)需要添加到钟摆球上面，它代表了绳子对它的牵引作用:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CGPoint</span> anchor = ballBearing.center;</span><br><span class="line">anchor.y -= <span class="number">20</span>;</span><br><span class="line"><span class="built_in">UIAttachmentBehavior</span> *attachment = [[<span class="built_in">UIAttachmentBeahavior</span> alloc] initWithItem:ballBearing attachedToAnchor:anchor];</span><br><span class="line">[behavior addChildBehavior:attachment];</span><br></pre></td></tr></table></figure>
+<p><code>UIAttachmentBehavior</code>实例伴随一个动态的对象(一个锚点或者另外的对象),它们有具体的属性来控制绳子对它的行为 - 具体就是它的频繁性、阻尼和长度。默认的设置就是一个完全刚性的连接物(没有任何长度伸缩弹性的物体),刚性的连接物正是我们的钟摆球所需要的。</p>
+<p>现在我们已经为钟摆球指定了一些行为了，此时我们创建物理引擎来控制这些行为，所以我们定了一个类的全局变量(iVar):<code>UIDynamicAnimator *_animator</code>;</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_animator = [[<span class="built_in">UIDynamicAnimator</span> alloc] initWithReferenceView:<span class="keyword">self</span>.view];</span><br><span class="line">[_animator addBehavior:behavior];</span><br></pre></td></tr></table></figure>
+<p><code>UIDynamicAnimator</code>代表了模拟动态系统的物理引擎，在这里我们创建了它，并且指定了它参照的view(既指定宇宙空间),也添加了我们创建的行为.</p>
+<p>到此为止，我们已经创建了第一个UIKit Dynamics系统，然而，如果我们运行app，没有发生我们所期望的，这是因为此时app是在静态的设备中，我们需要让我们的设备运动起来就可以看到view的动态行为了。</p>
+<h3 id="手势响应行为"><a href="#手势响应行为" class="headerlink" title="手势响应行为"></a>手势响应行为</h3><p>我们需要为钟摆球添加一个手势操作，这样可以通过手势来摆弄钟摆球模型:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIPanGestureRecognizer</span> *gesture = [[<span class="built_in">UIPanGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleBallBearingPan:)];</span><br><span class="line">[ballBearing addGestureRecognizer:gesture];</span><br></pre></td></tr></table></figure>
+<p>下面来实现手势的具体行为操作:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)handleBallBearingPan:(<span class="built_in">UIPanGestureRecognizer</span> *)recognizer &#123;</span><br><span class="line">	<span class="comment">// If we're starting the gesture then create a drag force</span></span><br><span class="line">	<span class="keyword">if</span> (recognizer.state == <span class="built_in">UIGestureRecognizerStateBegan</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (_userDragBehavior) &#123;</span><br><span class="line">			[_animator removeBehavior:_userDragBehavior];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		_userDragBehavior = [[<span class="built_in">UIPushBehavior</span> alloc] initWithItems:@[recognizer.view] mode:<span class="built_in">UIPushBehaviorModeContinuous</span>];</span><br><span class="line">		[_animator addBehavior:_userDragBehavior];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Set the force to be proportional to distance the gesture has moved</span></span><br><span class="line">	_userDragBehavior.pushDirection = <span class="built_in">CGVectorMake</span>([recognizer translationInView:<span class="keyword">self</span>].x / <span class="number">10.</span>f, <span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// If we're finishing then cancel the behavior to 'let-go' of the ball</span></span><br><span class="line">	<span class="keyword">if</span> (recognizer.state = <span class="built_in">UIGestureRecognizerStateEnded</span>) &#123;</span><br><span class="line">	[_animator removeBehavior:_userDragBehavior];</span><br><span class="line">	_userDragBehavior = <span class="literal">nil</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UIPushBehavior</code>代表一个简单的线性力量作用于对象上面。当力消失的时候，我们就回收作用在钟摆球上面的力,我们定义了一个类全局变量(iVar) <code>UIPushBehavior *_userDragBehvior</code>,这个变量可是在手势触发开始的时候赋值，需要记得把这个行为添加到dynamics animator中， 我们力的大小与水平位移成正比， 为了让钟摆球摇摆，我们需要在手势结束的时候删除掉push行为。</p>
+<h3 id="多个组合的钟摆球"><a href="#多个组合的钟摆球" class="headerlink" title="多个组合的钟摆球"></a>多个组合的钟摆球</h3><p>下图就是牛顿钟摆球的一个模型:</p>
+<img src="/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-1.jpg">
+<p>为了在创造这些使用<code>UIKit Dynamics</code>，我们需要创建多个钟摆球，具体的方法可以参照上面所实现的，它们放置的控件需要留有一点空隙(具体的实现参见代码中详细).</p>
+<p>另外我们需要添加一个新的行为来描述两个钟摆球的碰撞，我们有一个类的全局变量保存在一个数组中<code>NSArray *_ballBearings;</code>:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UICollisionBehavior</span> *collision = [[<span class="built_in">UICollisionBehavior</span> alloc] initWithObjects:_ballBearings];</span><br><span class="line">[behavior addChildBehavior:collision];</span><br></pre></td></tr></table></figure>
+<p>这里我们使用了一个碰撞行为作用在模拟系统中的一些对象上面，碰撞行为还可以用于模型对象达到边界如视图边界,或任意的贝塞尔曲线路径的界限。</p>
+<p>如果我们现在运行app，并且移动一个钟摆球，你将会发现钟摆并不像我们认为的方式展示，这是因为碰撞不是弹性的，我们需要为行为添加一个指定的类型来指定各种共享的属性：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIDynamicItemBehavior</span> *itemBehavior = [[<span class="built_in">UIDynamicItemBehavior</span> alloc] initWithItems:_ballBearings];</span><br><span class="line"><span class="comment">// Elasticity governs the efficiency of the collisions</span></span><br><span class="line">itemBehavior.elasticity = <span class="number">1.0</span>;</span><br><span class="line">itemBehavior.allowsRotation = <span class="literal">NO</span>;</span><br><span class="line">itemBehavior.resistance = <span class="number">0.5</span>;</span><br><span class="line">[behavior addChildBehavior:itemBehavior];</span><br></pre></td></tr></table></figure>
+<p>我们使用<code>UIDynamicItemBehavior</code>来指定碰撞的弹性，同时也设置了其他的属性例如resistance(阻尼，空气产生的阻尼)和rotation(选择),如果我们运行旋转，我们可以指定角阻力, dynamic item 行为也可以设置线性和角速度，把它们添加到手势操作上面是十分有用的。</p>
+<p>再次运行app,我们会发现，此时的行为就和我们期望的一样。也许你需要自己添加一些连接线</p>
+<img src="/images/2014/01/06/ios7-day-by-day-day0-uikit-dynamics-2.png">
+<p>至此，代码部分就完成了，使用所有介绍的元素，可以一步到demo app中查看完整的代码.</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章对于UIKit Dynamics的介绍还只是停留在表面上，但是通过这里介绍的东西可以模拟出更加复杂的物理系统，这只是入门前的开胃菜而已，通过这个我们可以理解现实物理系统中的动作和互相作用。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/09/19/ios7-day-by-day-day-0-uikit-dynamics/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 0 :: UIKit Dynamics</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/06/ios7-day-by-day-day0-uikit-dynamics/" data-id="cimehomiw001g0m9koay7etkn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/06/ios7-day-by-day-day1-nsurlsession/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 1 :: NSURLSession
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/06/introducting-ios7-day-by-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

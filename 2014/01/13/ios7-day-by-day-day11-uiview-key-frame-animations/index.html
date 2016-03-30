@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>天天品尝iOS7甜点 :: Day 11 :: UIView Key-frame Animations | Kingiol Ding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍从iOS2开始，UIView就有了实现动画的方法，而在iOS4中就添加了运用block的方法。这些方法都是对CoreAnimation层的一个装饰方法，UIView只是通过实例渲染的。
+UIView中的实现动画的方法允许一下可以设置为动画的属性(例如transform,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天天品尝iOS7甜点 :: Day 11 :: UIView Key-frame Animations">
+<meta property="og:url" content="http://kingiol.github.io/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations/index.html">
+<meta property="og:site_name" content="Kingiol Ding">
+<meta property="og:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍从iOS2开始，UIView就有了实现动画的方法，而在iOS4中就添加了运用block的方法。这些方法都是对CoreAnimation层的一个装饰方法，UIView只是通过实例渲染的。
+UIView中的实现动画的方法允许一下可以设置为动画的属性(例如transform,">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-0.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-1.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-2.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-3.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-4.png">
+<meta property="og:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-5.png">
+<meta property="og:updated_time" content="2014-01-13T09:50:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天天品尝iOS7甜点 :: Day 11 :: UIView Key-frame Animations">
+<meta name="twitter:description" content="这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：天天品尝iOS7甜点
+
+
+Introduction - 介绍从iOS2开始，UIView就有了实现动画的方法，而在iOS4中就添加了运用block的方法。这些方法都是对CoreAnimation层的一个装饰方法，UIView只是通过实例渲染的。
+UIView中的实现动画的方法允许一下可以设置为动画的属性(例如transform,">
+<meta name="twitter:image" content="http://kingiol.github.io/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kingiol Ding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kingiol Ding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不作死就不会死.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kingiol.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ios7-day-by-day-day11-uiview-key-frame-animations" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations/" class="article-date">
+  <time datetime="2014-01-13T06:32:00.000Z" itemprop="datePublished">2014-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS7/">iOS7</a>►<a class="article-category-link" href="/categories/iOS7/翻译/">翻译</a>►<a class="article-category-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天天品尝iOS7甜点 :: Day 11 :: UIView Key-frame Animations
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是天天品尝iOS7甜点系列的一部分，你可以查看完整的系列目录：<a href="/blog/2014/01/06/introducting-ios7-day-by-day/">天天品尝iOS7甜点</a></p>
+<hr>
+
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction - 介绍"></a>Introduction - 介绍</h3><p>从iOS2开始，<code>UIView</code>就有了实现动画的方法，而在iOS4中就添加了运用block的方法。这些方法都是对<code>CoreAnimation</code>层的一个装饰方法，<code>UIView</code>只是通过实例渲染的。</p>
+<p><code>UIView</code>中的实现动画的方法允许一下可以设置为动画的属性(例如<code>transform</code>, <code>backgroundColor</code>, <code>frame</code>, <code>center</code>等)——设置成为最终状态，运行时长和其他的一些运动曲线的选项。然而，设置中间动画的中间状态(被称之为关键帧),是不可能办到的。在这种情况下有必须运用<code>CoreAnimation</code>来创建一个<code>CAKeyFrameAnimation</code>.在iOS7中包含了这些变化，在<code>UIView</code>中新增了两个方法，所以不需要自己借助于<code>CoreAnimation</code>就可以实现关键这动画了。</p>
+<p>为了展示如何通过<code>UIView</code>来实现关键帧动画，我们需要创建一些示例程序。首先通过彩虹的颜色改变视图背景颜色的动画，其次演示一个指定旋转方向的360旋转示例。</p>
+<p>本章的实例程序能够在github上面进行访问，访问地址:<a href="https://github.com/ShinobiControls/iOS7-day-by-day" target="_blank" rel="external">github.com/ShinobiControls/iOS7-day-by-day</a></p>
+<h3 id="Rainbow-Changer-彩虹变色器"><a href="#Rainbow-Changer-彩虹变色器" class="headerlink" title="Rainbow Changer - 彩虹变色器"></a>Rainbow Changer - 彩虹变色器</h3><p><code>UIView</code>的关键帧动画需要用到两个方法，首先一个比较熟悉的block方法是<code>animateKeyframesWithDuration:delay:options:animations:completion:</code>这个方法需要浮点类型的动画持续时长(duraiton)和延迟(delay),一些二进制组成的选项(options)和动画运行的block和动画运行完成最后的block,这是一个标准的<code>UIView</code>的动画的实现。下一次有点儿不同的方法我们称之为内部块方法:<code>addKeyframeWithRelativeStartTime:relativeDuration:</code>。这个方法是用来添加动画序列内的不动点。</p>
+<a id="more"></a>
+<p>我们通过一个示例来理解用法。我们需要创建一个通过彩虹颜色变化视图背景色的动画，我们将着重显示按钮点击之后的动画。所以我们需要在storyboard中添加一个按钮，并且把它绑定到下面的方法上面:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)handleRainbow:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	[<span class="keyword">self</span> enableToolbarItems:<span class="literal">NO</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">void</span> (^animationBlock)() = ^&#123;</span><br><span class="line">		<span class="comment">// Animations here</span></span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line">	[<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">4.0</span></span><br><span class="line">									dylay:<span class="number">0.0</span></span><br><span class="line">									options:<span class="built_in">UIViewKeyframeAnimationOptionCalculationModeLinear</span>|<span class="built_in">UIViewAnimationOptionCurveLinear</span></span><br><span class="line">									animations:animationBlock</span><br><span class="line">									completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">									[<span class="keyword">self</span> enableToolbarItems:<span class="literal">YES</span>];</span><br><span class="line">									&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们创建一个包含动画的局部变量<code>animationBlock</code>,然后调用<code>animateKeyframesWithDuration:delay:options:animations:completion:</code>方法。让我们开始运行动画之前，显示禁用按钮，然后等到动画运行完成之后，在开启按钮，具体的实现如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)enableToolbarItems:(<span class="built_in">BOOL</span>)enabled &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">UIBarButtonItem</span> *item <span class="keyword">in</span> <span class="keyword">self</span>.toolbar.items) &#123;</span><br><span class="line">		item.enable = enabled;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们会看一些可用的选项在执行帧动画后,现在让我们填写动画块:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (^animationBlock)() = ^&#123;</span><br><span class="line">    <span class="built_in">NSArray</span> *rainbowColors = @[[<span class="built_in">UIColor</span> orangeColor],</span><br><span class="line">                               [<span class="built_in">UIColor</span> yellowColor],</span><br><span class="line">                               [<span class="built_in">UIColor</span> greenColor],</span><br><span class="line">                               [<span class="built_in">UIColor</span> blueColor],</span><br><span class="line">                               [<span class="built_in">UIColor</span> purpleColor],</span><br><span class="line">                               [<span class="built_in">UIColor</span> redColor]];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSUInteger</span> colorCount = [rainbowColors count];</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">NSUInteger</span> i=<span class="number">0</span>; i&lt;colorCount; i++) &#123;</span><br><span class="line">        [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:i/(<span class="built_in">CGFloat</span>)colorCount</span><br><span class="line">                                relativeDuration:<span class="number">1</span>/(<span class="built_in">CGFloat</span>)colorCount</span><br><span class="line">                                      animations:^&#123;</span><br><span class="line">                                          <span class="keyword">self</span>.rainbowSwatch.backgroundColor = rainbowColors[i];</span><br><span class="line">                                      &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>首先我们创建了一个装有所有变换颜色的数组，每一个颜色我们通过调用下面的方法来实现关键帧的动画效果:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:i/(<span class="built_in">CGFloat</span>)colorCount</span><br><span class="line">                        relativeDuration:<span class="number">1</span>/(<span class="built_in">CGFloat</span>)colorCount</span><br><span class="line">                              animations:^&#123;</span><br><span class="line">                                  <span class="keyword">self</span>.rainbowSwatch.backgroundColor = rainbowColors[i];</span><br><span class="line">                              &#125;];</span><br></pre></td></tr></table></figure>
+<p>每一帧动画我们都指定了一个开始时间，持续时间和一个动画运行块(block).这些时间都是相对的，也就是，我们指定浮点数在0到1之间，然后他们将会适当的自己去匹配动画的运行时长。这里我们想要的颜色变化等间距的整个动画,所以我们设置相对每个动画的开始时间是指数当前的颜色在颜色的总数,和相对时间是1的总数的颜色。动画块指定动画的最终状态,以同样的方式确实对所有UIView基于块的动画,这里我们只需要设置背景颜色。</p>
+<p>如果你运行app,并且点击<code>Rainbow</code>按钮，然后你就可以看到第一个视图执行关键帧动画。</p>
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-0.png">
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-1.png">
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-2.png">
+<h3 id="Keyframe-animation-options-关键帧动画的选项参数设置"><a href="#Keyframe-animation-options-关键帧动画的选项参数设置" class="headerlink" title="Keyframe animation options - 关键帧动画的选项参数设置"></a>Keyframe animation options - 关键帧动画的选项参数设置</h3><p>方法<code>animateKeyFrames:</code>中的选项介绍<code>UIViewAnimationOptions</code>参数，尽管在<code>UIViewKeyFrameAnimationOptions</code>中有一些新的值，下面就是控制这些行为的选项:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIViewKeyframeAnimationOptionCalculationModeLinear</span></span><br><span class="line"><span class="built_in">UIViewKeyframeAnimationOptionCalculationModeDiscrete</span></span><br><span class="line"><span class="built_in">UIViewKeyframeAnimationOptionCalculationModePaced</span></span><br><span class="line"><span class="built_in">UIViewKeyframeAnimationOptionCalculationModeCubic</span></span><br><span class="line"><span class="built_in">UIViewKeyframeAnimationOptionCalculationModeCubicPaced</span></span><br></pre></td></tr></table></figure>
+<p>下图展示不同选项行为上面的不同。水平轴代表了动画的时长，而竖直轴代表动画的参数(这可以是视图的透明度，宽度)，在示例中，我们已经指定了3个关键帧，每一个都有不同的时长和最终值.</p>
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-3.png">
+<p>上述参数的运行效果，可以在图中进行查看，不同颜色的线条，代表不同的选项对应的运行效果。</p>
+<h3 id="Rotation-Directions-旋转方向"><a href="#Rotation-Directions-旋转方向" class="headerlink" title="Rotation Directions - 旋转方向"></a>Rotation Directions - 旋转方向</h3><p>上面已经写了一大推的代码了，我们还需要查看如何指定整个视图的旋转，指定旋转方向。当你指定一个动画，然后<code>CoreAnimation</code>将会以最短的路径记录开始和结束。因此，在进行旋转变换的时候，我们只需要指定开始的角度和结束的角度，但不是它会旋转的方向。使用关键帧动画，我们可以一些中间的状态。</p>
+<p>因此，一个顺时针的旋转，我们可以写法如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)handleRotateCW:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">    [<span class="keyword">self</span> enableToolbarItems:<span class="literal">NO</span>];</span><br><span class="line">    [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">2.0</span></span><br><span class="line">                                   delay:<span class="number">0.0</span></span><br><span class="line">                                 options:<span class="built_in">UIViewKeyframeAnimationOptionCalculationModeLinear</span></span><br><span class="line">                              animations:^&#123;</span><br><span class="line">                                  [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">0.0</span></span><br><span class="line">                                                          relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                                animations:^&#123;</span><br><span class="line">                                                                    <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">2.0</span> * M_PI / <span class="number">3.0</span>);</span><br><span class="line">                                                                &#125;];</span><br><span class="line">                                  [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                          relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                                animations:^&#123;</span><br><span class="line">                                                                    <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">4.0</span> * M_PI / <span class="number">3.0</span>);</span><br><span class="line">                                                                &#125;];</span><br><span class="line">                                  [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">2</span>/<span class="number">3.0</span></span><br><span class="line">                                                          relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                                animations:^&#123;</span><br><span class="line">                                                                    <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">0</span>);</span><br><span class="line">                                                                &#125;];</span><br><span class="line"></span><br><span class="line">                              &#125;</span><br><span class="line">                              completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">                                  [<span class="keyword">self</span> enableToolbarItems:<span class="literal">YES</span>];</span><br><span class="line">                              &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们执行关键帧动画有3个中间态，整个动画的持续时间是等距的。我们选择的开始角度是0，然后我们移动到2π/3, 4π/3,最后再次回到0。为了完成指定的2π的旋转，我们需要有额外的2个中间点，因为只要有一个角度的差异大于π那么它将相反的方向旋转。如果一个角度的差异就是π，那么行为就是未定义的。</p>
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-4.png">
+<img src="/images/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations-5.png">
+<p>为了改变旋转的方向，我们需要反转关键帧，也就是，开始的角度为0，然后移动到4π/3, 接着2π/3,最后再次回到0:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)handleRotateCCW:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">  [<span class="keyword">self</span> enableToolbarItems:<span class="literal">NO</span>];</span><br><span class="line">  [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">2.0</span></span><br><span class="line">                                 delay:<span class="number">0.0</span></span><br><span class="line">                               options:<span class="built_in">UIViewKeyframeAnimationOptionCalculationModeLinear</span></span><br><span class="line">                            animations:^&#123;</span><br><span class="line">                                [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">0.0</span></span><br><span class="line">                                                        relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                              animations:^&#123;</span><br><span class="line">                                                                  <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">4.0</span> * M_PI / <span class="number">3.0</span>);</span><br><span class="line">                                                              &#125;];</span><br><span class="line">                                [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                        relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                              animations:^&#123;</span><br><span class="line">                                                                  <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">2.0</span> * M_PI / <span class="number">3.0</span>);</span><br><span class="line">                                                              &#125;];</span><br><span class="line">                                [<span class="built_in">UIView</span> addKeyframeWithRelativeStartTime:<span class="number">2</span>/<span class="number">3.0</span></span><br><span class="line">                                                        relativeDuration:<span class="number">1</span>/<span class="number">3.0</span></span><br><span class="line">                                                              animations:^&#123;</span><br><span class="line">                                                                  <span class="keyword">self</span>.rotatingHead.transform = <span class="built_in">CGAffineTransformMakeRotation</span>(<span class="number">0</span>);</span><br><span class="line">                                                              &#125;];</span><br><span class="line"></span><br><span class="line">                            &#125;</span><br><span class="line">                            completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">                                [<span class="keyword">self</span> enableToolbarItems:<span class="literal">YES</span>];</span><br><span class="line">                            &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样忍者的头部就可以自由的选择，更重要的一点是，我们并没有使用底层的<code>CoreAnimation</code></p>
+<h3 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion - 总结"></a>Conclusion - 总结</h3><p><code>UIView</code>动画已经具有高级的方法来执行简单的动画，并且能够更好的理解和构建。现在，有了新的关键帧动画，更多复杂的动画可以使用相同的简单API。本篇文章通过几个示例介绍了它是多么的强大。</p>
+<p>本文翻译自:<a href="http://www.shinobicontrols.com/blog/posts/2013/10/04/ios7-day-by-day-day-11-uiview-key-frame-animations/" target="_blank" rel="external">iOS7 Day-by-Day :: Day 11 :: UIView Key-frame Animations</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kingiol.github.io/2014/01/13/ios7-day-by-day-day11-uiview-key-frame-animations/" data-id="cimehomjx00250m9kfu52s9vz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/14/ios7-day-by-day-day12-dynamic-type-and-font-descriptors/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天天品尝iOS7甜点 :: Day 12 :: Dynamic Type and Font Descriptors
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/12/ios7-day-by-day-day10-custom-uiviewcontroller-transitions/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天天品尝iOS7甜点 :: Day 10 :: Custom UIViewController Transitions</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/html/">html</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Xcode/">Xcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/cocos2d/">cocos2d</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/xcode/">xcode</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/">iOS7</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS7/翻译/iOS7-Day-by-Day/">iOS7 Day-by-Day</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS8/">iOS8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/">subversion</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/">svn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/subversion/svn/apache/">apache</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/json/">json</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/xml/">xml</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/summary/">summary</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/summary/share/">share</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/产品/">产品</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/产品/设计/">设计</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/叽歪/">叽歪</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/iOS/">iOS</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/02/ios-uibutton-double-click/">iOS中UIButton实现双击操作</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/07/xcode-your-account-already-has-a-valid-ios-distribution-certificate/">xcode Archive 出现Your account already has a valid iOS distribution certificate警告</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/27/swift-ninja-challenge/">swift高级特性一瞥</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/04/interactive-between-objective-c-and-swift/">Objective-C和Swift的交互操作</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/20/advanced-feature-of-gcd/">GCD中的一些高级特性</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kingiol<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
